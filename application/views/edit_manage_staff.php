@@ -27,7 +27,7 @@ foreach ($one_value as $one_info) {
 <section id="breadcrumb">
 	<div class="container">
 		<ol class="breadcrumb">
-			<li><a href="#">Create Option</a></li>
+			<li><a href="#"> Buat Opsi</a></li>
 <!--			<li class="active">--><?php //echo $msg; ?><!--</li>-->
 		</ol>
 	</div>
@@ -41,15 +41,15 @@ foreach ($one_value as $one_info) {
 			<div class="col-md-3">
 				<div class="list-group">
 					<a href="#" class="list-group-item active main-color-bg">
-						<span class="glyphicon glyphicon-person" aria-hidden="true"></span> Manage Staff</a>
+						<span class="glyphicon glyphicon-person" aria-hidden="true"></span> Mengelola Karyawan</a>
 					<a href="<?php echo base_url(); ?>ShowForm/manage_staff/main" class="list-group-item">
-						<span class="fa fa-truck-moving" aria-hidden="true"></span> Create Staff</a>
+						<span class="fa fa-truck-moving" aria-hidden="true"></span> Buat Karyawan</a>
 				</div>
 			</div>
 			<div class="col-md-9">
 				<div class="rounded-0 panel panel-default">
 					<div class="panel-heading rounded-0 main-color-bg">
-						<h3 class="panel-title">Create Staff</h3>
+						<h3 class="panel-title">Buat Karyawan</h3>
 					</div>
 
 					<div class="panel-body">
@@ -64,14 +64,14 @@ foreach ($one_value as $one_info) {
 										   value="<?php echo $one_name; ?>"name="username">
 								</div>
 								<div class="col-sm-6">
-									<label for="password">Password</label>
+									<label for="password">Kata Sandi</label>
 									<input type="password" class="form-control" id="password" placeholder=""
 										   value="<?php echo $one_password; ?>"  name="password">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-sm-4" style="margin-top: 17px;">
-									<button type="submit" class="pull-left btn btn-primary">Update</button>
+									<button type="submit" class="pull-left btn btn-primary">Edit</button>
 								</div>
 							</div>
 							</form>

@@ -15,7 +15,7 @@ if ($msg == "main") {
 <section id="breadcrumb">
 	<div class="container">
 		<ol class="breadcrumb">
-			<li><a href="#">Create Option</a></li>
+			<li><a href="#"> Buat Opsi</a></li>
 			<li class="active"><?php echo $msg; ?></li>
 		</ol>
 	</div>
@@ -29,13 +29,16 @@ if ($msg == "main") {
 			<div class="col-md-3">
 				<div class="list-group">
 					<a href="index.html" class="list-group-item active main-color-bg">
-						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Create Option</a>
+						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>  Buat Opsi</a>
 					<a href="<?php echo base_url(); ?>ShowForm/create_medicine_presentation/main" class="list-group-item">
-						<span class="	fa fa-capsules" aria-hidden="true"></span> Medicine Presentation</a>
+						<span class="	fa fa-capsules" aria-hidden="true"></span> Presentase Obat</a>
 					<a href="<?php echo base_url(); ?>ShowForm/create_generic_name/main" class="list-group-item">
-						<span class="fa fa-plus-circle" aria-hidden="true"></span> Generic Name </a>
+						<span class="fa fa-plus-circle" aria-hidden="true"></span> Kategori Obat </a>
 					<a href="<?php echo base_url(); ?>ShowForm/create_medicine_name/main" class="list-group-item active">
-						<span class="fa fa-pills" aria-hidden="true"></span> Medicine Name</a>
+						<span class="fa fa-pills" aria-hidden="true"></span> Nama Obat</a>
+					<a href="<?php echo base_url(); ?>storage" class="list-group-item">
+						<span class="fa fa-pills" aria-hidden="true"></span> Storage Obat</a>
+
 <!--					<a href="--><?php //echo base_url(); ?><!--ShowForm/create_product_category/main" class="list-group-item">-->
 <!--						<span class="fa fa-tasks" aria-hidden="true"></span> Product Category</a>-->
 <!--					<a href="--><?php //echo base_url(); ?><!--ShowForm/create_product_name/main" class="list-group-item">-->
@@ -47,7 +50,7 @@ if ($msg == "main") {
 			<div class="col-md-9">
 				<div class="rounded-0 panel panel-default">
 					<div class="panel-heading rounded-0 main-color-bg">
-						<h3 class="panel-title">Create Medicine Name</h3>
+						<h3 class="panel-title">Create Nama Obat</h3>
 					</div>
 
 					<div class="panel-body">
@@ -57,7 +60,7 @@ if ($msg == "main") {
 								<div class="box-body">
 									<div class="row">
 									<div class="col-sm-6" style="">
-										<label for="generic_name">Generic Name</label>
+										<label for="generic_name">Kategori Obat</label>
 										<select name="generic_name" id="generic_name" class="form-control selectpicker"
 												data-live-search="true">
 											<option value="">-- Select --</option>
@@ -68,14 +71,14 @@ if ($msg == "main") {
 									</div>
 									<div class="col-sm-6">
 <!--									<div class="form-group" style="width: 400px;">-->
-										<label for="medicine_name">Medicine Name</label>
+										<label for="medicine_name">Nama Obat</label>
 										<input type="text" class="form-control" id="medicine_name" placeholder="" name="medicine_name">
 <!--									</div>-->
 								</div>
 									</div>
 									<div class="row">
 								<div class="col-sm-4" style="margin-top: 17px;">
-									<button type="submit" class="pull-left btn btn-primary">Create</button>
+									<button type="submit" class="pull-left btn btn-primary">Buat</button>
 								</div>
 									</div>
 								</form>
@@ -85,7 +88,7 @@ if ($msg == "main") {
 				<!-- /.rounded-0 panel 2nd -->
 				<div class="rounded-0 panel panel-default">
 					<div class="panel-heading rounded-0">
-						<h3 class="panel-title">Medicine Name List</h3>
+						<h3 class="panel-title">Daftar Nama Obat</h3>
 					</div>
 					<div class="panel-body">
 						<div class="panel-body">
@@ -93,9 +96,9 @@ if ($msg == "main") {
 								<thead>
 								<tr>
 									<th style="text-align: center;">#</th>
-									<th style="text-align: center;">Generic Name</th>
-									<th style="text-align: center;">Medicine Name</th>
-									<th style="text-align: center;">Action</th>
+									<th style="text-align: center;">Kategori Obat</th>
+									<th style="text-align: center;">Nama Obat</th>
+									<th style="text-align: center;">Aksi</th>
 								</tr>
 								</thead>
 								<!-- /.Row from DB-->

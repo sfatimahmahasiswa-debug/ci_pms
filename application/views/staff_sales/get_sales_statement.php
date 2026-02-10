@@ -14,7 +14,7 @@
 				<th style="text-align: center;">SL.</th>
 				<th style="text-align: center;">Date</th>
 				<th style="text-align: center;">Invoice No.</th>
-				<th style="text-align: center;">Medicine Name</th>
+				<th style="text-align: center;">Nama Obat</th>
 				<th style="text-align: center;">Unit Price</th>
 				<th style="text-align: center;">Quantity</th>
 

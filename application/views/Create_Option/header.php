@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
 
-    <title><?= isset($page_title) ? $page_title : 'Pharmacy' ?> | CI PMS</title>
+    <title><?= isset($page_title) ? $page_title : 'Pharmacy' ?> | SCM & CRM HARMY MEDIKA</title>
     <link rel="stylesheet" type="image/png" href="<?php echo base_url(); ?>assets/icon.png">
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
@@ -38,13 +38,13 @@
 					<li><a href="<?php echo base_url(); ?>ShowForm/create_medicine_name/main">Create Options</a>
 					</li>
 					<li><a href="<?php echo base_url(); ?>ShowForm/medicine_purchase_info/main">Inventory</a></li>
-					<li><a href="<?php echo base_url(); ?>ShowForm/sell_medicine/main">Sales</a></li>
-					<li><a href="<?php echo base_url(); ?>ShowForm/profit_loss/main">Accounting</a></li>
+					<li><a href="<?php echo base_url(); ?>ShowForm/sell_medicine/main">Penjualan</a></li>
+					<li><a href="<?php echo base_url(); ?>ShowForm/profit_loss/main">Keuangan</a></li>
 					<li><a href="<?php echo base_url(); ?>ShowForm/manage_staff/main">Manage Staff</a></li>
 				</ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class=""><a href="#">Welcome</a></li>
-                    <li><a href="<?php echo base_url(); ?>main/logout">Logout</a></li>
+                    <li class=""><a href="#">Selamat Datang</a></li>
+                    <li><a href="<?php echo base_url(); ?>main/logout">Keluar</a></li>
                 </ul>
             </div>
         </div>

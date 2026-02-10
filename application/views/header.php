@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
 
-    <title><?= isset($page_title) ? $page_title : 'Pharmacy' ?> | CI PMS</title>
+    <title><?= isset($page_title) ? $page_title : 'Pharmacy' ?> | SCM & CRM HARMY</title>
     <link rel="stylesheet" type="image/png" href="<?php echo base_url(); ?>assets/icon.png">
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
@@ -37,16 +37,18 @@
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="<?php echo base_url(); ?>Main/enter">Dashboard</a></li>
-                                        <li><a href="<?php echo base_url(); ?>ShowForm/pasien_info/main">Pasien</a>
-                    </li>
                     <li><a href="<?php echo base_url(); ?>ShowForm/create_medicine_name/main">Buat Opsi</a>
                     </li>
                     <li><a href="<?php echo base_url(); ?>ShowForm/medicine_purchase_info/main">Persediaan</a></li>
-                                        <li><a href="<?php echo base_url(); ?>ShowForm/pasien_info/main">Pasien</a></li>
                     <li><a href="<?php echo base_url(); ?>ShowForm/sell_medicine/main">Penjualan</a></li>
                     <li><a href="<?php echo base_url(); ?>ShowForm/profit_loss/main">Keuangan</a></li>
-                    <li><a href="<?php echo base_url(); ?>ShowForm/manage_staff/main">Manage Staff</a></li>
+                    <li><a href="<?php echo base_url(); ?>ShowForm/manage_staff/main">Mengelola Karyawan</a></li>
                 </ul>
+
+                <ul class="nav navbar-nav">
+                    <li><a href="<?php echo base_url(); ?>ShowForm/patient/main">Patient</a></li>
+                </ul>
+
                 <ul class="nav navbar-nav navbar-right">
                     <li class=""><a href="#">Selamat Datang</a></li>
                     <li><a href="<?php echo base_url(); ?>main/logout">Keluar</a></li>

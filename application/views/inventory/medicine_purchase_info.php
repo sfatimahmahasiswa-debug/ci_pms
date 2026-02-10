@@ -106,11 +106,11 @@ if ($msg == "main") {
 									<input type="number" class="form-control" id="qty" name="qty">
 								</div>
                                 <div class="col-sm-3" style="">
-                                    <label for="unit_price">Unit Price</label>
+                                    <label for="unit_price">Harga Satuan</label>
                                     <input type="number" step=any class="form-control" id="unit_price"  name="unit_price">
                                 </div>
 								<div class="col-sm-3">
-									<label for="purchase_price">Total Amount</label>
+									<label for="purchase_price">Jumlah Total</label>
 									<input type="number" step=any class="form-control" id="purchase_price" placeholder="$"
 										   name="purchase_price">
 								</div>

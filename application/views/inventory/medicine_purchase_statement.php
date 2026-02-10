@@ -66,7 +66,7 @@ if ($msg == "main") {
 										   autocomplete="off">
 								</div>
 								<div class="col-sm-6" style="">
-									<label for="medicine_name">Medicine Name</label>
+									<label for="medicine_name">Nama Obat</label>
 									<select name="medicine_name" id="medicine_name" class="form-control selectpicker"
 											data-live-search="true">
 										<option value="">-- Select --</option>

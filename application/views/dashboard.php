@@ -54,7 +54,7 @@
           </div>
           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="well dash-box">
-              <h4><span class="glyphicon glyphicon-user" aria-hidden="true" style="color: rgb(109, 139, 0);"></span> Staffs</h4>
+              <h4><span class="glyphicon glyphicon-user" aria-hidden="true" style="color: rgb(109, 139, 0);"></span> Karyawan</h4>
               <h2 class='text-right'><?php $query = $this->db->query('SELECT * FROM staff'); echo number_format($query->num_rows());?></h2>
             </div>
           </div>

@@ -2,7 +2,7 @@
 <!--<footer id="footer" >-->
 	<div style="margin-top:7em"></div>
 	<footer id="footer" class="navbar navbar-fixed-bottom">
-		<p>&copy; Sistem Penjualan dan Persediaan Apotek CI,  <?php echo date('Y')?>  </p>
+		<p>&copy; SCM & RCM Harmy Medika,  <?php echo date('Y')?>  </p>
 	</footer>
 	<!-- Bootstrap core JavaScript
     ================================================== -->

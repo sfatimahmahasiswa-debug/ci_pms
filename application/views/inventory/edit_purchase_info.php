@@ -66,7 +66,7 @@ foreach ($one_value as $one_info) {
 										   value="<?php echo date('Y-m-d'); ?>" placeholder="Date" name="date" autocomplete="off">
 								</div>
 								<div class="col-sm-3" style="">
-									<label for="medicine_name">Medicine Name</label>
+									<label for="medicine_name">Nama Obat</label>
 									<select name="medicine_name" id="medicine_name" class="form-control selectpicker"
 											data-live-search="true">
 										<?php foreach ($all_medicine as $info) { ?>

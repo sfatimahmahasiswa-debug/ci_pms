@@ -15,7 +15,7 @@ if ($msg == "main") {
 <section id="breadcrumb">
 	<div class="container">
 		<ol class="breadcrumb">
-			<li><a href="#">Create Option</a></li>
+			<li><a href="#"> Buat Opsi</a></li>
 			<li class="active"><?php echo $msg; ?></li>
 		</ol>
 	</div>

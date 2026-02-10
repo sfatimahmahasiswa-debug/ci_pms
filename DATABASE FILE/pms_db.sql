@@ -1,15 +1,21 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2022 at 06:56 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.5
+-- Waktu pembuatan: 17 Jun 2025 pada 05.47
+-- Versi server: 10.4.32-MariaDB
+-- Versi PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `pms_db`
@@ -18,17 +24,17 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `admin`
 --
 
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `username` varchar(250) NOT NULL,
   `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `admin`
+-- Dumping data untuk tabel `admin`
 --
 
 INSERT INTO `admin` (`id`, `username`, `password`) VALUES
@@ -37,16 +43,16 @@ INSERT INTO `admin` (`id`, `username`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `create_generic_name`
+-- Struktur dari tabel `create_generic_name`
 --
 
 CREATE TABLE `create_generic_name` (
   `generic_id` int(100) NOT NULL,
   `generic_name` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `create_generic_name`
+-- Dumping data untuk tabel `create_generic_name`
 --
 
 INSERT INTO `create_generic_name` (`generic_id`, `generic_name`) VALUES
@@ -63,7 +69,7 @@ INSERT INTO `create_generic_name` (`generic_id`, `generic_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `create_medicine_name`
+-- Struktur dari tabel `create_medicine_name`
 --
 
 CREATE TABLE `create_medicine_name` (
@@ -73,10 +79,10 @@ CREATE TABLE `create_medicine_name` (
   `generic_name` varchar(50) DEFAULT NULL,
   `medicine_presentation_id` int(15) DEFAULT NULL,
   `medicine_presentation_name` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `create_medicine_name`
+-- Dumping data untuk tabel `create_medicine_name`
 --
 
 INSERT INTO `create_medicine_name` (`medicine_name_id`, `medicine_name`, `generic_id`, `generic_name`, `medicine_presentation_id`, `medicine_presentation_name`) VALUES
@@ -97,16 +103,16 @@ INSERT INTO `create_medicine_name` (`medicine_name_id`, `medicine_name`, `generi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `create_medicine_presentation`
+-- Struktur dari tabel `create_medicine_presentation`
 --
 
 CREATE TABLE `create_medicine_presentation` (
   `medicine_presentation_id` int(20) NOT NULL,
   `medicine_presentation` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `create_medicine_presentation`
+-- Dumping data untuk tabel `create_medicine_presentation`
 --
 
 INSERT INTO `create_medicine_presentation` (`medicine_presentation_id`, `medicine_presentation`) VALUES
@@ -118,16 +124,16 @@ INSERT INTO `create_medicine_presentation` (`medicine_presentation_id`, `medicin
 -- --------------------------------------------------------
 
 --
--- Table structure for table `create_product_category`
+-- Struktur dari tabel `create_product_category`
 --
 
 CREATE TABLE `create_product_category` (
   `record_id` int(100) NOT NULL,
   `product_category` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `create_product_category`
+-- Dumping data untuk tabel `create_product_category`
 --
 
 INSERT INTO `create_product_category` (`record_id`, `product_category`) VALUES
@@ -137,17 +143,17 @@ INSERT INTO `create_product_category` (`record_id`, `product_category`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `create_product_name`
+-- Struktur dari tabel `create_product_name`
 --
 
 CREATE TABLE `create_product_name` (
   `record_id` int(100) NOT NULL,
   `product_category` varchar(250) NOT NULL,
   `product_name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `create_product_name`
+-- Dumping data untuk tabel `create_product_name`
 --
 
 INSERT INTO `create_product_name` (`record_id`, `product_category`, `product_name`) VALUES
@@ -156,7 +162,7 @@ INSERT INTO `create_product_name` (`record_id`, `product_category`, `product_nam
 -- --------------------------------------------------------
 
 --
--- Table structure for table `create_supplier`
+-- Struktur dari tabel `create_supplier`
 --
 
 CREATE TABLE `create_supplier` (
@@ -165,10 +171,10 @@ CREATE TABLE `create_supplier` (
   `mobile` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
   `previous_due` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `create_supplier`
+-- Dumping data untuk tabel `create_supplier`
 --
 
 INSERT INTO `create_supplier` (`supplier_id`, `supplier_name`, `mobile`, `address`, `previous_due`) VALUES
@@ -184,7 +190,7 @@ INSERT INTO `create_supplier` (`supplier_id`, `supplier_name`, `mobile`, `addres
 -- --------------------------------------------------------
 
 --
--- Table structure for table `insert_purchase_info`
+-- Struktur dari tabel `insert_purchase_info`
 --
 
 CREATE TABLE `insert_purchase_info` (
@@ -208,10 +214,10 @@ CREATE TABLE `insert_purchase_info` (
   `purchase_paid` float DEFAULT NULL,
   `purchase_due` float DEFAULT NULL,
   `expiredate` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `insert_purchase_info`
+-- Dumping data untuk tabel `insert_purchase_info`
 --
 
 INSERT INTO `insert_purchase_info` (`purchase_id`, `date`, `invoice_id`, `particulars`, `medicine_presentation_id`, `medicine_presentation`, `medicine_name_id`, `medicine_name`, `generic_id`, `generic_name`, `supplier_id`, `supplier_name`, `unit_price`, `qty`, `purchase_price`, `unit_sales_price`, `unit`, `purchase_paid`, `purchase_due`, `expiredate`) VALUES
@@ -227,12 +233,55 @@ INSERT INTO `insert_purchase_info` (`purchase_id`, `date`, `invoice_id`, `partic
 (25, '2021-08-17', NULL, 'Purchase Medicine', 2, 'Tablet', 14, 'Zocor', 13, 'Simvastatin Tablets', 6, 'Acezm Pharmaceuticals', 6, 1798, 10800, 7.55, '30', 5210, 5590, '2025-10-16'),
 (26, '2022-06-10', NULL, 'Updated Purchase', 1, 'Capsule', 16, 'Med 101', 15, 'Sample Med', 9, 'ABC Drugs', 30, 50, 1500, 35, '250 mg', 1000, 500, '2022-08-25'),
 (27, '2022-06-10', NULL, 'Payment', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ABC Drugs', NULL, NULL, 0, NULL, '', 500, 0, NULL),
-(28, '2022-06-10', NULL, 'Payment', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Beximco Pharmaceuticals Ltd.', NULL, NULL, 0, NULL, '', 200, 355, NULL);
+(28, '2022-06-10', NULL, 'Payment', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Beximco Pharmaceuticals Ltd.', NULL, NULL, 0, NULL, '', 200, 355, NULL),
+(29, '2025-06-13', NULL, 'Purchase Medicine', 1, 'Capsule', 1, 'Antiva®', 7, 'Paracetamol', 1, 'Unilever Bangladesh Limited', 15000, 2, 30000, 20000, '5 gm', 30000, 0, '2025-06-12');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sales_product`
+-- Struktur dari tabel `medicine_storage_classification`
+--
+
+CREATE TABLE `medicine_storage_classification` (
+  `id` int(11) NOT NULL,
+  `medicine_name` varchar(255) NOT NULL,
+  `storage_category` varchar(50) NOT NULL,
+  `storage_temperature` varchar(20) DEFAULT NULL,
+  `notes` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `medicine_storage_classification`
+--
+
+INSERT INTO `medicine_storage_classification` (`id`, `medicine_name`, `storage_category`, `storage_temperature`, `notes`) VALUES
+(1, 'Antiva®', 'Lemari Pendingin', '2', 'Hindari matahari'),
+(2, 'Notem Plus', 'Suhu Ruangan', '16', 'Hati Hati terhadap bahan ini');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `patients`
+--
+
+CREATE TABLE `patients` (
+  `patient_id` int(11) NOT NULL,
+  `full_name` varchar(255) NOT NULL,
+  `birth_place` varchar(255) DEFAULT NULL,
+  `birth_date` date DEFAULT NULL,
+  `gender` varchar(10) DEFAULT NULL,
+  `blood_type` varchar(5) DEFAULT NULL,
+  `phone` varchar(50) DEFAULT NULL,
+  `allergies` text DEFAULT NULL,
+  `hereditary_diseases` text DEFAULT NULL,
+  `blood_sugar` varchar(50) DEFAULT NULL,
+  `blood_pressure` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `sales_product`
 --
 
 CREATE TABLE `sales_product` (
@@ -258,10 +307,10 @@ CREATE TABLE `sales_product` (
   `discount_price` float DEFAULT NULL,
   `sales_paid` float DEFAULT NULL,
   `sales_due` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `sales_product`
+-- Dumping data untuk tabel `sales_product`
 --
 
 INSERT INTO `sales_product` (`sales_id`, `date`, `invoice`, `particular`, `customer_id`, `customer_name`, `mobile`, `customer_email`, `medicine_presentation_id`, `medicine_presentation`, `medicine_name_id`, `medicine_name`, `generic_id`, `generic_name`, `qty`, `unit_sales_price`, `total_price`, `total_amount`, `total_discount`, `discount_price`, `sales_paid`, `sales_due`) VALUES
@@ -275,12 +324,13 @@ INSERT INTO `sales_product` (`sales_id`, `date`, `invoice`, `particular`, `custo
 (8, '2022-06-09', 7, 'Sales Medicine', NULL, NULL, '', 'mcooper@mail.com', NULL, 'Capsule', 16, 'Med 101', NULL, 'Sample Med', 4, 35, 140, 155.1, 0.1, 155, 155, NULL),
 (9, '2022-06-09', 7, 'Sales Medicine', NULL, NULL, '', 'mcooper@mail.com', NULL, 'Tablet', 14, 'Zocor', NULL, 'Simvastatin Tablets', 2, 7.55, 15.1, 155.1, 0.1, 155, 155, NULL),
 (10, '2022-06-10', 8, 'Sales Medicine', NULL, NULL, '', 'sam23@gmail.com', NULL, 'Capsule', 16, 'Med 101', NULL, 'Sample Med', 2, 35, 70, 70, 0, 70, 70, NULL),
-(11, '2022-06-10', 9, 'Sales Medicine', NULL, NULL, '', 'test@mail.com', NULL, 'Capsule', 16, 'Med 101', NULL, 'Sample Med', 5, 35, 175, 175, 0, 175, 200, NULL);
+(11, '2022-06-10', 9, 'Sales Medicine', NULL, NULL, '', 'test@mail.com', NULL, 'Capsule', 16, 'Med 101', NULL, 'Sample Med', 5, 35, 175, 175, 0, 175, 200, NULL),
+(12, '2025-06-17', 10, 'Sales Medicine', NULL, NULL, '', 'mamat@gmail.com', NULL, 'Tablet', 11, 'Xyzal', NULL, 'Levocetirizine Dihydrochloride', 10, 0.55, 30, 30, 0, 30, 30, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `staff`
+-- Struktur dari tabel `staff`
 --
 
 CREATE TABLE `staff` (
@@ -288,145 +338,174 @@ CREATE TABLE `staff` (
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `identity` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `staff`
+-- Dumping data untuk tabel `staff`
 --
 
 INSERT INTO `staff` (`id`, `username`, `password`, `identity`) VALUES
 (1, 'staff', '1A1DC91C907325C69271DDF0C944BC72', 'Staff'),
 (2, 'johnny', '5f4dcc3b5aa765d61d8327deb882cf99', 'Staff'),
-(3, 'jsmith', '9ddc44f3f7f78da5781d6cab571b2fc5', 'Staff');
+(3, 'jsmith', '9ddc44f3f7f78da5781d6cab571b2fc5', 'Staff'),
+(4, 'mamat', 'e10adc3949ba59abbe56e057f20f883e', 'Staff');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `admin`
+-- Indeks untuk tabel `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `create_generic_name`
+-- Indeks untuk tabel `create_generic_name`
 --
 ALTER TABLE `create_generic_name`
   ADD PRIMARY KEY (`generic_id`);
 
 --
--- Indexes for table `create_medicine_name`
+-- Indeks untuk tabel `create_medicine_name`
 --
 ALTER TABLE `create_medicine_name`
   ADD PRIMARY KEY (`medicine_name_id`),
   ADD KEY `FK` (`generic_id`,`medicine_presentation_id`);
 
 --
--- Indexes for table `create_medicine_presentation`
+-- Indeks untuk tabel `create_medicine_presentation`
 --
 ALTER TABLE `create_medicine_presentation`
   ADD PRIMARY KEY (`medicine_presentation_id`);
 
 --
--- Indexes for table `create_product_category`
+-- Indeks untuk tabel `create_product_category`
 --
 ALTER TABLE `create_product_category`
   ADD PRIMARY KEY (`record_id`);
 
 --
--- Indexes for table `create_product_name`
+-- Indeks untuk tabel `create_product_name`
 --
 ALTER TABLE `create_product_name`
   ADD PRIMARY KEY (`record_id`);
 
 --
--- Indexes for table `create_supplier`
+-- Indeks untuk tabel `create_supplier`
 --
 ALTER TABLE `create_supplier`
   ADD PRIMARY KEY (`supplier_id`);
 
 --
--- Indexes for table `insert_purchase_info`
+-- Indeks untuk tabel `insert_purchase_info`
 --
 ALTER TABLE `insert_purchase_info`
   ADD PRIMARY KEY (`purchase_id`),
   ADD KEY `FK` (`medicine_presentation_id`,`medicine_name_id`,`generic_id`,`supplier_id`);
 
 --
--- Indexes for table `sales_product`
+-- Indeks untuk tabel `medicine_storage_classification`
+--
+ALTER TABLE `medicine_storage_classification`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `patients`
+--
+ALTER TABLE `patients`
+  ADD PRIMARY KEY (`patient_id`);
+
+--
+-- Indeks untuk tabel `sales_product`
 --
 ALTER TABLE `sales_product`
   ADD PRIMARY KEY (`sales_id`),
   ADD KEY `FK` (`customer_id`,`medicine_presentation_id`,`medicine_name_id`,`generic_id`);
 
 --
--- Indexes for table `staff`
+-- Indeks untuk tabel `staff`
 --
 ALTER TABLE `staff`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT untuk tabel `admin`
 --
 ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `create_generic_name`
+-- AUTO_INCREMENT untuk tabel `create_generic_name`
 --
 ALTER TABLE `create_generic_name`
   MODIFY `generic_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `create_medicine_name`
+-- AUTO_INCREMENT untuk tabel `create_medicine_name`
 --
 ALTER TABLE `create_medicine_name`
   MODIFY `medicine_name_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `create_medicine_presentation`
+-- AUTO_INCREMENT untuk tabel `create_medicine_presentation`
 --
 ALTER TABLE `create_medicine_presentation`
   MODIFY `medicine_presentation_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `create_product_category`
+-- AUTO_INCREMENT untuk tabel `create_product_category`
 --
 ALTER TABLE `create_product_category`
   MODIFY `record_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `create_product_name`
+-- AUTO_INCREMENT untuk tabel `create_product_name`
 --
 ALTER TABLE `create_product_name`
   MODIFY `record_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `create_supplier`
+-- AUTO_INCREMENT untuk tabel `create_supplier`
 --
 ALTER TABLE `create_supplier`
   MODIFY `supplier_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `insert_purchase_info`
+-- AUTO_INCREMENT untuk tabel `insert_purchase_info`
 --
 ALTER TABLE `insert_purchase_info`
-  MODIFY `purchase_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `purchase_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
--- AUTO_INCREMENT for table `sales_product`
+-- AUTO_INCREMENT untuk tabel `medicine_storage_classification`
+--
+ALTER TABLE `medicine_storage_classification`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `patients`
+--
+ALTER TABLE `patients`
+  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `sales_product`
 --
 ALTER TABLE `sales_product`
-  MODIFY `sales_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `sales_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `staff`
+-- AUTO_INCREMENT untuk tabel `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

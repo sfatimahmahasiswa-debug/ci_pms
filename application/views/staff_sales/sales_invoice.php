@@ -25,7 +25,7 @@
 															Date:</b> <?php echo $date; ?>
 													</div>
 													<div class="form-group col-xs-12 col-xs-12"><b>
-															Medicine Name and Price:</b> <?php echo $medicine_name; ?><br><br>
+															Nama Obat and Price:</b> <?php echo $medicine_name; ?><br><br>
 													</div>
 
 							<div class="form-group col-xs-3 col-xs-12"><b>

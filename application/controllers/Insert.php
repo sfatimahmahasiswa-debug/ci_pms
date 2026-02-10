@@ -15,7 +15,7 @@ class Insert extends CI_Controller
 		$this->load->model('CommonModel');
 	}
 
-	// Create Option Start
+	//  Buat Opsi Start
 	public function medicine_presentation() {
 		if ($this->session->userdata('username') != '') { //Check Login
 			$this->form_validation->set_rules('medicine_presentation', 'Medicine Presentation', 'trim|required');
@@ -37,7 +37,7 @@ class Insert extends CI_Controller
 	}
 	public function generic_name() {
 		if ($this->session->userdata('username') != '') { //Check Login
-			$this->form_validation->set_rules('generic_name', 'Generic Name', 'trim|required');// check form validation
+			$this->form_validation->set_rules('generic_name', 'Kategori Obat', 'trim|required');// check form validation
 
 			if ($this->form_validation->run() == FALSE) {
 				redirect('ShowForm/create_generic_name/empty', 'refresh'); //If form not  validate
@@ -56,8 +56,8 @@ class Insert extends CI_Controller
 	}
 	public function medicine_name() {
 		if ($this->session->userdata('username') != '') { //Check Login
-			$this->form_validation->set_rules('generic_name', 'Generic Name', 'trim|required'); // check form validation
-			$this->form_validation->set_rules('medicine_name', 'Medicine Name', 'trim|required'); // check form validation
+			$this->form_validation->set_rules('generic_name', 'Kategori Obat', 'trim|required'); // check form validation
+			$this->form_validation->set_rules('medicine_name', 'Nama Obat', 'trim|required'); // check form validation
 			if ($this->form_validation->run() == FALSE) {
 				redirect('ShowForm/create_generic_name/empty', 'refresh'); //If form not  validate
 			} else {
@@ -142,10 +142,10 @@ class Insert extends CI_Controller
 			$this->load->view('Main/login', $data);
 		}
 	}
-	// Create Option End
+	//  Buat Opsi End
 	public function medicine_purchase_info() {
 		if ($this->session->userdata('username') != '') { //Check Login
-			$this->form_validation->set_rules('medicine_name', 'Medicine Name', 'trim|required'); // check form validation
+			$this->form_validation->set_rules('medicine_name', 'Nama Obat', 'trim|required'); // check form validation
 
 			if ($this->form_validation->run() == FALSE) {
 				redirect('ShowForm/medicine_purchase_info/empty', 'refresh'); //If form not  validate
@@ -210,7 +210,7 @@ class Insert extends CI_Controller
 	}
 	public function edit_medicine_purchase_info($purchase_id) {
 		if ($this->session->userdata('username') != '') { //Check Login
-			$this->form_validation->set_rules('medicine_name', 'Medicine Name', 'trim|required'); // check form validation
+			$this->form_validation->set_rules('medicine_name', 'Nama Obat', 'trim|required'); // check form validation
 
 			if ($this->form_validation->run() == FALSE) {
 				redirect('ShowForm/medicine_purchase_info/empty', 'refresh'); //If form not  validate

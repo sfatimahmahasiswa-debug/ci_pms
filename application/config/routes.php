@@ -52,3 +52,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'Main/login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;
+
+// Routing untuk form klasifikasi penyimpanan obat
+$route['storage'] = 'storage/index';
+$route['storage/save'] = 'storage/save';
+$route['ShowForm/storage_form/(:any)'] = 'ShowForm/storage_form/$1';

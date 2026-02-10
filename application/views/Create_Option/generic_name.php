@@ -15,7 +15,7 @@ if ($msg == "main") {
 <section id="breadcrumb">
     <div class="container">
         <ol class="breadcrumb">
-            <li><a href="#">Create Option</a></li>
+            <li><a href="#"> Buat Opsi</a></li>
             <li class="active"><?php echo $msg; ?></li>
         </ol>
     </div>
@@ -29,14 +29,16 @@ if ($msg == "main") {
             <div class="col-md-3">
                 <div class="list-group">
                     <a href="index.html" class="list-group-item active main-color-bg">
-                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Create Option</a>
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>  Buat Opsi</a>
                     <a href="<?php echo base_url(); ?>ShowForm/create_medicine_presentation/main"
                         class="list-group-item">
-                        <span class="	fa fa-capsules" aria-hidden="true"></span> Medicine Presentation</a>
+                        <span class="	fa fa-capsules" aria-hidden="true"></span> Type Obat</a>
                     <a href="<?php echo base_url(); ?>ShowForm/create_generic_name/main" class="list-group-item active">
-                        <span class="fa fa-plus-circle" aria-hidden="true"></span> Generic Name </a>
+                        <span class="fa fa-plus-circle" aria-hidden="true"></span> Kategori Obat </a>
                     <a href="<?php echo base_url(); ?>ShowForm/create_medicine_name/main" class="list-group-item">
-                        <span class="fa fa-pills" aria-hidden="true"></span> Medicine Name</a>
+                        <span class="fa fa-pills" aria-hidden="true"></span> Nama Obat</a>
+                    <a href="<?php echo base_url(); ?>storage" class="list-group-item">
+						<span class="fa fa-pills" aria-hidden="true"></span> Storage Obat</a>
 <!--                    <a href="--><?php //echo base_url(); ?><!--ShowForm/create_product_category/main" class="list-group-item">-->
 <!--                        <span class="fa fa-tasks" aria-hidden="true"></span> Product Category</a>-->
 <!--                    <a href="--><?php //echo base_url(); ?><!--ShowForm/create_product_name/main" class="list-group-item">-->
@@ -48,7 +50,7 @@ if ($msg == "main") {
             <div class="col-md-9">
                 <div class="rounded-0 panel panel-default">
                     <div class="panel-heading rounded-0 main-color-bg">
-                        <h3 class="panel-title">Create Generic Name</h3>
+                        <h3 class="panel-title">Buat Kategori Obat</h3>
                     </div>
 
                     <div class="panel-body">
@@ -60,13 +62,13 @@ if ($msg == "main") {
                                     <!--											  <p  style="font-size: 20px; color: #066;">--><?php //echo $msg; ?>
                                     <!--</p>-->
                                     <div class="form-group" style="width: 400px;">
-                                        <label for="generic_name">Generic Name</label>
+                                        <label for="generic_name">Kategori Obat</label>
                                         <input type="text" class="form-control" id="generic_name" placeholder=""
                                             name="generic_name">
                                     </div>
                                 </div>
                                 <div class="box-footer">
-                                    <button type="submit" class="pull-left btn btn-primary">Create</button>
+                                    <button type="submit" class="pull-left btn btn-primary">Buat</button>
                                 </div>
                                 </form>
                             </div>
@@ -76,16 +78,16 @@ if ($msg == "main") {
                 <!-- /.rounded-0 panel 2nd -->
                 <div class="rounded-0 panel panel-default">
                     <div class="panel-heading rounded-0">
-                        <h3 class="panel-title">Generic Name List</h3>
+                        <h3 class="panel-title">Kategori Obat List</h3>
                     </div>
                     <div class="panel-body">
                         <div class="panel-body">
                             <table class="table table-striped table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th style="text-align: center;">#</th>
-                                        <th style="text-align: center;">Generic Name</th>
-                                        <th style="text-align: center;">Action</th>
+                                        <th style="text-align: center;">No</th>
+                                        <th style="text-align: center;">Kategori Obat</th>
+                                        <th style="text-align: center;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <!-- /.Row from DB-->
@@ -100,7 +102,7 @@ if ($msg == "main") {
                                         <td><?php echo $single_value->generic_name; ?></td>
                                         <td style="text-align: center;">
                                             <a style="margin: 5px;" class="btn btn-danger btn-sm rounded-0"
-                                                href="<?php echo base_url(); ?>Delete/generic_name/<?php echo $single_value->generic_id; ?>">Delete
+                                                href="<?php echo base_url(); ?>Delete/generic_name/<?php echo $single_value->generic_id; ?>">Hapus
                                             </a>
                                         </td>
                                     </tr>

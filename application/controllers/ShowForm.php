@@ -67,7 +67,6 @@ public function create_medicine_name($msg) {
 			$data['all_value'] = $this->CommonModel->get_all_info('create_medicine_name');
 			$data['msg'] = $msg;
 			$this->load->view("create_option/header", $data);
-			$this->load->view("create_option/pasien_info",$data);
 			$this->load->view("create_option/footer");
 		} else {
 			$data['wrong_msg'] = "";
@@ -257,19 +256,61 @@ public function create_medicine_name($msg) {
 			$this->load->view('Main/login', $data);
 		}
 	}
-	public function edit_staff_info($id)
-	{
-		if ($this->session->userdata('username') != '') {
-			$data['all_value'] = $this->CommonModel->get_all_info('staff');
-			$data['one_value'] = $this->CommonModel->get_allinfo_byid('staff', 'id', $id);
-			//$data['msg'] = $msg;
-			$this->load->view("header", $data);
-			$this->load->view("edit_manage_staff", $data);
-			$this->load->view("footer");
-		} else {
-			$data['wrong_msg'] = "";
-			$this->load->view('Main/login', $data);
-		}
-	}
+	 public function edit_staff_info($id)
+        {
+                if ($this->session->userdata('username') != '') {
+                        $data['all_value'] = $this->CommonModel->get_all_info('staff');
+                        $data['one_value'] = $this->CommonModel->get_allinfo_byid('staff', 'id', $id);
+                        //$data['msg'] = $msg;
+                        $this->load->view("header", $data);
+                        $this->load->view("edit_manage_staff", $data);
+                        $this->load->view("footer");
+                } else {
+                        $data['wrong_msg'] = "";
+                        $this->load->view('Main/login', $data);
+                }
+        }
 
-			}  // end
+        public function patient($msg)
+        {
+                if ($this->session->userdata('username') != '') {
+                        $data['all_value'] = $this->CommonModel->get_all_info('patients');
+                        $data['msg'] = $msg;
+                        $this->load->view("header", $data);
+                        $this->load->view("patient/patient_info", $data);
+                        $this->load->view("footer");
+                } else {
+                        $data['wrong_msg'] = "";
+                        $this->load->view('Main/login', $data);
+                }
+        }
+
+        public function edit_patient($id)
+        {
+                if ($this->session->userdata('username') != '') {
+                        $data['one_value'] = $this->CommonModel->get_allinfo_byid('patients', 'patient_id', $id);
+                        $this->load->view("header", $data);
+                        $this->load->view("patient/edit_patient", $data);
+                        $this->load->view("footer");
+                } else {
+                        $data['wrong_msg'] = "";
+                        $this->load->view('Main/login', $data);
+                }
+        }
+
+		public function storage_form($msg) {
+			$data['page_title'] = "Storage Obat";
+			if ($this->session->userdata('username') != '') {
+				$data['all_medicine'] = $this->CommonModel->get_all_info('create_medicine_name');
+				$data['storage'] = $this->CommonModel->get_all_info('medicine_storage');
+				$data['msg'] = $msg;
+				$this->load->view("create_option/header", $data);
+				$this->load->view("create_option/storage_form", $data);
+				$this->load->view("create_option/footer");
+			} else {
+				$data['wrong_msg'] = "";
+				$this->load->view('Main/login', $data);
+			}
+		}
+
+}  // end

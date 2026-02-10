@@ -15,7 +15,7 @@ if ($msg == "main") {
 <section id="breadcrumb">
 	<div class="container">
 		<ol class="breadcrumb">
-			<li><a href="#">Create Option</a></li>
+			<li><a href="#"> Buat Opsi</a></li>
 			<li class="active"><?php echo $msg; ?></li>
 		</ol>
 	</div>
@@ -29,13 +29,13 @@ if ($msg == "main") {
 			<div class="col-md-3">
 				<div class="list-group">
 					<a href="index.html" class="list-group-item active main-color-bg">
-						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Create Option</a>
+						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>  Buat Opsi</a>
 					<a href="<?php echo base_url(); ?>ShowForm/create_medicine_presentation/main" class="list-group-item">
-						<span class="	fa fa-capsules" aria-hidden="true"></span> Medicine Presentation</a>
+						<span class="	fa fa-capsules" aria-hidden="true"></span> Presentase Obat</a>
 					<a href="<?php echo base_url(); ?>ShowForm/create_generic_name/main" class="list-group-item">
-						<span class="fa fa-plus-circle" aria-hidden="true"></span> Generic Name </a>
+						<span class="fa fa-plus-circle" aria-hidden="true"></span> Kategori Obat </a>
 					<a href="<?php echo base_url(); ?>ShowForm/create_medicine_name/main" class="list-group-item">
-						<span class="fa fa-pills" aria-hidden="true"></span> Medicine Name</a>
+						<span class="fa fa-pills" aria-hidden="true"></span> Nama Obat</a>
 <!--					<a href="--><?php //echo base_url(); ?><!--ShowForm/create_product_category/main" class="list-group-item">-->
 <!--						<span class="fa fa-tasks" aria-hidden="true"></span> Product Category</a>-->
 <!--					<a href="--><?php //echo base_url(); ?><!--ShowForm/create_product_name/main" class="list-group-item">-->
@@ -94,7 +94,7 @@ if ($msg == "main") {
 								<tr>
 									<th style="text-align: center;">#</th>
 									<th style="text-align: center;">Product Category</th>
-									<th style="text-align: center;">Medicine Name</th>
+									<th style="text-align: center;">Nama Obat</th>
 									<th style="text-align: center;">Action</th>
 								</tr>
 								</thead>

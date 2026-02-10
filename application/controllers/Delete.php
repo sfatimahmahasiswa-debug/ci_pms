@@ -77,13 +77,23 @@ class Delete extends CI_Controller
 		}
 	}
 	// Staff Manage
-	public function manage_staff($id) {
-		if ($this->session->userdata('username') != '') {
-			$this->CommonModel->delete_info('id', $id, 'staff');
-			redirect('ShowForm/manage_staff/delete', 'refresh');
-		} else {
-			$data['wrong_msg'] = "";
-			$this->load->view('Main/login', $data);
-		}
-	}
+	    public function manage_staff($id) {
+                if ($this->session->userdata('username') != '') {
+                        $this->CommonModel->delete_info('id', $id, 'staff');
+                        redirect('ShowForm/manage_staff/delete', 'refresh');
+                } else {
+                        $data['wrong_msg'] = "";
+                        $this->load->view('Main/login', $data);
+                }
+        }
+
+        public function patient($id) {
+                if ($this->session->userdata('username') != '') {
+                        $this->CommonModel->delete_info('patient_id', $id, 'patients');
+                        redirect('ShowForm/patient/delete', 'refresh');
+                } else {
+                        $data['wrong_msg'] = "";
+                        $this->load->view('Main/login', $data);
+                }
+        }
 }
