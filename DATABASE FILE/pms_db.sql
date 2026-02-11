@@ -350,6 +350,49 @@ INSERT INTO `staff` (`id`, `username`, `password`, `identity`) VALUES
 (3, 'jsmith', '9ddc44f3f7f78da5781d6cab571b2fc5', 'Staff'),
 (4, 'mamat', 'e10adc3949ba59abbe56e057f20f883e', 'Staff');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `patients`
+--
+
+CREATE TABLE `patients` (
+  `patient_id` int(11) NOT NULL,
+  `full_name` varchar(255) NOT NULL,
+  `birth_place` varchar(255) DEFAULT NULL,
+  `birth_date` date DEFAULT NULL,
+  `gender` varchar(10) DEFAULT NULL,
+  `blood_type` varchar(5) DEFAULT NULL,
+  `phone` varchar(50) DEFAULT NULL,
+  `allergies` text,
+  `hereditary_diseases` text,
+  `blood_sugar` varchar(50) DEFAULT NULL,
+  `blood_pressure` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `patients`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `doctors`
+--
+
+CREATE TABLE `doctors` (
+  `doctor_id` int(11) NOT NULL,
+  `doctor_code` varchar(20) NOT NULL,
+  `doctor_name` varchar(255) NOT NULL,
+  `doctor_category` varchar(255) DEFAULT NULL,
+  `schedule_day` varchar(50) DEFAULT NULL,
+  `schedule_time` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `doctors`
+--
+
 --
 -- Indexes for dumped tables
 --
@@ -430,7 +473,23 @@ ALTER TABLE `staff`
   ADD PRIMARY KEY (`id`);
 
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT untuk tabel yang dibuang
+=======
+-- Indexes for table `patients`
+--
+ALTER TABLE `patients`
+  ADD PRIMARY KEY (`patient_id`);
+
+--
+-- Indexes for table `doctors`
+--
+ALTER TABLE `doctors`
+  ADD PRIMARY KEY (`doctor_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+>>>>>>> e1efea390dc75040418f7ca7a7b9fda0a1abdbea
 --
 
 --
@@ -503,7 +562,23 @@ ALTER TABLE `sales_product`
 -- AUTO_INCREMENT untuk tabel `staff`
 --
 ALTER TABLE `staff`
+<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+=======
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `patients`
+--
+ALTER TABLE `patients`
+  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `doctors`
+--
+ALTER TABLE `doctors`
+  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT;
+>>>>>>> e1efea390dc75040418f7ca7a7b9fda0a1abdbea
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

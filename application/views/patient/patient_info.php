@@ -4,11 +4,15 @@ if ($msg == "main") {
 } elseif ($msg == "empty") {
     $msg = "Please fill out all required fields";
 } elseif ($msg == "created") {
+<<<<<<< HEAD
     if (!empty($created_id)) {
         $msg = "Created Successfully. ID: " . $created_id;
     } else {
         $msg = "Created Successfully";
     }
+=======
+    $msg = "Created Successfully";
+>>>>>>> e1efea390dc75040418f7ca7a7b9fda0a1abdbea
 } elseif ($msg == "edit") {
     $msg = "Edited Successfully";
 } elseif ($msg == "delete") {
@@ -116,16 +120,29 @@ if ($msg == "main") {
                         <table class="table table-striped table-hover table-bordered">
                             <thead>
                                 <tr>
+<<<<<<< HEAD
                                     <th style="text-align: center;">ID</th>
+=======
+                                    <th style="text-align: center;">#</th>
+>>>>>>> e1efea390dc75040418f7ca7a7b9fda0a1abdbea
                                     <th style="text-align: center;">Name</th>
                                     <th style="text-align: center;">Phone</th>
                                     <th style="text-align: center;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+<<<<<<< HEAD
                                 <?php foreach ($all_value as $single_value) { ?>
                                     <tr>
                                         <td style="text-align: center;"><?php echo $single_value->patient_id; ?></td>
+=======
+                                <?php
+                                $count = 0;
+                                foreach ($all_value as $single_value) {
+                                    $count++; ?>
+                                    <tr>
+                                        <td style="text-align: center;"><?php echo $count; ?></td>
+>>>>>>> e1efea390dc75040418f7ca7a7b9fda0a1abdbea
                                         <td style="text-align: center;"><?php echo $single_value->full_name; ?></td>
                                         <td style="text-align: center;"><?php echo $single_value->phone; ?></td>
                                         <td style="text-align: center;">
@@ -141,4 +158,8 @@ if ($msg == "main") {
             </div>
         </div> <!-- /.row -->
     </div> <!-- /.Container -->
+<<<<<<< HEAD
 </section>
+=======
+</section>
+>>>>>>> e1efea390dc75040418f7ca7a7b9fda0a1abdbea

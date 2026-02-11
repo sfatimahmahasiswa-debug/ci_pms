@@ -37,6 +37,11 @@
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="<?php echo base_url(); ?>Main/enter">Dashboard</a></li>
+<<<<<<< HEAD
+=======
+                    <li><a href="<?php echo base_url(); ?>ShowForm/patient/main">Patient</a></li>
+                    <li><a href="<?php echo base_url(); ?>ShowForm/doctor/main">Queue</a></li>
+>>>>>>> e1efea390dc75040418f7ca7a7b9fda0a1abdbea
                     <li><a href="<?php echo base_url(); ?>ShowForm/create_medicine_name/main">Buat Opsi</a>
                     </li>
                     <li><a href="<?php echo base_url(); ?>ShowForm/medicine_purchase_info/main">Persediaan</a></li>

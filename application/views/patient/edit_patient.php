@@ -106,4 +106,8 @@ foreach ($one_value as $one_info) {
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 </section>
+=======
+</section>
+>>>>>>> e1efea390dc75040418f7ca7a7b9fda0a1abdbea

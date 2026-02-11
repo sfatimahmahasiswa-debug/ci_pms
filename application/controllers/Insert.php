@@ -325,9 +325,9 @@ class Insert extends CI_Controller
 		}
 	}
 	// Create Staff
-	public function edit_staff_info($id) {
-		if ($this->session->userdata('username') != '') { //Check Login
-			$this->form_validation->set_rules('username', 'Username', 'trim|required'); // check form validation
+        public function edit_staff_info($id) {
+                if ($this->session->userdata('username') != '') { //Check Login
+                        $this->form_validation->set_rules('username', 'Username', 'trim|required'); // check form validation
 //			$this->form_validation->set_rules('product_name', 'Product Name', 'trim|required'); // check form validation
 			if ($this->form_validation->run() == FALSE) {
 				redirect('ShowForm/manage_staff/empty', 'refresh'); //If form not  validate
@@ -345,7 +345,110 @@ class Insert extends CI_Controller
 			}
 		} else {
 			$data['wrong_msg'] = "";
-			$this->load->view('Main/login', $data);
-		}
-	}
+                        $this->load->view('Main/login', $data);
+                }
+        }
+
+        public function create_patient() {
+                if ($this->session->userdata('username') != '') {
+                        $this->form_validation->set_rules('full_name', 'Full Name', 'trim|required');
+                        if ($this->form_validation->run() == FALSE) {
+                                redirect('ShowForm/patient/empty', 'refresh');
+                        } else {
+                                $insert_data = array(
+                                        'full_name' => $this->input->post('full_name'),
+                                        'birth_place' => $this->input->post('birth_place'),
+                                        'birth_date' => $this->input->post('birth_date'),
+                                        'gender' => $this->input->post('gender'),
+                                        'blood_type' => $this->input->post('blood_type'),
+                                        'phone' => $this->input->post('phone'),
+                                        'allergies' => $this->input->post('allergies'),
+                                        'hereditary_diseases' => $this->input->post('hereditary_diseases'),
+                                        'blood_sugar' => $this->input->post('blood_sugar'),
+                                        'blood_pressure' => $this->input->post('blood_pressure')
+                                );
+                                $this->CommonModel->insert_data('patients', $insert_data);
+                                redirect('ShowForm/patient/created', 'refresh');
+                        }
+                } else {
+                        $data['wrong_msg'] = "";
+                        $this->load->view('Main/login', $data);
+                }
+        }
+
+        public function edit_patient($id) {
+                if ($this->session->userdata('username') != '') {
+                        $this->form_validation->set_rules('full_name', 'Full Name', 'trim|required');
+                        if ($this->form_validation->run() == FALSE) {
+                                redirect('ShowForm/patient/empty', 'refresh');
+                        } else {
+                                $update_data = array(
+                                        'full_name' => $this->input->post('full_name'),
+                                        'birth_place' => $this->input->post('birth_place'),
+                                        'birth_date' => $this->input->post('birth_date'),
+                                        'gender' => $this->input->post('gender'),
+                                        'blood_type' => $this->input->post('blood_type'),
+                                        'phone' => $this->input->post('phone'),
+                                        'allergies' => $this->input->post('allergies'),
+                                        'hereditary_diseases' => $this->input->post('hereditary_diseases'),
+                                        'blood_sugar' => $this->input->post('blood_sugar'),
+                                        'blood_pressure' => $this->input->post('blood_pressure')
+                                );
+                                $this->CommonModel->update_data_onerow('patients', $update_data, 'patient_id', $id);
+                                redirect('ShowForm/patient/edited', 'refresh');
+                        }
+                } else {
+                        $data['wrong_msg'] = "";
+                        $this->load->view('Main/login', $data);
+                }
+        }
+
+        public function create_doctor() {
+                if ($this->session->userdata('username') != '') {
+                        $this->form_validation->set_rules('doctor_name', 'Doctor Name', 'trim|required');
+                        if ($this->form_validation->run() == FALSE) {
+                                redirect('ShowForm/doctor/empty', 'refresh');
+                        } else {
+                                $insert_data = array(
+                                        'doctor_code' => $this->generate_doctor_code(),
+                                        'doctor_name' => $this->input->post('doctor_name'),
+                                        'doctor_category' => $this->input->post('doctor_category'),
+                                        'schedule_day' => $this->input->post('schedule_day'),
+                                        'schedule_time' => $this->input->post('schedule_time')
+                                );
+                                $this->CommonModel->insert_data('doctors', $insert_data);
+                                redirect('ShowForm/doctor/created', 'refresh');
+                        }
+                } else {
+                        $data['wrong_msg'] = "";
+                        $this->load->view('Main/login', $data);
+                }
+        }
+
+        public function edit_doctor($id) {
+                if ($this->session->userdata('username') != '') {
+                        $this->form_validation->set_rules('doctor_name', 'Doctor Name', 'trim|required');
+                        if ($this->form_validation->run() == FALSE) {
+                                redirect('ShowForm/doctor/empty', 'refresh');
+                        } else {
+                                $update_data = array(
+                                        'doctor_name' => $this->input->post('doctor_name'),
+                                        'doctor_category' => $this->input->post('doctor_category'),
+                                        'schedule_day' => $this->input->post('schedule_day'),
+                                        'schedule_time' => $this->input->post('schedule_time')
+                                );
+                                $this->CommonModel->update_data_onerow('doctors', $update_data, 'doctor_id', $id);
+                                redirect('ShowForm/doctor/edited', 'refresh');
+                        }
+                } else {
+                        $data['wrong_msg'] = "";
+                        $this->load->view('Main/login', $data);
+                }
+        }
+
+        private function generate_doctor_code() {
+                $last = $this->db->select_max('doctor_id')->get('doctors')->row();
+                $next = ($last && $last->doctor_id) ? $last->doctor_id + 1 : 1;
+                return 'DR' . str_pad($next, 3, '0', STR_PAD_LEFT);
+        }
 }

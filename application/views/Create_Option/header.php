@@ -34,7 +34,8 @@
 				<ul class="nav navbar-nav">
 					<li><a href="<?php echo base_url(); ?>Main/enter">Dashboard</a></li>
                     <li><a href="<?php echo base_url(); ?>ShowForm/create_medicine_name/main">Pasien</a>
-					</li>
+                                        </li>
+                    <li><a href="<?php echo base_url(); ?>ShowForm/doctor/main">Queue</a></li>
 					<li><a href="<?php echo base_url(); ?>ShowForm/create_medicine_name/main">Create Options</a>
 					</li>
 					<li><a href="<?php echo base_url(); ?>ShowForm/medicine_purchase_info/main">Inventory</a></li>

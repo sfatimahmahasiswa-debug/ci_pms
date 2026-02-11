@@ -35,6 +35,7 @@
                 </button>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
+<<<<<<< HEAD
 <!--                <ul class="nav navbar-nav">-->
 <!--                    <li><a href="--><?php //echo base_url(); ?><!--Main/enter">Dashboard</a></li>-->
 <!--                    <li><a href="--><?php //echo base_url(); ?><!--ShowForm/create_medicine_name/main"> Buat Opsi</a>-->
@@ -43,6 +44,12 @@
 <!--                    <li><a href="--><?php //echo base_url(); ?><!--ShowForm/sell_medicine/main">Sales</a></li>-->
 <!--                    <li><a href="--><?php //echo base_url(); ?><!--ShowForm/profit_loss/main">Accounting</a></li>-->
 <!--                </ul>-->
+=======
+                <ul class="nav navbar-nav">
+                    <li><a href="<?php echo base_url(); ?>ShowForm/patient/main">Patient</a></li>
+                    <li><a href="<?php echo base_url(); ?>ShowForm/doctor/main">Queue</a></li>
+                </ul>
+>>>>>>> e1efea390dc75040418f7ca7a7b9fda0a1abdbea
                 <ul class="nav navbar-nav navbar-right">
                     <li class=""><a href="#">STAFF</a></li>
                     <li><a href="<?php echo base_url(); ?>main/logout">Logout</a></li>
