@@ -252,7 +252,7 @@
               <label for="username">Username</label>
               <div class="input-group-custom">
                 <i class="fas fa-user"></i>
-                <input type="text" name="username" class="form-control" id="username" placeholder="Enter your username" value="<?php echo set_value('username'); ?>"/>
+                <input type="text" name="username" class="form-control" id="username" placeholder="Enter your username" value="<?php echo htmlspecialchars(set_value('username'), ENT_QUOTES, 'UTF-8'); ?>"/>
               </div>
               <?php if(form_error('username')): ?>
                 <span class="error-message"><?php echo form_error('username');?></span>
