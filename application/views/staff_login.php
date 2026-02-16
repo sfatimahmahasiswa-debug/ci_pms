@@ -112,11 +112,23 @@
       
       .input-group-custom input {
         padding-left: 45px;
+        padding-right: 45px;
         height: 45px;
         border: 2px solid #e0e0e0;
         border-radius: 8px;
         transition: all 0.3s ease;
         font-size: 14px;
+      }
+
+      .password-toggle-btn {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        border: 0;
+        background: transparent;
+        color: #667eea;
+        z-index: 10;
       }
       
       .input-group-custom input:focus {
@@ -252,7 +264,7 @@
               <label for="username">Username</label>
               <div class="input-group-custom">
                 <i class="fas fa-user"></i>
-                <input type="text" name="username" class="form-control" id="username" placeholder="Enter your username" value="<?php echo htmlspecialchars(set_value('username'), ENT_QUOTES, 'UTF-8'); ?>"/>
+                <input type="text" name="username" class="form-control" id="username" placeholder="Enter your username" value="<?php echo htmlspecialchars(set_value('username'), ENT_QUOTES, 'UTF-8'); ?>" autocomplete="username"/>
               </div>
               <?php if(form_error('username')): ?>
                 <span class="error-message"><?php echo form_error('username');?></span>
@@ -263,7 +275,10 @@
               <label for="password">Password</label>
               <div class="input-group-custom">
                 <i class="fas fa-lock"></i>
-                <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password"/>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" autocomplete="current-password"/>
+                <button type="button" class="password-toggle-btn toggle-password" data-target="#password" aria-label="Show password" aria-pressed="false">
+                  <i class="fas fa-eye"></i>
+                </button>
               </div>
               <?php if(form_error('password')): ?>
                 <span class="error-message"><?php echo form_error('password');?></span>
@@ -272,7 +287,7 @@
             
             <?php if($this->session->flashdata("error")): ?>
               <div class="alert-error">
-                <i class="fas fa-exclamation-circle"></i> <?php echo $this->session->flashdata("error"); ?>
+                <i class="fas fa-exclamation-circle"></i> <?php echo htmlspecialchars($this->session->flashdata("error"), ENT_QUOTES, 'UTF-8'); ?>
               </div>
             <?php endif; ?>
             
@@ -296,5 +311,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	  <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
+    <script>
+      if (window.jQuery) {
+        $('.toggle-password').on('click', function () {
+          var target = $($(this).data('target'));
+          var icon = $(this).find('i');
+          if (target.attr('type') === 'password') {
+            target.attr('type', 'text');
+            icon.removeClass('fa-eye').addClass('fa-eye-slash');
+            $(this).attr('aria-label', 'Hide password');
+            $(this).attr('aria-pressed', 'true');
+          } else {
+            target.attr('type', 'password');
+            icon.removeClass('fa-eye-slash').addClass('fa-eye');
+            $(this).attr('aria-label', 'Show password');
+            $(this).attr('aria-pressed', 'false');
+          }
+        });
+      }
+    </script>
   </body>
 </html>
