@@ -274,35 +274,6 @@ public function create_medicine_name($msg) {
                         $this->load->view('Main/login', $data);
                 }
         }
-<<<<<<< HEAD
-=======
-
-        public function patient($msg)
-        {
-                if ($this->session->userdata('username') != '') {
-                        $data['all_value'] = $this->CommonModel->get_all_info('patients');
-                        $data['msg'] = $msg;
-                        $this->load->view("header", $data);
-                        $this->load->view("patient/patient_info", $data);
-                        $this->load->view("footer");
-                } else {
-                        $data['wrong_msg'] = "";
-                        $this->load->view('Main/login', $data);
-                }
-        }
-
-        public function edit_patient($id)
-        {
-                if ($this->session->userdata('username') != '') {
-                        $data['one_value'] = $this->CommonModel->get_allinfo_byid('patients', 'patient_id', $id);
-                        $this->load->view("header", $data);
-                        $this->load->view("patient/edit_patient", $data);
-                        $this->load->view("footer");
-                } else {
-                        $data['wrong_msg'] = "";
-                        $this->load->view('Main/login', $data);
-                }
-        }
 
         public function doctor($msg)
         {
@@ -338,34 +309,6 @@ public function create_medicine_name($msg) {
                 $last = $this->db->select_max('doctor_id')->get('doctors')->row();
                 $next = ($last && $last->doctor_id) ? $last->doctor_id + 1 : 1;
                 return 'DR' . str_pad($next, 3, '0', STR_PAD_LEFT);
-        }
->>>>>>> e1efea390dc75040418f7ca7a7b9fda0a1abdbea
-
-        public function patient($msg)
-        {
-                if ($this->session->userdata('username') != '') {
-                        $data['all_value'] = $this->CommonModel->get_all_info('patients');
-                        $data['msg'] = $msg;
-                        $this->load->view("header", $data);
-                        $this->load->view("patient/patient_info", $data);
-                        $this->load->view("footer");
-                } else {
-                        $data['wrong_msg'] = "";
-                        $this->load->view('Main/login', $data);
-                }
-        }
-
-        public function edit_patient($id)
-        {
-                if ($this->session->userdata('username') != '') {
-                        $data['one_value'] = $this->CommonModel->get_allinfo_byid('patients', 'patient_id', $id);
-                        $this->load->view("header", $data);
-                        $this->load->view("patient/edit_patient", $data);
-                        $this->load->view("footer");
-                } else {
-                        $data['wrong_msg'] = "";
-                        $this->load->view('Main/login', $data);
-                }
         }
 
 		public function storage_form($msg) {

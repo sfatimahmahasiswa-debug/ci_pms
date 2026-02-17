@@ -349,60 +349,6 @@ class Insert extends CI_Controller
                 }
         }
 
-        public function create_patient() {
-                if ($this->session->userdata('username') != '') {
-                        $this->form_validation->set_rules('full_name', 'Full Name', 'trim|required');
-                        if ($this->form_validation->run() == FALSE) {
-                                redirect('ShowForm/patient/empty', 'refresh');
-                        } else {
-                                $insert_data = array(
-                                        'full_name' => $this->input->post('full_name'),
-                                        'birth_place' => $this->input->post('birth_place'),
-                                        'birth_date' => $this->input->post('birth_date'),
-                                        'gender' => $this->input->post('gender'),
-                                        'blood_type' => $this->input->post('blood_type'),
-                                        'phone' => $this->input->post('phone'),
-                                        'allergies' => $this->input->post('allergies'),
-                                        'hereditary_diseases' => $this->input->post('hereditary_diseases'),
-                                        'blood_sugar' => $this->input->post('blood_sugar'),
-                                        'blood_pressure' => $this->input->post('blood_pressure')
-                                );
-                                $this->CommonModel->insert_data('patients', $insert_data);
-                                redirect('ShowForm/patient/created', 'refresh');
-                        }
-                } else {
-                        $data['wrong_msg'] = "";
-                        $this->load->view('Main/login', $data);
-                }
-        }
-
-        public function edit_patient($id) {
-                if ($this->session->userdata('username') != '') {
-                        $this->form_validation->set_rules('full_name', 'Full Name', 'trim|required');
-                        if ($this->form_validation->run() == FALSE) {
-                                redirect('ShowForm/patient/empty', 'refresh');
-                        } else {
-                                $update_data = array(
-                                        'full_name' => $this->input->post('full_name'),
-                                        'birth_place' => $this->input->post('birth_place'),
-                                        'birth_date' => $this->input->post('birth_date'),
-                                        'gender' => $this->input->post('gender'),
-                                        'blood_type' => $this->input->post('blood_type'),
-                                        'phone' => $this->input->post('phone'),
-                                        'allergies' => $this->input->post('allergies'),
-                                        'hereditary_diseases' => $this->input->post('hereditary_diseases'),
-                                        'blood_sugar' => $this->input->post('blood_sugar'),
-                                        'blood_pressure' => $this->input->post('blood_pressure')
-                                );
-                                $this->CommonModel->update_data_onerow('patients', $update_data, 'patient_id', $id);
-                                redirect('ShowForm/patient/edited', 'refresh');
-                        }
-                } else {
-                        $data['wrong_msg'] = "";
-                        $this->load->view('Main/login', $data);
-                }
-        }
-
         public function create_doctor() {
                 if ($this->session->userdata('username') != '') {
                         $this->form_validation->set_rules('doctor_name', 'Doctor Name', 'trim|required');

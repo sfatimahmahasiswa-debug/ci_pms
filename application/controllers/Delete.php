@@ -91,18 +91,6 @@ class Delete extends CI_Controller
                 }
         }
 
-        public function patient($id) {
-                if ($this->session->userdata('username') != '') {
-                        $this->CommonModel->delete_info('patient_id', $id, 'patients');
-                        redirect('ShowForm/patient/delete', 'refresh');
-                } else {
-                        $data['wrong_msg'] = "";
-                        $this->load->view('Main/login', $data);
-                }
-        }
-<<<<<<< HEAD
-=======
-
         public function doctor($id) {
                 if ($this->session->userdata('username') != '') {
                         $this->CommonModel->delete_info('doctor_id', $id, 'doctors');
