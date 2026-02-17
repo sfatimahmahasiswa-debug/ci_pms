@@ -256,11 +256,7 @@ public function create_medicine_name($msg) {
 			$this->load->view('Main/login', $data);
 		}
 	}
-<<<<<<< HEAD
-	 public function edit_staff_info($id)
-=======
         public function edit_staff_info($id)
->>>>>>> e1efea390dc75040418f7ca7a7b9fda0a1abdbea
         {
                 if ($this->session->userdata('username') != '') {
                         $data['all_value'] = $this->CommonModel->get_all_info('staff');

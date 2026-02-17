@@ -77,11 +77,7 @@ class Delete extends CI_Controller
 		}
 	}
 	// Staff Manage
-<<<<<<< HEAD
-	    public function manage_staff($id) {
-=======
         public function manage_staff($id) {
->>>>>>> e1efea390dc75040418f7ca7a7b9fda0a1abdbea
                 if ($this->session->userdata('username') != '') {
                         $this->CommonModel->delete_info('id', $id, 'staff');
                         redirect('ShowForm/manage_staff/delete', 'refresh');
@@ -100,5 +96,4 @@ class Delete extends CI_Controller
                         $this->load->view('Main/login', $data);
                 }
         }
->>>>>>> e1efea390dc75040418f7ca7a7b9fda0a1abdbea
 }

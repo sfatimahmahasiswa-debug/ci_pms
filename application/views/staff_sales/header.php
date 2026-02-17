@@ -35,7 +35,6 @@
                 </button>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
-<<<<<<< HEAD
 <!--                <ul class="nav navbar-nav">-->
 <!--                    <li><a href="--><?php //echo base_url(); ?><!--Main/enter">Dashboard</a></li>-->
 <!--                    <li><a href="--><?php //echo base_url(); ?><!--ShowForm/create_medicine_name/main"> Buat Opsi</a>-->
