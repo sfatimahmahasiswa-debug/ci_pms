@@ -43,8 +43,7 @@ if ($msg == "main") {
 <!--						<span class="fa fa-tasks" aria-hidden="true"></span> Product Category</a>-->
 <!--					<a href="--><?php //echo base_url(); ?><!--ShowForm/create_product_name/main" class="list-group-item">-->
 <!--						<span class="fa fa-plus" aria-hidden="true"></span> Product Name</a>-->
-					<a href="<?php echo base_url(); ?>ShowForm/create_supplier/main" class="list-group-item">
-						<span class="fa fa-truck-moving" aria-hidden="true"></span> Supplier</a>
+
 				</div>
 			</div>
 			<div class="col-md-9">
