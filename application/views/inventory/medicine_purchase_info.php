@@ -241,7 +241,6 @@ if ($msg == "main") {
 	$("#unit_price,#qty").on("change paste keyup", function () {
 		updatePurchasePrice();
 	});
-	updatePurchasePrice();
 	var nearExpiryMedicine = <?php echo json_encode(array_values(array_unique($near_expiry_medicine)), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
 	if (nearExpiryMedicine.length > 0) {
 		$('#nearExpiryModalBody').html('Obat berikut mendekati masa kedaluwarsa:<br>- ' + nearExpiryMedicine.join('<br>- '));
