@@ -220,7 +220,7 @@ if ($msg == "main") {
 	var product_count = 0;
 	$("#add_item").click(function () {
 		var date = $('#date').val();
-		var customer_email = '';
+		var customer_email = ''; // Tetap dikirim agar struktur data lama di backend tetap kompatibel
 		var medicine = $('#medicine_name').val().split("###");
 		var medicine_name_id = medicine[0];
 		var medicine_name = medicine[1];
