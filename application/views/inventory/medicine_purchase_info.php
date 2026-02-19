@@ -92,18 +92,13 @@ if ($msg == "main") {
                             </div>
                             <div class="row">
 								<div class="col-sm-3">
-									<label for="qty">Jumlah Total</label>
+									<label for="qty">Jumlah Obat Masuk</label>
 									<input type="number" class="form-control" id="qty" name="qty">
 								</div>
                                 <div class="col-sm-3" style="">
                                     <label for="unit_price">Harga Satuan</label>
                                     <input type="number" step=any class="form-control" id="unit_price" placeholder="Rp"  name="unit_price">
                                 </div>
-								<div class="col-sm-3">
-									<label for="purchase_price">Jumlah Total</label>
-									<input type="number" step=any class="form-control" id="purchase_price" placeholder="Rp"
-										   name="purchase_price">
-								</div>
 								<div class="col-sm-3">
 									<label for="unit_sales_price">Harga Jual</label>
 									<input type="number" step=any class="form-control" id="unit_sales_price" placeholder="Rp"
@@ -118,16 +113,6 @@ if ($msg == "main") {
 
 								</div>
 								<div class="col-sm-3">
-									<label for="purchase_paid">Pembayaran</label>
-									<input type="number" class="form-control" id="purchase_paid" placeholder="Rp"
-										   name="purchase_paid">
-								</div>
-								<div class="col-sm-3">
-									<label for="purchase_due">Sisa Pembayaran</label>
-									<input type="number" step=any class="form-control" id="purchase_due" placeholder="Rp"
-										   name="purchase_due">
-								</div>
-								<div class="col-sm-3">
 									<label for="date">Tanggal Pembelian</label>
 									<input type="date" class="form-control" id="date"
 										   name="date" autocomplete="off">
@@ -137,6 +122,9 @@ if ($msg == "main") {
 									<input type="date"  class="form-control new_datepicker" id="ex_date"
 										 placeholder="Tanggal" name="ex_date" autocomplete="off">
 								</div>
+								<input type="hidden" id="purchase_price" name="purchase_price" value="0">
+								<input type="hidden" id="purchase_paid" name="purchase_paid" value="0">
+								<input type="hidden" id="purchase_due" name="purchase_due" value="0">
                             </div>
 							<div class="row">
 								<div class="col-sm-4" style="margin-top: 17px;">
@@ -167,10 +155,7 @@ if ($msg == "main") {
                                         <th style="text-align: center;">Detail</th>
                                         <th style="text-align: center;">Stok Tersedia</th>
                                         <th style="text-align: center;">Harga Satuan</th>
-										  <th style="text-align: center;">Jumlah Total</th>
 										 <th style="text-align: center;">Harga Jual</th>
-										   <th style="text-align: center;">Pembayaran</th>
-										  <th style="text-align: center;">Sisa Pembayaran</th>
 										<th style="text-align: center;">Kedaluwarsa</th>
                                         <th style="text-align: center;">Aksi</th>
                                     </tr>
@@ -208,10 +193,7 @@ if ($msg == "main") {
                                         <!-- <td style="text-align: center;"><?php echo $single_value->qty; ?></td> -->
                                         <td style="text-align: center;"><?php echo $available; ?></td>
                                         <td style="text-align: center;"><?php echo 'Rp '.number_format((float)$single_value->unit_price, 0, ',', '.'); ?></td>
-										<td style="text-align: center;"><?php echo 'Rp '.number_format((float)$single_value->purchase_price, 0, ',', '.'); ?></td>
 										<td style="text-align: center;"><?php echo 'Rp '.number_format((float)$single_value->unit_sales_price, 0, ',', '.'); ?></td>
-										<td style="text-align: center;"><?php echo 'Rp '.number_format((float)$single_value->purchase_paid, 0, ',', '.'); ?></td>
-										<td style="text-align: center;"><?php echo 'Rp '.number_format((float)$single_value->purchase_due, 0, ',', '.'); ?></td>
 										<td style="text-align: center;"><?php echo $single_value->expiredate; ?></td>
                                         <td style="text-align: center;">
 											<a style="margin: 5px;" title="Update"
@@ -251,19 +233,15 @@ if ($msg == "main") {
 </div>
 <script type="text/javascript">
 
-	$("#purchase_paid").on("change paste keyup", function () {
-		var purchase_paid = $('#purchase_paid').val();
-		var purchase_price = $('#purchase_price').val();
-		var total = parseFloat(purchase_price) - parseFloat(purchase_paid);
-		$('#purchase_due').val(total);
-	});
+	function updatePurchasePrice() {
+		var qty = parseFloat($('#qty').val()) || 0;
+		var unit_price = parseFloat($('#unit_price').val()) || 0;
+		$('#purchase_price').val(qty * unit_price);
+	}
 	$("#unit_price,#qty").on("change paste keyup", function () {
-		var qty = $('#qty').val();
-		var unit_price = $('#unit_price').val();
-		//var total = parseFloat(purchase_price) - parseFloat(purchase_paid);
-		var amount =qty * unit_price;
-		$('#purchase_price').val(amount);
+		updatePurchasePrice();
 	});
+	updatePurchasePrice();
 	var nearExpiryMedicine = <?php echo json_encode(array_values(array_unique($near_expiry_medicine)), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
 	if (nearExpiryMedicine.length > 0) {
 		$('#nearExpiryModalBody').html('Obat berikut mendekati masa kedaluwarsa:<br>- ' + nearExpiryMedicine.join('<br>- '));
