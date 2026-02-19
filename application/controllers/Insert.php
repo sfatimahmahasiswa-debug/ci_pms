@@ -166,9 +166,14 @@ class Insert extends CI_Controller
 				$presentation_id = $presentation[1];
 
 				//$supplier= $this->input->post('supplier'); 	//get data from file to variable
-				$supplier= explode('#', $this->input->post('supplier')); //get data from file to variable
-				$supplier_name = $supplier[0];
-				$supplier__id = $supplier[1];
+				$supplier_name = '';
+				$supplier__id = '';
+				$supplier_input = $this->input->post('supplier');
+				if (!empty($supplier_input)) {
+					$supplier= explode('#', $supplier_input); //get data from file to variable
+					$supplier_name = isset($supplier[0]) ? $supplier[0] : '';
+					$supplier__id = isset($supplier[1]) ? $supplier[1] : '';
+				}
 
 				$qty= $this->input->post('qty'); 	//get data from file to variable
 				$unit_price= $this->input->post('unit_price'); 	//get data from file to variable
