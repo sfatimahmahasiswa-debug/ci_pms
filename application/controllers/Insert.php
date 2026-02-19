@@ -167,12 +167,12 @@ class Insert extends CI_Controller
 
 				//$supplier= $this->input->post('supplier'); 	//get data from file to variable
 				$supplier_name = '';
-				$supplier__id = '';
+				$supplier_id = '';
 				$supplier_input = $this->input->post('supplier');
 				if (!empty($supplier_input)) {
 					$supplier= explode('#', $supplier_input); //get data from file to variable
 					$supplier_name = isset($supplier[0]) ? $supplier[0] : '';
-					$supplier__id = isset($supplier[1]) ? $supplier[1] : '';
+					$supplier_id = isset($supplier[1]) ? $supplier[1] : '';
 				}
 
 				$qty= $this->input->post('qty'); 	//get data from file to variable
@@ -194,7 +194,7 @@ class Insert extends CI_Controller
 					'medicine_presentation' => $presentation_name,						//insert data to column
 					'medicine_presentation_id' => $presentation_id,
 					'supplier_name' => $supplier_name,   						 //insert data to column
-					'supplier_id'=>$supplier__id,
+					'supplier_id'=>$supplier_id,
 					'qty' => $qty,
 					'particulars' => 'Purchase Medicine',
 					'unit_price' => $unit_price,   						 //insert data to column

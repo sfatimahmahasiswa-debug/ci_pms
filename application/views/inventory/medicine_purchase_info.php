@@ -80,7 +80,7 @@ if ($msg == "main") {
 									</select>
 								</div>
 								<div class="col-sm-3" style="">
-									<label for="presentation">Presentasi</label>
+									<label for="presentation">Bentuk Sediaan</label>
 									<select name="presentation" id="presentation" class="form-control selectpicker"
 											data-live-search="true">
 										<option value="">-- Pilih --</option>
@@ -130,12 +130,12 @@ if ($msg == "main") {
 								<div class="col-sm-3">
 									<label for="date">Tanggal Pembelian</label>
 									<input type="date" class="form-control" id="date"
-										   value="<?php echo date('Y-m-d'); ?>" name="date" autocomplete="off">
+										   name="date" autocomplete="off">
 								</div>
 								<div class="col-sm-3">
 									<label for="ex_date">Tanggal Kedaluwarsa</label>
 									<input type="date"  class="form-control new_datepicker" id="ex_date"
-										 placeholder="Date" name="ex_date" autocomplete="off">
+										 placeholder="Tanggal" name="ex_date" autocomplete="off">
 								</div>
                             </div>
 							<div class="row">
@@ -189,7 +189,8 @@ if ($msg == "main") {
 									if($single_value->particulars != "Payment"){
 										$today = strtotime(date("Y-m-d"));
 										$expiry = strtotime($single_value->expiredate);
-										$remaining_days = floor(($expiry - $today) / 86400);
+										$seconds_per_day = 60 * 60 * 24;
+										$remaining_days = floor(($expiry - $today) / $seconds_per_day);
 										if ($remaining_days >= 0 && $remaining_days <= 30) {
 											$near_expiry_medicine[] = $single_value->medicine_name.' ('.$single_value->expiredate.')';
 										}
@@ -200,7 +201,7 @@ if ($msg == "main") {
                                         <td style="text-align: left;">
 										<b>Obat:</b>	<?php echo $single_value->medicine_name; ?>  <br>
 										<b>Generik:</b>	<?php echo $single_value->generic_name; ?></br>
-										<b>Presentasi:</b>	<?php echo $single_value->medicine_presentation; ?> </br>
+										<b>Bentuk Sediaan:</b>	<?php echo $single_value->medicine_presentation; ?> </br>
 										<b>Volume:</b>	<?php echo $single_value->unit; ?> </br>
 										<b>Tgl. Beli:</b>	<?php echo $single_value->date; ?>
 										</td>
@@ -237,6 +238,17 @@ if ($msg == "main") {
     </div> <!-- /.Container -->
 
 
+<div class="modal fade" id="nearExpiryModal" tabindex="-1" role="dialog" aria-labelledby="nearExpiryModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Tutup"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="nearExpiryModalLabel">Pengingat Kedaluwarsa Obat</h4>
+			</div>
+			<div class="modal-body" id="nearExpiryModalBody"></div>
+		</div>
+	</div>
+</div>
 <script type="text/javascript">
 
 	$("#purchase_paid").on("change paste keyup", function () {
@@ -252,8 +264,9 @@ if ($msg == "main") {
 		var amount =qty * unit_price;
 		$('#purchase_price').val(amount);
 	});
-	var nearExpiryMedicine = <?php echo json_encode(array_values(array_unique($near_expiry_medicine))); ?>;
+	var nearExpiryMedicine = <?php echo json_encode(array_values(array_unique($near_expiry_medicine)), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
 	if (nearExpiryMedicine.length > 0) {
-		alert('Pengingat: Obat mendekati masa kedaluwarsa:\n- ' + nearExpiryMedicine.join('\n- '));
+		$('#nearExpiryModalBody').html('Obat berikut mendekati masa kedaluwarsa:<br>- ' + nearExpiryMedicine.join('<br>- '));
+		$('#nearExpiryModal').modal('show');
 	}
 </script>
