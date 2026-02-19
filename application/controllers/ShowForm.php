@@ -198,7 +198,7 @@ public function create_medicine_name($msg) {
 
 //Sales Start
 	public function sell_medicine($msg) {
-		$data['page_title'] = "Sell Medicine";
+		$data['page_title'] = "Penjualan Obat";
 		if ($this->session->userdata('username') != '') {
 		//	$data['all_value'] = $this->CommonModel->get_all_info_not_null('insert_purchase_info','medicine_name');
 		    $data['all_value'] = $this->CommonModel->get_all_info('insert_purchase_info');

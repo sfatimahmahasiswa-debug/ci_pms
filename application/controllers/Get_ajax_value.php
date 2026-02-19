@@ -103,8 +103,8 @@ class Get_ajax_value extends CI_Controller
 				$medicine_name_id = $single_purchase[5];
 				$generic_name = $single_purchase[6];
 				$medicine_presentation = $single_purchase[7];
-				$customer_email = $single_purchase[8];
-				$medicine_collection .= "$medicine_name ($purchase_price $), ";
+				$customer_email = isset($single_purchase[8]) ? $single_purchase[8] : '';
+				$medicine_collection .= $medicine_name." (Rp ".number_format((float)$purchase_price, 0, ',', '.')."), ";
 
 				$insert_data = array(
 					'date' => $date,

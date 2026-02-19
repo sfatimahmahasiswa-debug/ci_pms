@@ -6,40 +6,37 @@
 			<div class="col-md-9" >
 				<div class="rounded-0 panel panel-default">
 					<div class="panel-heading rounded-0 main-color-bg">
-						<h3 class="panel-title"> Sales Medicine  Invoice</h3>
+						<h3 class="panel-title"> Invoice Penjualan Obat</h3>
 					</div>
 
 					<div class="panel-body">
 						<div class="box-header"  style="color: black; text-align: center;">
-							<p style="padding: 5px; text-align: left;"><button id="print_button" title="Click to Print" type="button"
-								onClick="window.print()" class="btn btn-flat fa fa-print">Print</button></p>
+							<p style="padding: 5px; text-align: left;"><button id="print_button" title="Klik untuk cetak" type="button"
+								onClick="window.print()" class="btn btn-flat fa fa-print">Cetak</button></p>
 						</div>
 						<div class="row">
 													<div class="form-group col-xs-4 col-xs-12"><b>
-															INVOICE ID: </b> <?php echo $invoice; ?>
-													</div>
-													<div class="form-group col-xs-5 col-xs-12"><b>
-															Customer Email:</b> <?php echo $email; ?>
+															ID INVOICE: </b> <?php echo $invoice; ?>
 													</div>
 													<div class="form-group col-xs-3 col-xs-12"><b>
-															Date:</b> <?php echo $date; ?>
+															Tanggal:</b> <?php echo $date; ?>
 													</div>
 													<div class="form-group col-xs-12 col-xs-12"><b>
 															Nama Obat dan Harga:</b> <?php echo $medicine_name; ?><br><br>
 													</div>
 
 							<div class="form-group col-xs-3 col-xs-12"><b>
-									Amount:</b> $<?php echo $amount; ?>
+									Total:</b> Rp <?php echo number_format((float)$amount, 0, ',', '.'); ?>
 							</div>
 							<div class="form-group col-xs-3 col-xs-12"><b>
-									Discount:</b> $<?php echo $discount; ?>
+									Diskon:</b> Rp <?php echo number_format((float)$discount, 0, ',', '.'); ?>
 							</div>
 
 							<div class="form-group col-xs-3 col-xs-12"><b>
-									Sub Total:</b> $<?php echo $sub_total; ?>
+									Sub Total:</b> Rp <?php echo number_format((float)$sub_total, 0, ',', '.'); ?>
 							</div>
 							<div class="form-group col-xs-3 col-xs-12"><b>
-									Amount Paid:</b> $<?php echo $pay; ?>
+									Dibayar:</b> Rp <?php echo number_format((float)$pay, 0, ',', '.'); ?>
 							</div>
 						</div>
 
