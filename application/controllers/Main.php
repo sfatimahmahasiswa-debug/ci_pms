@@ -54,27 +54,6 @@ class Main extends CI_Controller
 
 			$data['medicine_qty'] = count($this->CommonModel->get_all_info('create_medicine_name')); //
 
-			//Toda's Puchase Amount
-			$where_array = array(
-				"date" => date('Y-m-d')
-			);
-			$today_purchase = $this->CommonModel->group_by_data_where("insert_purchase_info", $where_array, "purchase_id");
-			$total_today_purchase = 0;
-			foreach ($today_purchase as $today_sales_info) {
-				$total_today_purchase += $today_sales_info->purchase_price;
-			}
-			$data['today_purchase_number'] = $total_today_purchase;
-
-			//Due Puchase Amount
-			$purchase_due = $this->CommonModel->get_all_info("insert_purchase_info");
-			$total_due = 0; $price=0;$pay=0;
-			foreach ($purchase_due as $info) {
-				$price= $info->purchase_price;
-				$pay= $info->purchase_paid;
-				$total_due +=$price - $pay;
-			}
-			$data['today_due'] = $total_due;
-
 			// Sales of Month
 			$array_check = array(
 				"date>=" => date('Y-m-d', strtotime('-1 month')),
