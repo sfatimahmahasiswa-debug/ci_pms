@@ -54,28 +54,6 @@ class Main extends CI_Controller
 
 			$data['medicine_qty'] = count($this->CommonModel->get_all_info('create_medicine_name')); //
 
-			// Sales of Month
-			$array_check = array(
-				"date>=" => date('Y-m-d', strtotime('-1 month')),
-				"date<=" => date('Y-m-d')
-			);
-			$monthly_sales_result = $this->CommonModel->group_by_data_where("sales_product", $array_check, "sales_id");
-			$total_monthly_sales = 0;
-			foreach ($monthly_sales_result as $monthly_sales_info) {
-				$total_monthly_sales += $monthly_sales_info->discount_price;
-			}
-			$data['monthly_sales_number'] = $total_monthly_sales;
-
-			//Toda's Sales Amount
-			$where_array_sale = array(
-				"date" => date('Y-m-d')
-			);
-			$today_sale = $this->CommonModel->group_by_data_where("sales_product", $where_array_sale, "sales_id");
-			$total_today_sales = 0;
-			foreach ($today_sale as $today_sales_info) {
-				$total_today_sales += $today_sales_info->discount_price;
-			}
-			$data['today_sale_number'] = $total_today_sales;
 			//Expire Date
 			$array_check_near_expire = array(
 				"expiredate<=" => date('Y-m-d')
