@@ -24,18 +24,6 @@
           </div>
 
           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <div class="well dash-box">
-              <h4><span class="far fa-calendar-alt" aria-hidden="true" style="color: #2e6da4;"></span> Penjualan Bulanan</h4>
-                <h2 class='text-right'><?php echo 'Rp'.(number_format($monthly_sales_number)); ?> </h2>
-              </div>
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="well dash-box">
-              <h4><span class="glyphicon glyphicon-equalizer" aria-hidden="true" style="color: orange;"></span> Penjualan Harian</h4>
-              <h2 class='text-right'><?php echo 'Rp'.(number_format($today_sale_number)); ?></h2>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="well dash-box">
               <h4><span class="glyphicon glyphicon-warning-sign" aria-hidden="true" style="color: darkred;"></span> Produk Kadaluarsa</h4>
               <h2 class='text-right'><?php echo number_format($near_expired_product); ?></h2>
@@ -54,6 +42,5 @@
 	</div >
   </div >
  </section>
-
 
 
