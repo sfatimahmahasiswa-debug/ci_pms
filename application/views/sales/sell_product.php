@@ -2,13 +2,13 @@
 if ($msg == "main") {
 	$msg = "";
 } elseif ($msg == "empty") {
-	$msg = "Please fill out all required fields";
+	$msg = "Mohon isi semua kolom wajib";
 } elseif ($msg == "created") {
-	$msg = "Created Successfully";
+	$msg = "Berhasil dibuat";
 } elseif ($msg == "edit") {
-	$msg = "Edited Successfully";
+	$msg = "Berhasil diubah";
 } elseif ($msg == "delete") {
-	$msg = "Deleted Successfully";
+	$msg = "Berhasil dihapus";
 }
 ?>
 <style>
@@ -29,7 +29,7 @@ if ($msg == "main") {
 <section id="breadcrumb">
 	<div class="container"   id="no_print2">
 		<ol class="breadcrumb">
-			<li><a href="#">Sales / Sell Medicine </a></li>
+			<li><a href="#">Penjualan / Jual Obat </a></li>
 			<li class="active"><?php echo $msg; ?></li>
 		</ol>
 	</div>
@@ -46,10 +46,10 @@ if ($msg == "main") {
 						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Penjualan</a>
 					<a href="<?php echo base_url(); ?>ShowForm/sell_medicine/main"
 					   class="list-group-item active">
-						<span class="	fa fa-capsules" aria-hidden="true"></span> Sell Medicine</a>
+						<span class="	fa fa-capsules" aria-hidden="true"></span> Jual Obat</a>
 					<a href="<?php echo base_url(); ?>ShowForm/sell_statement/main"
 					   class="list-group-item">
-						<span class="	fa fa-capsules" aria-hidden="true"></span> Sales Statement</a>
+						<span class="	fa fa-capsules" aria-hidden="true"></span> Laporan Penjualan</a>
 <!--					<a href="--><?php //echo base_url(); ?><!--ShowForm/medicine_purchase_statement/main" class="list-group-item">-->
 <!--						<span class="fa fa-plus-circle" aria-hidden="true"></span> Client Payment</a>-->
 <!--					<a href="--><?php //echo base_url(); ?><!--ShowForm/supplier_payment/main" class="list-group-item">-->
@@ -61,7 +61,7 @@ if ($msg == "main") {
 			<div class="col-md-9"  id="full_page">
 				<div class="rounded-0 panel panel-default" id="no_print1">
 					<div class="panel-heading rounded-0 main-color-bg">
-						<h3 class="panel-title"> Sales Medicine </h3>
+						<h3 class="panel-title"> Penjualan Obat </h3>
 					</div>
 
 					<div class="panel-body">
@@ -71,26 +71,20 @@ if ($msg == "main") {
 						<div class="box-body" >
 							<div class="row">
 								<div class="col-sm-4" style="">
-									<label for="date">Date</label>
+									<label for="date">Tanggal</label>
 									<input type="text" class="form-control datepicker"
-										   placeholder="Insert Date" name="date" id="date" value="<?php  echo date('Y-m-d'); ?>"
+										   placeholder="Masukkan Tanggal" name="date" id="date" value="<?php  echo date('Y-m-d'); ?>"
 										   autocomplete="off">
-								</div>
-								<div class="col-sm-6" style="">
-									<label for="customer_name">Customer Mail</label>
-									<input type="email" class="form-control"
-										   placeholder="Enter Email" name="customer_email" id="customer_email"
-										   autocomplete="off" required>
 								</div>
 							</div>
 							<fieldset class="border pb-2" style="border: 1px solid #d1d1d1;padding: 0.5em 1em">
-								<legend>Select Medicine</legend>
+								<legend>Pilih Obat</legend>
 								<div class="row">
 									<div class="col-sm-7" style="">
 										<label for="medicine_name">Nama Obat</label>
 										<select name="medicine_name" id="medicine_name" class="form-control selectpicker"
 												data-live-search="true">
-											<option value="">-- Select --</option>
+											<option value="">-- Pilih --</option>
 											<?php foreach ($all_value as $info) {
 												if($info->medicine_name != '') {
 												?>
@@ -99,24 +93,24 @@ if ($msg == "main") {
 										</select>
 									</div>
 									<div class="col-sm-4">
-										<label for="qty">Quantity</label>
+										<label for="qty">Jumlah</label>
 										<input type="number" class="form-control" id="qty" name="qty" value="0" autocomplete="off">
 									</div>
 
 									<div class="col-sm-4">
-										<label for="unit_sales_price">Selling Price</label>
-										<input type="number" class="form-control" id="unit_sales_price" placeholder="$"
+										<label for="unit_sales_price">Harga Jual (Rp)</label>
+										<input type="number" class="form-control" id="unit_sales_price" placeholder="Rp"
 											name="unit_sales_price" readonly>
 									</div>
 
 									<div class="col-sm-4">
-										<label for="purchase_price">Total Amount</label>
-										<input type="number" class="form-control" id="purchase_price" placeholder="$"
+										<label for="purchase_price">Total Harga (Rp)</label>
+										<input type="number" class="form-control" id="purchase_price" placeholder="Rp"
 											name="purchase_price" readonly>
 									</div>
 
 									<div class="col-sm-4" style="margin-top: 25px;">
-										<button type="button" class="pull-left btn btn-primary" id="add_item">ADD</button>
+										<button type="button" class="pull-left btn btn-primary" id="add_item">TAMBAH</button>
 									</div>
 								</div>
 							</fieldset>
@@ -138,11 +132,11 @@ if ($msg == "main") {
 						<thead>
 						<tr>
 							<th style="text-align: center;">Tanggal</th>
-							<th style="text-align: center;">Medicine</th>
-							<th style="text-align: center;">Unit Price</th>
-							<th style="text-align: center;">Quantity</th>
-							<th style="text-align: center;">Amount</th>
-							<th style="text-align: left;">Action</th>
+							<th style="text-align: center;">Obat</th>
+							<th style="text-align: center;">Harga Satuan (Rp)</th>
+							<th style="text-align: center;">Jumlah</th>
+							<th style="text-align: center;">Total (Rp)</th>
+							<th style="text-align: left;">Aksi</th>
 						</tr>
 						</thead>
 						<tbody id="show_all_sales">
@@ -155,17 +149,17 @@ if ($msg == "main") {
 											 value="0" name="amount" readonly>
 							</td>
 							<td colspan="">
-								Discount<input type="number" class="form-control" id="discount"
+								Diskon<input type="number" class="form-control" id="discount"
 											   style="color: black; border: black 2px solid;"
-											   value="0" placeholder="Discount" name="discount">
+											   value="0" placeholder="Diskon" name="discount">
 							</td>
 							<td colspan="2">
-								Sub Total<input type="text" class="form-control" id="sub_total"
+								Sub Total (Rp)<input type="text" class="form-control" id="sub_total"
 												value="0" style="color: black; border: black 2px solid;"
 												name="sub_total" readonly>
 							</td>
 							<td colspan="2">
-								Amount Paid<input type="number" class="form-control" id="pay"
+								Dibayar<input type="number" class="form-control" id="pay"
 										  value="0" style="color: black; border: black 2px solid;" name="pay">
 							</td>
 <!--							<td colspan="2">-->
@@ -176,7 +170,7 @@ if ($msg == "main") {
 							<td colspan="2">
 								<div style="margin-top: 20px;color: #a61717;">
 								<button style="" type="button" class=" btn btn-success "
-										id="sell_btn">Sell</button>
+										id="sell_btn">Jual</button>
 								</div>
 							</td>
 						</tr>
@@ -219,12 +213,14 @@ if ($msg == "main") {
 
 	// ADD MEDICINE
 	var complete_total = 0;
+	function formatRupiah(value) {
+		return 'Rp ' + Number(value).toLocaleString('id-ID');
+	}
 	var all_purchase = new Array();
 	var product_count = 0;
 	$("#add_item").click(function () {
 		var date = $('#date').val();
-		// var customer_name = $('#customer_name').val();
-		var customer_email = $('#customer_email').val();
+		var customer_email = ''; // Tetap dikirim agar struktur data lama di backend tetap kompatibel
 		var medicine = $('#medicine_name').val().split("###");
 		var medicine_name_id = medicine[0];
 		var medicine_name = medicine[1];
@@ -241,9 +237,13 @@ if ($msg == "main") {
 			test_total += Number(all_purchase[i][4]);
 			full_table += "<tr>";
 			for (var j = 0; j < all_purchase[i].length-4; j++) {
-				full_table += "<td style='text-align: center;'>" + all_purchase[i][j] + "</td>";
+				if (j === 2 || j === 4) {
+					full_table += "<td style='text-align: center;'>" + formatRupiah(all_purchase[i][j]) + "</td>";
+				} else {
+					full_table += "<td style='text-align: center;'>" + all_purchase[i][j] + "</td>";
+				}
 			}
-			full_table += "<td><button class='btn btn-danger' onclick='delete_data(" + i + ")'>Delete</button></td></tr>";
+			full_table += "<td><button class='btn btn-danger' onclick='delete_data(" + i + ")'>Hapus</button></td></tr>";
 		}
 		$('#show_all_sales').html(full_table);
 		$('#unit_sales_price').val('');
@@ -262,9 +262,13 @@ if ($msg == "main") {
 			test_total += Number(all_purchase[i][5]);
 			full_table += "<tr>";
 			for (var j = 0; j < all_purchase[i].length-4; j++) {
-				full_table += "<td style='text-align: center;'>" + all_purchase[i][j] + "</td>";
+				if (j === 2 || j === 4) {
+					full_table += "<td style='text-align: center;'>" + formatRupiah(all_purchase[i][j]) + "</td>";
+				} else {
+					full_table += "<td style='text-align: center;'>" + all_purchase[i][j] + "</td>";
+				}
 			}
-			full_table += "<td><button class='btn btn-danger' onclick='delete_data(" + i + ")'>Delete</button></td></tr>";
+			full_table += "<td><button class='btn btn-danger' onclick='delete_data(" + i + ")'>Hapus</button></td></tr>";
 		}
 		$('#show_all_sales').html(full_table)
 
@@ -301,7 +305,7 @@ if ($msg == "main") {
 		var pay = $('#pay').val();
 		var due = $('#due').val();
 if(pay == 0 || pay<0){
-	alert("Can't Sell");
+	alert("Tidak dapat menjual");
 }else {
 	var post_data = {
 		'amount': amount, 'discount': discount, 'sub_total': sub_total, 'pay': pay, 'due': due,
