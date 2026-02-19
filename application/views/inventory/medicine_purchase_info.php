@@ -2,13 +2,13 @@
 if ($msg == "main") {
 	$msg = "";
 } elseif ($msg == "empty") {
-	$msg = "Please fill out all required fields";
+	$msg = "Mohon isi semua kolom wajib";
 } elseif ($msg == "created") {
-	$msg = "Created Successfully";
+	$msg = "Berhasil ditambahkan";
 } elseif ($msg == "edit") {
-	$msg = "Edited Successfully";
+	$msg = "Berhasil diubah";
 } elseif ($msg == "delete") {
-	$msg = "Deleted Successfully";
+	$msg = "Berhasil dihapus";
 }
 ?>
 <!-- /.Breadcrumb -->
@@ -80,7 +80,7 @@ if ($msg == "main") {
 									</select>
 								</div>
 								<div class="col-sm-3" style="">
-									<label for="presentation">Presentation</label>
+									<label for="presentation">Bentuk Sediaan</label>
 									<select name="presentation" id="presentation" class="form-control selectpicker"
 											data-live-search="true">
 										<option value="">-- Pilih --</option>
@@ -89,34 +89,24 @@ if ($msg == "main") {
 										<?php } ?>
 									</select>
 								</div>
-								<div class="col-sm-3" style="">
-									<label for="supplier">Perusahaan Pemasok</label>
-									<select name="supplier" id="supplier" class="form-control selectpicker"
-											data-live-search="true">
-										<option value="">-- Pilih --</option>
-										<?php foreach ($all_sup as $info) { ?>
-											<option value="<?php echo $info->supplier_name."#".$info->supplier_id; ?>"><?php echo $info->supplier_name; ?></option>
-										<?php } ?>
-									</select>
-								</div>
                             </div>
                             <div class="row">
 								<div class="col-sm-3">
-									<label for="qty">Total Quantity</label>
+									<label for="qty">Jumlah Total</label>
 									<input type="number" class="form-control" id="qty" name="qty">
 								</div>
                                 <div class="col-sm-3" style="">
                                     <label for="unit_price">Harga Satuan</label>
-                                    <input type="number" step=any class="form-control" id="unit_price"  name="unit_price">
+                                    <input type="number" step=any class="form-control" id="unit_price" placeholder="Rp"  name="unit_price">
                                 </div>
 								<div class="col-sm-3">
 									<label for="purchase_price">Jumlah Total</label>
-									<input type="number" step=any class="form-control" id="purchase_price" placeholder="$"
+									<input type="number" step=any class="form-control" id="purchase_price" placeholder="Rp"
 										   name="purchase_price">
 								</div>
 								<div class="col-sm-3">
-									<label for="unit_sales_price">Selling Price</label>
-									<input type="number" step=any class="form-control" id="unit_sales_price" placeholder="$"
+									<label for="unit_sales_price">Harga Jual</label>
+									<input type="number" step=any class="form-control" id="unit_sales_price" placeholder="Rp"
 										   name="unit_sales_price">
 								</div>
                             </div>
@@ -128,29 +118,29 @@ if ($msg == "main") {
 
 								</div>
 								<div class="col-sm-3">
-									<label for="purchase_paid">Pembelian Berbayar</label>
-									<input type="number" class="form-control" id="purchase_paid" placeholder="$"
+									<label for="purchase_paid">Pembayaran</label>
+									<input type="number" class="form-control" id="purchase_paid" placeholder="Rp"
 										   name="purchase_paid">
 								</div>
 								<div class="col-sm-3">
-									<label for="purchase_due">Tanggal Pembelian</label>
-									<input type="number" step=any class="form-control" id="purchase_due" placeholder="$"
+									<label for="purchase_due">Sisa Pembayaran</label>
+									<input type="number" step=any class="form-control" id="purchase_due" placeholder="Rp"
 										   name="purchase_due">
 								</div>
 								<div class="col-sm-3">
-									<label for="ex_date">Tanggal Kedaluarsa</label>
-									<input type="date"  class="form-control new_datepicker" id="ex_date"
-										 placeholder="Date" name="ex_date" autocomplete="off">
+									<label for="date">Tanggal Pembelian</label>
+									<input type="date" class="form-control" id="date"
+										   name="date" autocomplete="off">
 								</div>
-								<div class="col-sm-3" style="display: none">
-									<label for="date">Tanggal</label>
-									<input type="text" class="form-control new_datepicker" id="date"
-										   value="<?php echo date('y-m-d'); ?>" placeholder="Date" name="date" autocomplete="off">
+								<div class="col-sm-3">
+									<label for="ex_date">Tanggal Kedaluwarsa</label>
+									<input type="date"  class="form-control new_datepicker" id="ex_date"
+										 placeholder="Tanggal" name="ex_date" autocomplete="off">
 								</div>
                             </div>
 							<div class="row">
 								<div class="col-sm-4" style="margin-top: 17px;">
-									<button type="submit" class="pull-left btn btn-primary">Create</button>
+									<button type="submit" class="pull-left btn btn-primary">Simpan</button>
 								</div>
 							</div>
                             </form>
@@ -163,7 +153,7 @@ if ($msg == "main") {
                 <div class="rounded-0 panel panel-default">
                     <div class="panel-heading rounded-0">
                         <form method="post" action="<?php echo base_url(); ?>export_csv/export">
-                            <h3 class="panel-title">Medicine List
+                            <h3 class="panel-title">Daftar Obat
 <!--								<input type="submit" name="export"-->
 <!--                                    class="btn btn-success btn-xs" value="Export to CSV" />-->
 							</h3>
@@ -174,22 +164,22 @@ if ($msg == "main") {
                                 <thead>
                                     <tr>
                                         <th style="text-align: center;">#</th>
-                                        <th style="text-align: center;">Details</th>
-                                        <th style="text-align: center;">Supplier</th>
-                                        <th style="text-align: center;">Available Qty</th>
-                                        <th style="text-align: center;">Unit Price</th>
-										  <th style="text-align: center;">Total Amount</th>
-										 <th style="text-align: center;">Selling Price</th>
-										   <th style="text-align: center;">Paid</th>
-										  <th style="text-align: center;">Due</th>
-										<th style="text-align: center;">Expiry</th>
-                                        <th style="text-align: center;">Action</th>
+                                        <th style="text-align: center;">Detail</th>
+                                        <th style="text-align: center;">Stok Tersedia</th>
+                                        <th style="text-align: center;">Harga Satuan</th>
+										  <th style="text-align: center;">Jumlah Total</th>
+										 <th style="text-align: center;">Harga Jual</th>
+										   <th style="text-align: center;">Pembayaran</th>
+										  <th style="text-align: center;">Sisa Pembayaran</th>
+										<th style="text-align: center;">Kedaluwarsa</th>
+                                        <th style="text-align: center;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <!-- /.Row from DB-->
                                 <tbody>
                                     <?php
 								$count = 0;
+								$near_expiry_medicine = array();
 								foreach ($all_value as $single_value) {
 									$count++;
 									$mid = $single_value->medicine_name_id;
@@ -197,25 +187,31 @@ if ($msg == "main") {
 									if(isset($sold[$mid]))
 										$available -= $sold[$mid];
 									if($single_value->particulars != "Payment"){
+										$today = strtotime(date("Y-m-d"));
+										$expiry = strtotime($single_value->expiredate);
+										$seconds_per_day = 60 * 60 * 24;
+										$remaining_days = floor(($expiry - $today) / $seconds_per_day);
+										if ($remaining_days >= 0 && $remaining_days <= 30) {
+											$near_expiry_medicine[] = $single_value->medicine_name.' ('.$single_value->expiredate.')';
+										}
 									?>
 
                                     <tr class="<?= (date("Y-m-d") >= $single_value->expiredate) ? 'expired' : '' ?>">
                                         <td style="text-align: center;"><?php echo $count; ?></td>
                                         <td style="text-align: left;">
 										<b>Obat:</b>	<?php echo $single_value->medicine_name; ?>  <br>
-										<b>Generic:</b>	<?php echo $single_value->generic_name; ?></br>
-										<b>Presentation:</b>	<?php echo $single_value->medicine_presentation; ?> </br>
+										<b>Generik:</b>	<?php echo $single_value->generic_name; ?></br>
+										<b>Bentuk Sediaan:</b>	<?php echo $single_value->medicine_presentation; ?> </br>
 										<b>Volume:</b>	<?php echo $single_value->unit; ?> </br>
-										<b>P. Date:</b>	<?php echo $single_value->date; ?>
+										<b>Tgl. Beli:</b>	<?php echo $single_value->date; ?>
 										</td>
-                                        <td style="text-align: center;"><?php echo $single_value->supplier_name; ?></td>
                                         <!-- <td style="text-align: center;"><?php echo $single_value->qty; ?></td> -->
                                         <td style="text-align: center;"><?php echo $available; ?></td>
-                                        <td style="text-align: center;"><?php echo '$'.$single_value->unit_price; ?></td>
-										<td style="text-align: center;"><?php echo '$'.$single_value->purchase_price; ?></td>
-										<td style="text-align: center;"><?php echo '$'.$single_value->unit_sales_price; ?></td>
-										<td style="text-align: center;"><?php echo '$'.$single_value->purchase_paid; ?></td>
-										<td style="text-align: center;"><?php echo '$'.$single_value->purchase_due; ?></td>
+                                        <td style="text-align: center;"><?php echo 'Rp '.number_format((float)$single_value->unit_price, 0, ',', '.'); ?></td>
+										<td style="text-align: center;"><?php echo 'Rp '.number_format((float)$single_value->purchase_price, 0, ',', '.'); ?></td>
+										<td style="text-align: center;"><?php echo 'Rp '.number_format((float)$single_value->unit_sales_price, 0, ',', '.'); ?></td>
+										<td style="text-align: center;"><?php echo 'Rp '.number_format((float)$single_value->purchase_paid, 0, ',', '.'); ?></td>
+										<td style="text-align: center;"><?php echo 'Rp '.number_format((float)$single_value->purchase_due, 0, ',', '.'); ?></td>
 										<td style="text-align: center;"><?php echo $single_value->expiredate; ?></td>
                                         <td style="text-align: center;">
 											<a style="margin: 5px;" title="Update"
@@ -242,6 +238,17 @@ if ($msg == "main") {
     </div> <!-- /.Container -->
 
 
+<div class="modal fade" id="nearExpiryModal" tabindex="-1" role="dialog" aria-labelledby="nearExpiryModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Tutup"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="nearExpiryModalLabel">Pengingat Kedaluwarsa Obat</h4>
+			</div>
+			<div class="modal-body" id="nearExpiryModalBody"></div>
+		</div>
+	</div>
+</div>
 <script type="text/javascript">
 
 	$("#purchase_paid").on("change paste keyup", function () {
@@ -257,4 +264,9 @@ if ($msg == "main") {
 		var amount =qty * unit_price;
 		$('#purchase_price').val(amount);
 	});
+	var nearExpiryMedicine = <?php echo json_encode(array_values(array_unique($near_expiry_medicine)), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
+	if (nearExpiryMedicine.length > 0) {
+		$('#nearExpiryModalBody').html('Obat berikut mendekati masa kedaluwarsa:<br>- ' + nearExpiryMedicine.join('<br>- '));
+		$('#nearExpiryModal').modal('show');
+	}
 </script>
