@@ -131,11 +131,6 @@
                                 Total<input type="text" class="form-control" id="amount"
                                     style="color: black; border: black 2px solid;" value="0" name="amount" readonly>
                             </td>
-                            <td colspan="">
-                                Diskon<input type="number" class="form-control" id="discount"
-                                    style="color: black; border: black 2px solid;" value="0" placeholder="Diskon"
-                                    name="discount">
-                            </td>
                             <td colspan="2">
                                 Sub Total (Rp)<input type="text" class="form-control" id="sub_total" value="0"
                                     style="color: black; border: black 2px solid;" name="sub_total" readonly>
@@ -262,23 +257,20 @@ function delete_data(arr_no) {
     calculation();
 }
 
-$("#discount, #pay").on("change paste keyup", function() {
+$("#pay").on("change paste keyup", function() {
     calculation();
 });
 
 function calculation() {
     $('#amount').val(complete_total);
-    var discount = $('#discount').val();
-    if (discount == "") {
-        discount = 0;
-    }
-    $('#sub_total').val(Number(complete_total - discount));
-    $('#pay').val(Number(complete_total - discount));
+    var discount = 0;
+    $('#sub_total').val(Number(complete_total));
+    $('#pay').val(Number(complete_total));
     var pay = $('#pay').val();
     if (pay == "") {
         pay = 0;
     }
-    var after_pay = Number(complete_total - discount - pay);
+    var after_pay = Number(complete_total - pay);
     if (after_pay >= 0) {
         $('#due').val(after_pay);
     }
@@ -286,7 +278,7 @@ function calculation() {
 $("#sell_btn").click(function() {
     //$(#no_print4).hide();
     var amount = $('#amount').val();
-    var discount = $('#discount').val();
+    var discount = 0;
     var sub_total = $('#sub_total').val();
     var pay = $('#pay').val();
     var due = $('#due').val();
