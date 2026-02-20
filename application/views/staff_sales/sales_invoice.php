@@ -16,7 +16,7 @@ $lineItems = array_filter(array_map('trim', explode(',', (string)$medicine_name)
                     <h1>Sales Medicine Invoice</h1>
                     <p>Klinik Inventory & Pharmacy</p>
                 </div>
-                <div class="invoice-badge">INV</div>
+                <div class="invoice-badge"><img src="<?php echo base_url(); ?>assets/harmy.png" alt="Harmy Logo" class="invoice-badge-logo"></div>
             </div>
 
             <div class="invoice-meta-grid">
@@ -95,7 +95,9 @@ $lineItems = array_filter(array_map('trim', explode(',', (string)$medicine_name)
     .invoice-badge {
         width: 90px; height: 90px; border-radius: 50%; background: #1a73be; color: #fff;
         display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 700;
+        overflow: hidden;
     }
+    .invoice-badge-logo { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
     .invoice-meta-grid { display: grid; grid-template-columns: repeat(3, minmax(120px, 1fr)); gap: 12px; margin-bottom: 18px; }
     .meta-label { font-size: 12px; text-transform: uppercase; color: #6b7b8c; }
     .meta-value { font-size: 16px; font-weight: 700; word-break: break-word; }

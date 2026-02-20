@@ -60,7 +60,7 @@
             <div class="col-md-10">
                 <h2>
                     <i class="fa fa-medkit"></i>
-                    Inventory Klinik Harmy Management
+                    Klinik Harmy Medika
                 </h2>
             </div>
         </div>

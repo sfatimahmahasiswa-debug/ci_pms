@@ -20,7 +20,6 @@
 
 				<th style="text-align: center;">Total</th>
 				<th style="text-align: center;">Amount</th>
-				<th style="text-align: center;">Amount Discount</th>
 				<th style="text-align: center;">Total Amount</th>
 			</tr>
 			</thead>
@@ -53,7 +52,6 @@
 						<td style="text-align: center;"><?php echo $single_value->qty; ?> </td>
 						<td style="text-align: center;"><?php echo $single_value->total_price; ?>/-</td>
 						<td style="text-align: center;"><?php echo $single_value->total_amount; ?>/-</td>
-						<td style="text-align: center;"><?php echo $single_value->total_discount; ?></td>
 						<td style="text-align: center;"><?php echo $single_value->discount_price; ?>/-</td>
 						<?php  $total_price2 += $single_value->total_amount; ?>
 						</tr>
@@ -65,7 +63,7 @@
 			<tr style="font-weight: bolder;">
 				<td style="text-align: right;" colspan="5">Total Product</td>
 				<td style="text-align: center;"><?php echo $total_qty; ?></td>
-				<td style="text-align: center;" colspan="3"></td>
+				<td style="text-align: center;" colspan="2"></td>
 				<td style="text-align: center;">Total Sales: <?php echo $total_price2; ?>/-</td>
 				<!--<td style="text-align: center;" colspan=""></td>-->
 			</tr>
