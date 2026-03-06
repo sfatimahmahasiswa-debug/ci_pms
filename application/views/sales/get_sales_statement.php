@@ -1,7 +1,7 @@
 <div class="box box-info">
 	<p style="padding: 3px;">
 		<button id="print_button" title="Click to Print" type="button"
-				onClick="window.print()" class="btn btn-flat fa fa-print">Print
+			onClick="window.print()" class="btn btn-flat fa fa-print">Print
 		</button>
 	</p>
 	<div class="box-body table-responsive" style="width: 98%; overflow-x: scroll; color: black;">
@@ -12,25 +12,24 @@
 <!--			</tr>-->
 			<tr>
 				<th style="text-align: center;">#</th>
-				<th style="text-align: center;">Date</th>
-				<th style="text-align: center;">Invoice</th>
-				<th style="text-align: center;">Medicine</th>
-				<th style="text-align: center;">Unit Price</th>
-				<th style="text-align: center;">Quantity</th>
+				<th style="text-align: center;">Tanggal</th>
+				<th style="text-align: center;">Faktur</th>
+				<th style="text-align: center;">Obat</th>
+				<th style="text-align: center;">Harga Satuan</th>
+				<th style="text-align: center;">Jumlah</th>
 
 				<th style="text-align: center;">Total</th>
-				<th style="text-align: center;">Amount</th>
-				<th style="text-align: center;">Total Amount</th>
+				<th style="text-align: center;">Bayar</th>
+				<th style="text-align: center;">Total Bayar</th>
 			</tr>
 			</thead>
 			<tbody>
 			<?php
-			$total_qty = 0;
-			$total_price2 = 0;
+			$Totalqty = $Totalprice2 = 0;
 			for ($i = 1; $i <= $count_it; $i++) {
 				$one_time = 0;
 				foreach (${"product_result" . $i} as $single_value) {
-					$total_qty += $single_value->qty;
+					$Totalqty += $single_value->qty;
 
 					$one_time++;
 					?>
@@ -43,13 +42,13 @@
 							<td style="text-align: center; white-space: nowrap;">
 								<?php echo $single_value->medicine_name; ?>
 							</td>
-							<td style="text-align: center;"><?php echo '$'.$single_value->unit_sales_price; ?></td>
+							<td style="text-align: center;"><?php echo 'Rp '.$single_value->unit_sales_price; ?></td>
 							<td style="text-align: center;"><?php echo $single_value->qty; ?> </td>
-							<td style="text-align: center;"><?php echo '$'.$single_value->total_price; ?></td>
-							<td style="text-align: center;"><?php echo '$'.$single_value->total_amount; ?></td>
-							<td style="text-align: center;"><?php echo '$'.$single_value->discount_price; ?></td>
-							<?php  $total_price2 += $single_value->discount_price; ?>
-							</tr>
+							<td style="text-align: center;"><?php echo 'Rp '.$single_value->total_price; ?></td>
+							<td style="text-align: center;"><?php echo 'Rp '.$single_value->total_amount; ?></td>
+							<td style="text-align: center;"><?php echo 'Rp '.$single_value->discount_price; ?></td>
+							<?php  $Totalprice2 += $single_value->discount_price; ?>
+						</tr>
 						<?php } else { ?>
 							<td style="text-align: center;"></td>
 							<td style="text-align: center;"></td>
@@ -57,25 +56,23 @@
 							<td style="text-align: center; white-space: nowrap;">
 								<?php echo $single_value->medicine_name; ?>
 							</td>
-							<td style="text-align: center;"><?php echo '$'.$single_value->unit_sales_price; ?></td>
-							<td style="text-align: center;"><?php echo '$'.$single_value->qty; ?> </td>
-							<td style="text-align: center;"><?php echo '$'.$single_value->total_price; ?></td>
-							<td style="text-align: center;"><?php echo '$'.$single_value->total_amount; ?></td>
+							<td style="text-align: center;"><?php echo 'Rp '.$single_value->unit_sales_price; ?></td>
+							<td style="text-align: center;"><?php echo 'Rp '.$single_value->qty; ?> </td>
+							<td style="text-align: center;"><?php echo 'Rp '.$single_value->total_price; ?></td>
+							<td style="text-align: center;"><?php echo 'Rp '.$single_value->total_amount; ?></td>
 							<td style="text-align: center;"></td>
-<!--							<td style="text-align: center;">--><?php //echo $single_value->discount_price; ?><!--/-</td>-->
-							</tr>
+						</tr>
 						<?php } ?>
 
 						<?php
 					}
 				}
-			}
 			?>
 			<tr style="font-weight: bolder;">
-				<td style="text-align: right;" colspan="5">Total Product</td>
-				<td style="text-align: center;"><?php echo $total_qty; ?></td>
+				<td style="text-align: right;" colspan="5">Total Produk</td>
+				<td style="text-align: center;"><?php echo $Totalqty; ?></td>
 				<td style="text-align: center;" colspan="2"></td>
-				<td style="text-align: center;">Total Sales: <?php echo '$'.$total_price2; ?>/-</td>
+				<td style="text-align: center;">Total Penjualan: <?php echo 'Rp '.$Totalprice2; ?>/-</td>
 				<!--<td style="text-align: center;" colspan=""></td>-->
 			</tr>
 			</tbody>
