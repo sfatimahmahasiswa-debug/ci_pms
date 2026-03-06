@@ -11,16 +11,16 @@
 <!--				<th style="text-align: center;" colspan="15">Sales Statement</th>-->
 <!--			</tr>-->
 			<tr>
-				<th style="text-align: center;">SL.</th>
-				<th style="text-align: center;">Date</th>
-				<th style="text-align: center;">Invoice No.</th>
+				<th style="text-align: center;">No.</th>
+				<th style="text-align: center;">Tanggal</th>
+				<th style="text-align: center;">No. Faktur</th>
 				<th style="text-align: center;">Nama Obat</th>
-				<th style="text-align: center;">Unit Price</th>
-				<th style="text-align: center;">Quantity</th>
+				<th style="text-align: center;">Harga Satuan</th>
+				<th style="text-align: center;">Jumlah</th>
 
 				<th style="text-align: center;">Total</th>
-				<th style="text-align: center;">Amount</th>
-				<th style="text-align: center;">Total Amount</th>
+				<th style="text-align: center;">Jumlah Harga</th>
+				<th style="text-align: center;">Total Harga</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -48,11 +48,11 @@
 						<td style="text-align: center; white-space: nowrap;">
 							<?php echo $single_value->medicine_name; ?>
 						</td>
-						<td style="text-align: center;"><?php echo $single_value->unit_sales_price; ?></td>
+						<td style="text-align: center;">Rp <?php echo number_format($single_value->unit_sales_price, 0, ',', '.'); ?></td>
 						<td style="text-align: center;"><?php echo $single_value->qty; ?> </td>
-						<td style="text-align: center;"><?php echo $single_value->total_price; ?>/-</td>
-						<td style="text-align: center;"><?php echo $single_value->total_amount; ?>/-</td>
-						<td style="text-align: center;"><?php echo $single_value->discount_price; ?>/-</td>
+						<td style="text-align: center;">Rp <?php echo number_format($single_value->total_price, 0, ',', '.'); ?></td>
+						<td style="text-align: center;">Rp <?php echo number_format($single_value->total_amount, 0, ',', '.'); ?></td>
+						<td style="text-align: center;">Rp <?php echo number_format($single_value->discount_price, 0, ',', '.'); ?></td>
 						<?php  $total_price2 += $single_value->total_amount; ?>
 						</tr>
 						<?php
@@ -61,10 +61,10 @@
 			}
 			?>
 			<tr style="font-weight: bolder;">
-				<td style="text-align: right;" colspan="5">Total Product</td>
+				<td style="text-align: right;" colspan="5">Total Produk</td>
 				<td style="text-align: center;"><?php echo $total_qty; ?></td>
 				<td style="text-align: center;" colspan="2"></td>
-				<td style="text-align: center;">Total Sales: <?php echo $total_price2; ?>/-</td>
+				<td style="text-align: center;">Total Penjualan: Rp <?php echo number_format($total_price2, 0, ',', '.'); ?></td>
 				<!--<td style="text-align: center;" colspan=""></td>-->
 			</tr>
 			</tbody>
