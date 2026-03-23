@@ -84,6 +84,22 @@ class Main extends CI_Controller
 
 			//END Dash Data
 
+			$data['username'] = $this->session->userdata('username');
+
+			// Indonesian date
+			$hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+			$bulan = ['','Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+			$data['current_date'] = $hari[date('w')] . ', ' . date('d') . ' ' . $bulan[(int)date('n')] . ' ' . date('Y');
+			$data['current_time'] = date('H:i');
+
+			// Generic medicine count
+			$generic_result = $this->db->query('SELECT COUNT(*) AS total FROM create_generic_name')->row();
+			$data['generic_medicine_count'] = $generic_result ? (int)$generic_result->total : 0;
+
+			// Staff count
+			$staff_result = $this->db->query('SELECT COUNT(*) AS total FROM staff')->row();
+			$data['staff_count'] = $staff_result ? (int)$staff_result->total : 0;
+
 			$this->load->view("header");
 			$this->load->view("dashboard",$data);
 			$this->load->view("footer");
