@@ -1,7 +1,6 @@
 
-<!-- /.container -->
 <section id="main">
-  <div class="container">
+  <div class="container-fluid">
 
     <!-- Welcome Banner -->
     <div class="row">
