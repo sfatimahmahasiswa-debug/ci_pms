@@ -9,15 +9,25 @@
           <div class="row">
             <div class="col-sm-8">
               <h2 class="welcome-title">
-                <i class="fa fa-tachometer-alt"></i>
-                Selamat Datang, <strong><?php echo htmlspecialchars($username); ?></strong>
+                Selamat Datang, <strong><?php echo htmlspecialchars($username); ?></strong> 👋
               </h2>
               <p class="welcome-subtitle">
-                <i class="fa fa-calendar-check"></i>
-                <?php echo $current_date; ?> &nbsp;|&nbsp;
-                <i class="fa fa-clock"></i>
-                <?php echo $current_time; ?> WIB
+                Berikut adalah ringkasan aktivitas sistem Klinik Harmy Medika hari ini.
               </p>
+              <div class="welcome-meta">
+                <div class="welcome-meta-item">
+                  <i class="fa fa-calendar-check"></i>
+                  <?php echo $current_date; ?>
+                </div>
+                <div class="welcome-meta-item">
+                  <i class="fa fa-clock"></i>
+                  <?php echo $current_time; ?> WIB
+                </div>
+                <div class="welcome-meta-item">
+                  <i class="fa fa-hospital-alt"></i>
+                  Sistem Aktif
+                </div>
+              </div>
             </div>
             <div class="col-sm-4 text-right hidden-xs">
               <i class="fa fa-hospital-alt dashboard-icon-bg"></i>
@@ -27,8 +37,15 @@
       </div>
     </div>
 
+    <!-- Section Heading for Stats -->
+    <div class="section-heading">
+      <i class="fa fa-chart-pie"></i>
+      <h5>Statistik Ringkasan</h5>
+      <span class="section-badge">Update otomatis</span>
+    </div>
+
     <!-- Stat Cards Row 1 -->
-    <div class="row" style="margin-top:20px;">
+    <div class="row">
 
       <!-- Obat-obatan -->
       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
@@ -81,7 +98,7 @@
     </div>
 
     <!-- Stat Cards Row 2 -->
-    <div class="row" style="margin-top:16px;">
+    <div class="row">
 
       <!-- Penjualan Harian -->
       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
@@ -135,7 +152,7 @@
 
     <?php if ($near_expired_product > 0): ?>
     <!-- Expired Products Alert -->
-    <div class="row" style="margin-top:20px;">
+    <div class="row">
       <div class="col-md-12">
         <div class="alert alert-danger alert-dismissible dashboard-alert" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -150,14 +167,16 @@
     </div>
     <?php endif; ?>
 
-    <!-- Quick Actions -->
-    <div class="row" style="margin-top:20px;">
-      <div class="col-md-12">
-        <div class="panel panel-default dashboard-quick-actions">
-          <div class="panel-heading main-color-bg">
-            <h4 class="panel-title"><i class="fa fa-bolt"></i> Akses Cepat</h4>
-          </div>
-          <div class="panel-body">
+    <!-- Quick Actions & Info panels side by side -->
+    <div class="row">
+      <!-- Quick Actions -->
+      <div class="col-md-8">
+        <div class="section-heading">
+          <i class="fa fa-bolt"></i>
+          <h5>Akses Cepat</h5>
+        </div>
+        <div class="info-panel">
+          <div class="info-panel-body">
             <div class="row">
               <div class="col-sm-4 col-xs-6" style="margin-bottom:10px;">
                 <a href="<?php echo base_url(); ?>ShowForm/doctor/main" class="btn btn-primary btn-block quick-btn">
@@ -181,7 +200,7 @@
               </div>
               <div class="col-sm-4 col-xs-6" style="margin-bottom:10px;">
                 <a href="<?php echo base_url(); ?>ShowForm/create_medicine_name/main" class="btn btn-default btn-block quick-btn">
-                  <i class="fa fa-cog"></i> Kelola Data Master
+                  <i class="fa fa-cog"></i> Data Master
                 </a>
               </div>
               <div class="col-sm-4 col-xs-6" style="margin-bottom:10px;">
@@ -193,7 +212,38 @@
           </div>
         </div>
       </div>
+
+      <!-- System Info -->
+      <div class="col-md-4">
+        <div class="section-heading">
+          <i class="fa fa-info-circle"></i>
+          <h5>Info Sistem</h5>
+        </div>
+        <div class="info-panel">
+          <div class="info-panel-body">
+            <table class="table" style="margin:0; font-size:13px;">
+              <tr>
+                <td style="border:none; padding: 6px 0; color: var(--text-secondary);"><i class="fa fa-hospital fa-fw"></i> Klinik</td>
+                <td style="border:none; padding: 6px 0; font-weight:600;">Harmy Medika</td>
+              </tr>
+              <tr>
+                <td style="padding: 6px 0; color: var(--text-secondary);"><i class="fa fa-pills fa-fw"></i> Total Obat</td>
+                <td style="padding: 6px 0; font-weight:600;"><?php echo number_format($medicine_qty); ?> item</td>
+              </tr>
+              <tr>
+                <td style="padding: 6px 0; color: var(--text-secondary);"><i class="fa fa-users fa-fw"></i> Karyawan</td>
+                <td style="padding: 6px 0; font-weight:600;"><?php echo number_format($staff_count); ?> orang</td>
+              </tr>
+              <tr>
+                <td style="padding: 6px 0; color: var(--text-secondary);"><i class="fa fa-shield-alt fa-fw"></i> Status</td>
+                <td style="padding: 6px 0;"><span class="label label-success">Online</span></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>
 </section>
+
