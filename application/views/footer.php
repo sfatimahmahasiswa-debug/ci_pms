@@ -55,15 +55,17 @@
         });
     }
 
-    /* Live clock update */
+    /* Live clock update — runs every 30 s to stay accurate while avoiding unnecessary repaints */
     var clockEl = document.getElementById('topbar-time');
     if (clockEl) {
-        setInterval(function () {
+        function updateClock() {
             var now = new Date();
             var h = String(now.getHours()).padStart(2, '0');
             var m = String(now.getMinutes()).padStart(2, '0');
             clockEl.textContent = h + ':' + m;
-        }, 10000);
+        }
+        updateClock();
+        setInterval(updateClock, 30000);
     }
 })();
 </script>
