@@ -19,6 +19,8 @@
 <?php
     $current_uri = $this->uri->uri_string();
     $current_segment = $this->uri->segment(2); // e.g. medicine_purchase_info
+    $username_display = isset($username) ? $username : $this->session->userdata('username');
+    $username_initial = strtoupper(substr($username_display ?? 'A', 0, 1));
 ?>
 
 <!-- Mobile overlay -->
@@ -32,8 +34,22 @@
         <!-- Brand -->
         <a href="<?php echo base_url(); ?>Main/enter" class="sidebar-brand">
             <span class="sidebar-brand-icon"><i class="fa fa-medkit"></i></span>
-            <span class="sidebar-brand-text">Harmy Medika</span>
+            <span class="sidebar-brand-text">
+                Harmy Medika
+                <small>Sistem Manajemen</small>
+            </span>
         </a>
+
+        <!-- User profile -->
+        <div class="sidebar-user">
+            <div class="sidebar-user-avatar">
+                <?php echo $username_initial; ?>
+            </div>
+            <div class="sidebar-user-info">
+                <div class="sidebar-user-name"><?php echo htmlspecialchars($username_display ?? ''); ?></div>
+                <div class="sidebar-user-role">Administrator</div>
+            </div>
+        </div>
 
         <div class="sidebar-divider"></div>
         <span class="sidebar-label">Menu Utama</span>
@@ -108,16 +124,23 @@
                 <i class="fa fa-bars"></i>
             </button>
             <span class="topbar-brand">
-                <i class="fa fa-medkit"></i> Klinik Harmy Medika
+                <span><i class="fa fa-medkit"></i> Klinik <span>Harmy Medika</span></span>
             </span>
             <div class="topbar-right">
-                <span class="topbar-user">
-                    <i class="fa fa-user-circle"></i>
-                    <span class="hidden-xs"><?php echo isset($username) ? htmlspecialchars($username) : htmlspecialchars($this->session->userdata('username')); ?></span>
-                </span>
-                <a href="<?php echo base_url(); ?>main/logout" class="topbar-logout-btn hidden-xs">
-                    <i class="fa fa-sign-out-alt"></i> Keluar
+                <div class="topbar-clock hidden-xs">
+                    <i class="fa fa-clock"></i>
+                    <span id="topbar-time"><?php echo date('H:i'); ?></span>
+                    &nbsp;|&nbsp;
+                    <span><?php echo date('d M Y'); ?></span>
+                </div>
+                <div class="topbar-divider hidden-xs"></div>
+                <a href="<?php echo base_url(); ?>main/logout" class="topbar-icon-btn hidden-xs" title="Keluar">
+                    <i class="fa fa-sign-out-alt"></i>
                 </a>
+                <div class="topbar-user">
+                    <div class="topbar-user-avatar"><?php echo $username_initial; ?></div>
+                    <span class="hidden-xs"><?php echo htmlspecialchars($username_display ?? ''); ?></span>
+                </div>
             </div>
         </div>
         <!-- End Topbar -->
