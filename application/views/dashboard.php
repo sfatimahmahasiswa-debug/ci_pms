@@ -179,11 +179,6 @@
           <div class="info-panel-body">
             <div class="row">
               <div class="col-sm-4 col-xs-6" style="margin-bottom:10px;">
-                <a href="<?php echo base_url(); ?>ShowForm/doctor/main" class="btn btn-primary btn-block quick-btn">
-                  <i class="fa fa-user-md"></i> Antrean Pasien
-                </a>
-              </div>
-              <div class="col-sm-4 col-xs-6" style="margin-bottom:10px;">
                 <a href="<?php echo base_url(); ?>ShowForm/medicine_purchase_info/main" class="btn btn-info btn-block quick-btn">
                   <i class="fa fa-warehouse"></i> Persediaan
                 </a>
@@ -198,12 +193,12 @@
                   <i class="fa fa-chart-line"></i> Laporan Keuangan
                 </a>
               </div>
-              <div class="col-sm-4 col-xs-6" style="margin-bottom:10px;">
+              <div class="col-sm-6 col-xs-6" style="margin-bottom:10px;">
                 <a href="<?php echo base_url(); ?>ShowForm/create_medicine_name/main" class="btn btn-default btn-block quick-btn">
                   <i class="fa fa-cog"></i> Data Master
                 </a>
               </div>
-              <div class="col-sm-4 col-xs-6" style="margin-bottom:10px;">
+              <div class="col-sm-6 col-xs-6" style="margin-bottom:10px;">
                 <a href="<?php echo base_url(); ?>ShowForm/manage_staff/main" class="btn btn-danger btn-block quick-btn">
                   <i class="fa fa-id-badge"></i> Kelola Karyawan
                 </a>
