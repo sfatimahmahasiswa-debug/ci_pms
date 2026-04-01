@@ -35,8 +35,7 @@
         <a href="<?php echo base_url(); ?>Main/enter" class="sidebar-brand">
             <span class="sidebar-brand-icon"><i class="fa fa-medkit"></i></span>
             <span class="sidebar-brand-text">
-                Harmy Medika
-                <small>Sistem Manajemen</small>
+                Sistem Manajemen Inventory
             </span>
         </a>
 
@@ -76,7 +75,7 @@
             <li class="sidebar-nav-item <?php echo ($current_segment === 'sell_medicine' || $current_segment === 'sell_statement') ? 'active' : ''; ?>">
                 <a href="<?php echo base_url(); ?>ShowForm/sell_medicine/main">
                     <span class="sidebar-nav-icon"><i class="fa fa-cash-register"></i></span>
-                    <span class="sidebar-nav-text">Jual Obat</span>
+                    <span class="sidebar-nav-text">Obat Keluar</span>
                 </a>
             </li>
             <li class="sidebar-nav-item <?php echo ($current_segment === 'profit_loss') ? 'active' : ''; ?>">
@@ -89,18 +88,6 @@
                 <a href="<?php echo base_url(); ?>ShowForm/manage_staff/main">
                     <span class="sidebar-nav-icon"><i class="fa fa-users"></i></span>
                     <span class="sidebar-nav-text">Mengelola Karyawan</span>
-                </a>
-            </li>
-        </ul>
-
-        <div class="sidebar-divider"></div>
-        <span class="sidebar-label">Lainnya</span>
-
-        <ul class="sidebar-nav">
-            <li class="sidebar-nav-item <?php echo ($current_segment === 'doctor' || $current_segment === 'edit_doctor') ? 'active' : ''; ?>">
-                <a href="<?php echo base_url(); ?>ShowForm/doctor/main">
-                    <span class="sidebar-nav-icon"><i class="fa fa-user-md"></i></span>
-                    <span class="sidebar-nav-text">Antrean Pasien</span>
                 </a>
             </li>
         </ul>
