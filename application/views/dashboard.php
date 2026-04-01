@@ -194,7 +194,7 @@
                 </a>
               </div>
               <div class="col-sm-6 col-xs-6" style="margin-bottom:10px;">
-                <a href="<?php echo base_url(); ?>ShowForm/create_medicine_name/main" class="btn btn-default btn-block quick-btn">
+                <a href="<?php echo base_url(); ?>ShowForm/data_master/main" class="btn btn-default btn-block quick-btn">
                   <i class="fa fa-cog"></i> Data Master
                 </a>
               </div>

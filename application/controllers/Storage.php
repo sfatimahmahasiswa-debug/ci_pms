@@ -8,9 +8,9 @@ class Storage extends CI_Controller {
     public function index() {
         $data['storage'] = $this->Storage_model->get_all();
         $data['all_medicine'] = $this->Storage_model->get_all_medicine_name();
-        $this->load->view("create_option/header", $data);
+        $this->load->view("header", $data);
         $this->load->view('storage_form', $data);
-        $this->load->view("create_option/footer");
+        $this->load->view("footer");
     }
 
     public function save() {

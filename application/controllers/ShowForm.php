@@ -18,9 +18,9 @@ class ShowForm extends CI_Controller
 		if ($this->session->userdata('username') != '') {
 			$data['all_value'] = $this->CommonModel->get_all_info('create_medicine_presentation');
 			$data['msg'] = $msg;
-			$this->load->view("create_option/header", $data);
+			$this->load->view("header", $data);
 			$this->load->view("create_option/medicine_presentation",$data);
-			$this->load->view("create_option/footer");
+			$this->load->view("footer");
 		} else {
 			$data['wrong_msg'] = "";
 			$this->load->view('Main/login', $data);
@@ -32,9 +32,9 @@ class ShowForm extends CI_Controller
 		if ($this->session->userdata('username') != '') {
 			$data['all_value'] = $this->CommonModel->get_all_info('create_generic_name');
 			$data['msg'] = $msg;
-			$this->load->view("create_option/header", $data);
+			$this->load->view("header", $data);
 			$this->load->view("create_option/generic_name",$data);
-			$this->load->view("create_option/footer");
+			$this->load->view("footer");
 		} else {
 			$data['wrong_msg'] = "";
 			$this->load->view('Main/login', $data);
@@ -50,9 +50,9 @@ public function create_medicine_name($msg) {
 			$data['all_generic'] = $this->CommonModel->get_all_info('create_generic_name');
 			$data['all_value'] = $this->CommonModel->get_all_info('create_medicine_name');
 			$data['msg'] = $msg;
-			$this->load->view("create_option/header", $data);
+			$this->load->view("header", $data);
 			$this->load->view("create_option/medicine_name",$data);
-			$this->load->view("create_option/footer");
+			$this->load->view("footer");
 		} else {
 			$data['wrong_msg'] = "";
 			$this->load->view('Main/login', $data);
@@ -66,8 +66,8 @@ public function create_medicine_name($msg) {
 			$data['all_generic'] = $this->CommonModel->get_all_info('create_generic_name');
 			$data['all_value'] = $this->CommonModel->get_all_info('create_medicine_name');
 			$data['msg'] = $msg;
-			$this->load->view("create_option/header", $data);
-			$this->load->view("create_option/footer");
+			$this->load->view("header", $data);
+			$this->load->view("footer");
 		} else {
 			$data['wrong_msg'] = "";
 			$this->load->view('Main/login', $data);
@@ -78,9 +78,9 @@ public function create_medicine_name($msg) {
 		if ($this->session->userdata('username') != '') {
 			$data['all_value'] = $this->CommonModel->get_all_info('create_product_category');
 			$data['msg'] = $msg;
-			$this->load->view("create_option/header", $data);
+			$this->load->view("header", $data);
 			$this->load->view("create_option/product_category",$data);
-			$this->load->view("create_option/footer");
+			$this->load->view("footer");
 		} else {
 			$data['wrong_msg'] = "";
 			$this->load->view('Main/login', $data);
@@ -91,9 +91,9 @@ public function create_medicine_name($msg) {
 			$data['all_product_cat'] = $this->CommonModel->get_all_info('create_product_category');
 			$data['all_value'] = $this->CommonModel->get_all_info('create_product_name');
 			$data['msg'] = $msg;
-			$this->load->view("create_option/header", $data);
+			$this->load->view("header", $data);
 			$this->load->view("create_option/product_name",$data);
-			$this->load->view("create_option/footer");
+			$this->load->view("footer");
 		} else {
 			$data['wrong_msg'] = "";
 			$this->load->view('Main/login', $data);
@@ -104,9 +104,21 @@ public function create_medicine_name($msg) {
 		if ($this->session->userdata('username') != '') {
 			$data['all_value'] = $this->CommonModel->get_all_info('create_supplier');
 			$data['msg'] = $msg;
-			$this->load->view("create_option/header", $data);
+			$this->load->view("header", $data);
 			$this->load->view("create_option/supplier",$data);
-			$this->load->view("create_option/footer");
+			$this->load->view("footer");
+		} else {
+			$data['wrong_msg'] = "";
+			$this->load->view('Main/login', $data);
+		}
+	}
+
+	public function data_master($msg) {
+		$data['page_title'] = "Data Master";
+		if ($this->session->userdata('username') != '') {
+			$this->load->view("header", $data);
+			$this->load->view("data_master");
+			$this->load->view("footer");
 		} else {
 			$data['wrong_msg'] = "";
 			$this->load->view('Main/login', $data);
@@ -313,9 +325,9 @@ public function create_medicine_name($msg) {
 				$data['all_medicine'] = $this->CommonModel->get_all_info('create_medicine_name');
 				$data['storage'] = $this->CommonModel->get_all_info('medicine_storage');
 				$data['msg'] = $msg;
-				$this->load->view("create_option/header", $data);
+				$this->load->view("header", $data);
 				$this->load->view("create_option/storage_form", $data);
-				$this->load->view("create_option/footer");
+				$this->load->view("footer");
 			} else {
 				$data['wrong_msg'] = "";
 				$this->load->view('Main/login', $data);
