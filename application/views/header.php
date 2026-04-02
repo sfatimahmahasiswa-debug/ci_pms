@@ -60,14 +60,14 @@
                     <span class="sidebar-nav-text">Dashboard</span>
                 </a>
             </li>
-            <li class="sidebar-nav-item <?php echo ($current_segment === 'medicine_purchase_info' || $current_segment === 'edit_purchase_info') ? 'active' : ''; ?>">
-                <a href="<?php echo base_url(); ?>ShowForm/medicine_purchase_info/main">
+            <li class="sidebar-nav-item <?php echo in_array($current_segment, ['create_medicine_name','create_generic_name','create_medicine_presentation','create_supplier','storage_form']) ? 'active' : ''; ?>">
+                <a href="<?php echo base_url(); ?>ShowForm/create_medicine_name/main">
                     <span class="sidebar-nav-icon"><i class="fa fa-truck-loading"></i></span>
                     <span class="sidebar-nav-text">Obat Masuk</span>
                 </a>
             </li>
-            <li class="sidebar-nav-item <?php echo ($current_segment === 'medicine_purchase_statement') ? 'active' : ''; ?>">
-                <a href="<?php echo base_url(); ?>ShowForm/medicine_purchase_statement/main">
+            <li class="sidebar-nav-item <?php echo ($current_segment === 'medicine_purchase_info' || $current_segment === 'edit_purchase_info') ? 'active' : ''; ?>">
+                <a href="<?php echo base_url(); ?>ShowForm/medicine_purchase_info/main">
                     <span class="sidebar-nav-icon"><i class="fa fa-warehouse"></i></span>
                     <span class="sidebar-nav-text">Persediaan</span>
                 </a>
