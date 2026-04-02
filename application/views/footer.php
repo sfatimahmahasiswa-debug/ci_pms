@@ -11,11 +11,7 @@
                 <div class="footer-copy">
                     &copy; <?php echo date('Y'); ?> SCM &amp; CRM Harmy Medika &mdash; Semua hak dilindungi
                 </div>
-                <div class="footer-links">
-                    <a href="<?php echo base_url(); ?>Main/enter"><i class="fa fa-home"></i> Dashboard</a>
-                    <a href="<?php echo base_url(); ?>ShowForm/doctor/main"><i class="fa fa-user-md"></i> Antrean</a>
-                    <a href="<?php echo base_url(); ?>main/logout"><i class="fa fa-sign-out-alt"></i> Keluar</a>
-                </div>
+
             </div>
         </footer>
 
