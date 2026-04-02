@@ -35,7 +35,7 @@
         <a href="<?php echo base_url(); ?>Main/enter" class="sidebar-brand">
             <span class="sidebar-brand-icon"><i class="fa fa-medkit"></i></span>
             <span class="sidebar-brand-text">
-                Sistem Manajemen Inventory
+                Inventor Klinik Harmy Medika
             </span>
         </a>
 
