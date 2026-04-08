@@ -21,6 +21,8 @@
 
 <!-- Bootstrap JS -->
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/js/bootstrap-select.min.js"></script>
+<script>$(function(){ $('.selectpicker').selectpicker(); });</script>
 <script>
 (function () {
     var sidebar   = document.getElementById('sidebar');

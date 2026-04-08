@@ -60,7 +60,7 @@ if ($msg == "main") {
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-sm-3" style="">
-                                    <label for="medicine_name">Nama Obat</label>
+                                    <label for="medicine_name">Merk Obat</label>
 									<select name="medicine_name" id="medicine_name" class="form-control selectpicker"
 											data-live-search="true">
 										<option value="">-- Pilih --</option>
@@ -97,11 +97,11 @@ if ($msg == "main") {
 								</div>
                                 <div class="col-sm-3" style="">
                                     <label for="unit_price">Harga Satuan</label>
-                                    <input type="number" step=any class="form-control" id="unit_price" placeholder="Rp"  name="unit_price">
+                                    <input type="text" class="form-control" id="unit_price" placeholder="Rp"  name="unit_price">
                                 </div>
 								<div class="col-sm-3">
 									<label for="unit_sales_price">Harga Jual</label>
-									<input type="number" step=any class="form-control" id="unit_sales_price" placeholder="Rp"
+									<input type="text" class="form-control" id="unit_sales_price" placeholder="Rp"
 										   name="unit_sales_price">
 								</div>
                             </div>
@@ -191,7 +191,7 @@ if ($msg == "main") {
 										<b>Tgl. Beli:</b>	<?php echo $single_value->date; ?>
 										</td>
                                         <!-- <td style="text-align: center;"><?php echo $single_value->qty; ?></td> -->
-                                        <td style="text-align: center;"><?php echo $available; ?></td>
+                                        <td style="text-align: center;"><?php echo max(0, $available); ?></td>
                                         <td style="text-align: center;"><?php echo 'Rp '.number_format((float)$single_value->unit_price, 0, ',', '.'); ?></td>
 										<td style="text-align: center;"><?php echo 'Rp '.number_format((float)$single_value->unit_sales_price, 0, ',', '.'); ?></td>
 										<td style="text-align: center;"><?php echo $single_value->expiredate; ?></td>
@@ -233,9 +233,23 @@ if ($msg == "main") {
 </div>
 <script type="text/javascript">
 
+	function parsePriceInput(val) {
+		// Remove dots used as thousand separators, then parse as float
+		return parseFloat(val.replace(/\./g, '').replace(',', '.')) || 0;
+	}
+
+	function filterPriceInput(el) {
+		// Allow digits and dots only
+		el.value = el.value.replace(/[^0-9.]/g, '');
+	}
+
+	$('#unit_price, #unit_sales_price').on('input', function () {
+		filterPriceInput(this);
+	});
+
 	function updatePurchasePrice() {
 		var qty = parseFloat($('#qty').val()) || 0;
-		var unit_price = parseFloat($('#unit_price').val()) || 0;
+		var unit_price = parsePriceInput($('#unit_price').val());
 		$('#purchase_price').val(qty * unit_price);
 	}
 	$("#unit_price,#qty").on("change paste keyup", function () {
