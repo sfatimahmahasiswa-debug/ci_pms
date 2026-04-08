@@ -233,9 +233,23 @@ if ($msg == "main") {
 </div>
 <script type="text/javascript">
 
+	function parsePriceInput(val) {
+		// Remove dots used as thousand separators, then parse as float
+		return parseFloat(val.replace(/\./g, '').replace(',', '.')) || 0;
+	}
+
+	function filterPriceInput(el) {
+		// Allow digits and dots only
+		el.value = el.value.replace(/[^0-9.]/g, '');
+	}
+
+	$('#unit_price, #unit_sales_price').on('input', function () {
+		filterPriceInput(this);
+	});
+
 	function updatePurchasePrice() {
 		var qty = parseFloat($('#qty').val()) || 0;
-		var unit_price = parseFloat($('#unit_price').val()) || 0;
+		var unit_price = parsePriceInput($('#unit_price').val());
 		$('#purchase_price').val(qty * unit_price);
 	}
 	$("#unit_price,#qty").on("change paste keyup", function () {
