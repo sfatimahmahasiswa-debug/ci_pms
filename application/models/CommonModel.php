@@ -89,4 +89,9 @@ class CommonModel extends CI_Model
 		return $data;
 	}
 
+	function raw_query($sql, $params = array()) {
+		$query = $this->db->query($sql, $params);
+		return $query->result();
+	}
+
 }
