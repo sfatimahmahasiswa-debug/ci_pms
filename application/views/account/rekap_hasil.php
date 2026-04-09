@@ -144,11 +144,6 @@ $label_total  = ($rekap_type === 'pembelian') ? 'Total Pembelian' : 'Total Penda
 
     foreach ($grouped as $type_name => $type_data) :
         $type_no++;
-        $type_row_count = 0;
-        foreach ($type_data['categories'] as $cat_data) {
-            $type_row_count += count($cat_data['items']) + 1; // +1 for subtotal row
-        }
-        $type_row_count++; // +1 for type total row
     ?>
 
         <!-- ── Type separator row ──────────────────────────────── -->

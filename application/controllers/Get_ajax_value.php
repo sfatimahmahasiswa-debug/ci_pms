@@ -256,42 +256,27 @@ class Get_ajax_value extends CI_Controller
 			$date_to    = $this->input->post('date_to');
 			$rekap_type = $this->input->post('rekap_type'); // 'obat_keluar' or 'pembelian'
 
-			$where_parts = array();
+			// Build shared WHERE clause and params
+			$where_parts = array("medicine_name IS NOT NULL AND medicine_name != ''");
 			$params      = array();
+			if (!empty($date_from)) { $where_parts[] = "date >= ?"; $params[] = $date_from; }
+			if (!empty($date_to))   { $where_parts[] = "date <= ?"; $params[] = $date_to;   }
+			$where_sql = 'WHERE ' . implode(' AND ', $where_parts);
+
+			$common_select = "
+				IFNULL(NULLIF(TRIM(medicine_presentation),''), 'Lainnya') AS medicine_presentation,
+				IFNULL(NULLIF(TRIM(generic_name),''), 'Lainnya')          AS generic_name,
+				IFNULL(NULLIF(TRIM(medicine_name),''), 'Lainnya')         AS medicine_name,
+				SUM(qty) AS total_qty,";
 
 			if ($rekap_type === 'pembelian') {
-				$where_parts[] = "medicine_name IS NOT NULL AND medicine_name != ''";
-				if (!empty($date_from)) { $where_parts[] = "date >= ?"; $params[] = $date_from; }
-				if (!empty($date_to))   { $where_parts[] = "date <= ?"; $params[] = $date_to;   }
-
-				$where_sql = !empty($where_parts) ? 'WHERE ' . implode(' AND ', $where_parts) : '';
-
-				$sql = "SELECT
-					IFNULL(NULLIF(TRIM(medicine_presentation),''), 'Lainnya') AS medicine_presentation,
-					IFNULL(NULLIF(TRIM(generic_name),''), 'Lainnya')          AS generic_name,
-					IFNULL(NULLIF(TRIM(medicine_name),''), 'Lainnya')         AS medicine_name,
-					SUM(qty)            AS total_qty,
-					SUM(purchase_price) AS total_harga,
-					MAX(unit_sales_price) AS harga_jual
-				FROM insert_purchase_info
-				$where_sql
+				$sql = "SELECT $common_select SUM(purchase_price) AS total_harga
+				FROM insert_purchase_info $where_sql
 				GROUP BY medicine_presentation, generic_name, medicine_name
 				ORDER BY medicine_presentation, generic_name, medicine_name";
 			} else {
-				$where_parts[] = "medicine_name IS NOT NULL AND medicine_name != ''";
-				if (!empty($date_from)) { $where_parts[] = "date >= ?"; $params[] = $date_from; }
-				if (!empty($date_to))   { $where_parts[] = "date <= ?"; $params[] = $date_to;   }
-
-				$where_sql = !empty($where_parts) ? 'WHERE ' . implode(' AND ', $where_parts) : '';
-
-				$sql = "SELECT
-					IFNULL(NULLIF(TRIM(medicine_presentation),''), 'Lainnya') AS medicine_presentation,
-					IFNULL(NULLIF(TRIM(generic_name),''), 'Lainnya')          AS generic_name,
-					IFNULL(NULLIF(TRIM(medicine_name),''), 'Lainnya')         AS medicine_name,
-					SUM(qty)          AS total_qty,
-					SUM(total_price)  AS total_harga
-				FROM sales_product
-				$where_sql
+				$sql = "SELECT $common_select SUM(total_price) AS total_harga
+				FROM sales_product $where_sql
 				GROUP BY medicine_presentation, generic_name, medicine_name
 				ORDER BY medicine_presentation, generic_name, medicine_name";
 			}
@@ -299,8 +284,8 @@ class Get_ajax_value extends CI_Controller
 			$results = $this->CommonModel->raw_query($sql, $params);
 
 			// Group flat results: type -> category -> items[]
-			$grouped          = array();
-			$grand_total_qty  = 0;
+			$grouped           = array();
+			$grand_total_qty   = 0;
 			$grand_total_harga = 0;
 
 			foreach ($results as $row) {
@@ -314,13 +299,13 @@ class Get_ajax_value extends CI_Controller
 					$grouped[$type]['categories'][$category] = array('total_qty' => 0, 'total_harga' => 0, 'items' => array());
 				}
 
-				$grouped[$type]['categories'][$category]['items'][]      = $row;
-				$grouped[$type]['categories'][$category]['total_qty']    += $row->total_qty;
-				$grouped[$type]['categories'][$category]['total_harga']  += $row->total_harga;
-				$grouped[$type]['total_qty']                             += $row->total_qty;
-				$grouped[$type]['total_harga']                           += $row->total_harga;
-				$grand_total_qty                                         += $row->total_qty;
-				$grand_total_harga                                       += $row->total_harga;
+				$grouped[$type]['categories'][$category]['items'][]     = $row;
+				$grouped[$type]['categories'][$category]['total_qty']   += $row->total_qty;
+				$grouped[$type]['categories'][$category]['total_harga'] += $row->total_harga;
+				$grouped[$type]['total_qty']                            += $row->total_qty;
+				$grouped[$type]['total_harga']                          += $row->total_harga;
+				$grand_total_qty                                        += $row->total_qty;
+				$grand_total_harga                                      += $row->total_harga;
 			}
 
 			$data['grouped']           = $grouped;
