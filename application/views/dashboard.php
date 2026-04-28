@@ -203,6 +203,11 @@
                   <i class="fa fa-id-badge"></i> Kelola Karyawan
                 </a>
               </div>
+              <div class="col-sm-6 col-xs-6" style="margin-bottom:10px;">
+                <a href="<?php echo base_url(); ?>ShowForm/supplier_info/main" class="btn btn-primary btn-block quick-btn">
+                  <i class="fa fa-truck"></i> Informasi Supplier
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -228,6 +233,10 @@
               <tr>
                 <td style="padding: 6px 0; color: var(--text-secondary);"><i class="fa fa-users fa-fw"></i> Karyawan</td>
                 <td style="padding: 6px 0; font-weight:600;"><?php echo number_format($staff_count); ?> orang</td>
+              </tr>
+              <tr>
+                <td style="padding: 6px 0; color: var(--text-secondary);"><i class="fa fa-truck fa-fw"></i> Supplier</td>
+                <td style="padding: 6px 0; font-weight:600;"><a href="<?php echo base_url(); ?>ShowForm/supplier_info/main"><?php echo number_format($supplier_count); ?> supplier</a></td>
               </tr>
               <tr>
                 <td style="padding: 6px 0; color: var(--text-secondary);"><i class="fa fa-shield-alt fa-fw"></i> Status</td>
