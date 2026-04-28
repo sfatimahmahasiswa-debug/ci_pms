@@ -56,7 +56,7 @@ foreach ($one_value as $one_info) {
                                 <div class="col-sm-3">
                                     <label for="previous_due">Hutang Awal (Rp)</label>
                                     <input type="number" class="form-control" id="previous_due" name="previous_due"
-                                           value="<?php echo $previous_due; ?>" min="0" step="0.01">
+                                           value="<?php echo htmlspecialchars($previous_due); ?>" min="0" step="0.01">
                                 </div>
                             </div>
                             <div class="row" style="margin-top:15px;">
