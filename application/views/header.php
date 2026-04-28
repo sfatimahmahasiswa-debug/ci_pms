@@ -91,6 +91,12 @@
                     <span class="sidebar-nav-text">Mengelola Karyawan</span>
                 </a>
             </li>
+            <li class="sidebar-nav-item <?php echo ($current_segment === 'supplier_info' || $current_segment === 'edit_supplier') ? 'active' : ''; ?>">
+                <a href="<?php echo base_url(); ?>ShowForm/supplier_info/main">
+                    <span class="sidebar-nav-icon"><i class="fa fa-truck"></i></span>
+                    <span class="sidebar-nav-text">Informasi Supplier</span>
+                </a>
+            </li>
         </ul>
 
         <div class="sidebar-bottom">

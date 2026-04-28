@@ -268,6 +268,33 @@ public function create_medicine_name($msg) {
 			$this->load->view('Main/login', $data);
 		}
 	}
+	public function supplier_info($msg) {
+		$data['page_title'] = "Informasi Supplier";
+		if ($this->session->userdata('username') != '') {
+			$data['all_value'] = $this->CommonModel->get_all_info('create_supplier');
+			$data['msg'] = $msg;
+			$this->load->view("header", $data);
+			$this->load->view("supplier/supplier_info", $data);
+			$this->load->view("footer");
+		} else {
+			$data['wrong_msg'] = "";
+			$this->load->view('Main/login', $data);
+		}
+	}
+
+	public function edit_supplier($id) {
+		$data['page_title'] = "Edit Supplier";
+		if ($this->session->userdata('username') != '') {
+			$data['one_value'] = $this->CommonModel->get_allinfo_byid('create_supplier', 'supplier_id', $id);
+			$this->load->view("header", $data);
+			$this->load->view("supplier/edit_supplier", $data);
+			$this->load->view("footer");
+		} else {
+			$data['wrong_msg'] = "";
+			$this->load->view('Main/login', $data);
+		}
+	}
+
         public function edit_staff_info($id)
         {
                 if ($this->session->userdata('username') != '') {

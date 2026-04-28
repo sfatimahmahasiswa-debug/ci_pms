@@ -100,6 +100,10 @@ class Main extends CI_Controller
 			$staff_result = $this->db->query('SELECT COUNT(*) AS total FROM staff')->row();
 			$data['staff_count'] = $staff_result ? (int)$staff_result->total : 0;
 
+			// Supplier count
+			$supplier_result = $this->db->query('SELECT COUNT(*) AS total FROM create_supplier')->row();
+			$data['supplier_count'] = $supplier_result ? (int)$supplier_result->total : 0;
+
 			$this->load->view("header");
 			$this->load->view("dashboard",$data);
 			$this->load->view("footer");

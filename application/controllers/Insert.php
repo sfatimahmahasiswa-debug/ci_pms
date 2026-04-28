@@ -305,6 +305,27 @@ class Insert extends CI_Controller
 		}
 	}
 
+	public function edit_supplier_info($id) {
+		if ($this->session->userdata('username') != '') {
+			$this->form_validation->set_rules('company_name', 'Nama Perusahaan', 'trim|required');
+			if ($this->form_validation->run() == FALSE) {
+				redirect('ShowForm/edit_supplier/' . $id, 'refresh');
+			} else {
+				$update_data = array(
+					'supplier_name' => $this->input->post('company_name'),
+					'mobile'        => $this->input->post('mobile'),
+					'address'       => $this->input->post('address'),
+					'previous_due'  => $this->input->post('previous_due'),
+				);
+				$this->CommonModel->update_data_onerow('create_supplier', $update_data, 'supplier_id', $id);
+				redirect('ShowForm/supplier_info/edit', 'refresh');
+			}
+		} else {
+			$data['wrong_msg'] = "";
+			$this->load->view('Main/login', $data);
+		}
+	}
+
 	// Create Staff
 	public function create_staff() {
 		if ($this->session->userdata('username') != '') { //Check Login
