@@ -15,7 +15,6 @@ if ($msg == "main") {
 <section id="breadcrumb">
     <div class="container">
         <ol class="breadcrumb">
-            <li><a href="#">Inventory</a></li>
             <li class="active"><?php echo $msg; ?></li>
         </ol>
     </div>
