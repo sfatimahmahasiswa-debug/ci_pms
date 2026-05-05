@@ -97,8 +97,8 @@ if ($msg == "main") {
 									$count++;
 									?>
                                     <tr class="generic-data-row">
-                                        <td style="text-align: center;"><?php echo $count; ?></td>
-                                        <td><?php echo $single_value->generic_name; ?></td>
+                                        <td class="row-number" style="text-align: center;"><?php echo $count; ?></td>
+                                        <td><?php echo htmlspecialchars($single_value->generic_name); ?></td>
                                         <td style="text-align: center;">
                                             <a style="margin: 5px;" class="btn btn-danger btn-sm rounded-0"
                                                 href="<?php echo base_url(); ?>Delete/generic_name/<?php echo $single_value->generic_id; ?>">Hapus
@@ -141,7 +141,14 @@ if ($msg == "main") {
         var end = start + ROWS_PER_PAGE;
 
         for (var i = 0; i < total; i++) {
-            rows[i].style.display = (i >= start && i < end) ? '' : 'none';
+            var row = rows[i];
+            if (i >= start && i < end) {
+                row.style.display = '';
+                var numCell = row.querySelector('.row-number');
+                if (numCell) numCell.textContent = i + 1;
+            } else {
+                row.style.display = 'none';
+            }
         }
 
         document.getElementById('generic-page-info').textContent = 'Halaman ' + currentPage + ' dari ' + totalPages;
