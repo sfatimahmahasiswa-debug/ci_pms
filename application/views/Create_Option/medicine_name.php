@@ -179,6 +179,7 @@ foreach ($all_value as $row) {
 										}
 									}
 								}
+								// Skip categories that have no matching entries in the database
 								if (empty($cat_rows)) continue;
 							?>
 							<tr>
@@ -201,7 +202,7 @@ foreach ($all_value as $row) {
 							<?php if (!empty($uncategorized)): ?>
 							<tr>
 								<td colspan="3" style="background-color:#dce8f5; font-weight:bold; padding:8px 12px; font-size:13px;">
-									LAIN-LAIN
+									TIDAK DIKATEGORIKAN
 								</td>
 							</tr>
 							<?php foreach ($uncategorized as $row): $count++; ?>
@@ -223,7 +224,7 @@ foreach ($all_value as $row) {
 
 <script>
 (function () {
-	var medicinesByCategory = <?php echo json_encode($predefined_categories, JSON_UNESCAPED_UNICODE); ?>;
+	var medicinesByCategory = <?php echo json_encode($predefined_categories, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
 
 	document.getElementById('generic_name').addEventListener('change', function () {
 		var category = this.value;
@@ -233,7 +234,7 @@ foreach ($all_value as $row) {
 		$medicineSelect.selectpicker('destroy');
 		$medicineSelect.empty();
 
-		if (!category || !medicinesByCategory[category]) {
+		if (!category || !medicinesByCategory[category] || medicinesByCategory[category].length === 0) {
 			$medicineSelect.append('<option value="">-- Pilih Kategori Dulu --</option>');
 			$medicineSelect.prop('disabled', true);
 		} else {
