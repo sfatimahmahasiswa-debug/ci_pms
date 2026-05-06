@@ -90,15 +90,15 @@ if ($msg == "main") {
                                     </tr>
                                 </thead>
                                 <!-- /.Row from DB-->
-                                <tbody>
+                                <tbody id="generic-name-tbody">
                                     <?php
 								$count = 0;
 								foreach ($all_value as $single_value) {
 									$count++;
 									?>
-                                    <tr>
-                                        <td style="text-align: center;"><?php echo $count; ?></td>
-                                        <td><?php echo $single_value->generic_name; ?></td>
+                                    <tr class="generic-data-row">
+                                        <td class="row-number" style="text-align: center;"><?php echo $count; ?></td>
+                                        <td><?php echo htmlspecialchars($single_value->generic_name); ?></td>
                                         <td style="text-align: center;">
                                             <a style="margin: 5px;" class="btn btn-danger btn-sm rounded-0"
                                                 href="<?php echo base_url(); ?>Delete/generic_name/<?php echo $single_value->generic_id; ?>">Hapus
@@ -108,9 +108,72 @@ if ($msg == "main") {
                                     <?php } ?>
                                 </tbody>
                             </table>
+                            <!-- Pagination Controls -->
+                            <div style="display:flex; align-items:center; justify-content:center; gap:12px; margin-top:10px;">
+                                <button id="generic-prev-btn" class="btn btn-default btn-sm" onclick="changeGenericPage(-1)">
+                                    &#8592; Sebelumnya
+                                </button>
+                                <span id="generic-page-info" style="font-weight:bold;"></span>
+                                <button id="generic-next-btn" class="btn btn-default btn-sm" onclick="changeGenericPage(1)">
+                                    Berikutnya &#8594;
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+<script>
+(function() {
+    var ROWS_PER_PAGE = 10;
+    var currentPage = 1;
+
+    function getDataRows() {
+        return document.querySelectorAll('#generic-name-tbody .generic-data-row');
+    }
+
+    function renderPage() {
+        var rows = getDataRows();
+        var total = rows.length;
+        var totalPages = Math.max(1, Math.ceil(total / ROWS_PER_PAGE));
+        if (currentPage > totalPages) currentPage = totalPages;
+
+        var start = (currentPage - 1) * ROWS_PER_PAGE;
+        var end = start + ROWS_PER_PAGE;
+
+        for (var i = 0; i < total; i++) {
+            var row = rows[i];
+            if (i >= start && i < end) {
+                row.style.display = '';
+                var numCell = row.querySelector('.row-number');
+                if (numCell) numCell.textContent = i + 1;
+            } else {
+                row.style.display = 'none';
+            }
+        }
+
+        document.getElementById('generic-page-info').textContent = 'Halaman ' + currentPage + ' dari ' + totalPages;
+        document.getElementById('generic-prev-btn').disabled = (currentPage === 1);
+        document.getElementById('generic-next-btn').disabled = (currentPage === totalPages);
+    }
+
+    window.changeGenericPage = function(dir) {
+        var rows = getDataRows();
+        var total = rows.length;
+        var totalPages = Math.max(1, Math.ceil(total / ROWS_PER_PAGE));
+        currentPage += dir;
+        if (currentPage < 1) currentPage = 1;
+        if (currentPage > totalPages) currentPage = totalPages;
+        renderPage();
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+        renderPage();
+    });
+    if (document.readyState !== 'loading') {
+        renderPage();
+    }
+})();
+</script>
             </div>
         </div> <!-- /.row -->
     </div> <!-- /.Container -->
