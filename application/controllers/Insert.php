@@ -59,7 +59,7 @@ class Insert extends CI_Controller
 			$this->form_validation->set_rules('generic_name', 'Kategori Obat', 'trim|required'); // check form validation
 			$this->form_validation->set_rules('medicine_name', 'Nama Obat', 'trim|required'); // check form validation
 			if ($this->form_validation->run() == FALSE) {
-				redirect('ShowForm/create_generic_name/empty', 'refresh'); //If form not  validate
+				redirect('ShowForm/create_medicine_name/empty', 'refresh'); //If form not  validate
 			} else {
 				$generic_name = $this->input->post('generic_name');
 				$medicine_name = $this->input->post('medicine_name');
