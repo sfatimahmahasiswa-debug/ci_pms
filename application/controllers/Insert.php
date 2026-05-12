@@ -184,8 +184,10 @@ class Insert extends CI_Controller
 				$purchase_due= $this->input->post('purchase_due'); 	//get data from file to variable
 				$ex_date= $this->input->post('ex_date'); 	//get data from file to variable
 				$date = $this->input->post('date');
+				$no_faktur = $this->input->post('no_faktur');
 				$insert_data = array(
 					'date' => $date,
+					'no_faktur' => $no_faktur,
 					'medicine_name' => $medicine_name,//insert data to column
 					'medicine_name_id' => $medicine_name_id,//insert data to column
 					'generic_name' => $generic_name,   						 //insert data to column
@@ -206,7 +208,8 @@ class Insert extends CI_Controller
 					'expiredate' => $ex_date	 //insert data to column
 				);
 				$this->CommonModel->insert_data('insert_purchase_info', $insert_data); 			//insert data to table
-				redirect('ShowForm/medicine_purchase_info/created', 'refresh'); 		//after inserting back to the page
+				$new_id = $this->db->insert_id();
+				redirect('ShowForm/tanda_terima_barang/' . $new_id, 'refresh'); 		//redirect to tanda terima
 			}
 		} else {
 			$data['wrong_msg'] = "";
@@ -249,8 +252,10 @@ class Insert extends CI_Controller
 				$purchase_due= $this->input->post('purchase_due'); 	//get data from file to variable
 				$ex_date= $this->input->post('ex_date'); 	//get data from file to variable
 				$date = $this->input->post('date');
+				$no_faktur = $this->input->post('no_faktur');
 				$update_data = array(
 					'date' => $date,
+					'no_faktur' => $no_faktur,
 					'medicine_name' => $medicine_name,//insert data to column
 					'medicine_name_id' => $medicine_name_id,//insert data to column
 					'generic_name' => $generic_name,   						 //insert data to column

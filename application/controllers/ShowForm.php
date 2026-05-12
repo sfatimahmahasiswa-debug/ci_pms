@@ -361,4 +361,134 @@ public function create_medicine_name($msg) {
 			}
 		}
 
+	// ── TANDA TERIMA BARANG ─────────────────────────────────────────
+	public function tanda_terima_barang($purchase_id) {
+		$data['page_title'] = "Tanda Terima Barang";
+		if ($this->session->userdata('username') != '') {
+			$rows = $this->CommonModel->get_allinfo_byid('insert_purchase_info', 'purchase_id', $purchase_id);
+			if (empty($rows)) {
+				redirect('ShowForm/medicine_purchase_info/main');
+				return;
+			}
+			$data['item'] = $rows[0];
+			$this->load->view("header", $data);
+			$this->load->view("inventory/tanda_terima_barang", $data);
+			$this->load->view("footer");
+		} else {
+			$data['wrong_msg'] = "";
+			$this->load->view('Main/login', $data);
+		}
+	}
+
+	// ── LAPORAN STOK BARANG MASUK ────────────────────────────────────
+	public function laporan_stok_masuk($msg) {
+		$data['page_title'] = "Laporan Stok Barang Masuk";
+		if ($this->session->userdata('username') != '') {
+			$data['all_sup'] = $this->CommonModel->get_all_info('create_supplier');
+			$data['all_medicine'] = $this->CommonModel->get_all_info('create_medicine_name');
+			$data['msg'] = $msg;
+			$this->load->view("header", $data);
+			$this->load->view("inventory/laporan_stok_masuk", $data);
+			$this->load->view("footer");
+		} else {
+			$data['wrong_msg'] = "";
+			$this->load->view('Main/login', $data);
+		}
+	}
+
+	// ── LAPORAN STOK BARANG HABIS ────────────────────────────────────
+	public function laporan_stok_habis($msg) {
+		$data['page_title'] = "Laporan Stok Barang Habis";
+		if ($this->session->userdata('username') != '') {
+			$data['msg'] = $msg;
+			$this->load->view("header", $data);
+			$this->load->view("inventory/laporan_stok_habis", $data);
+			$this->load->view("footer");
+		} else {
+			$data['wrong_msg'] = "";
+			$this->load->view('Main/login', $data);
+		}
+	}
+
+	// ── KARTU STOK BARANG ────────────────────────────────────────────
+	public function kartu_stok($msg) {
+		$data['page_title'] = "Kartu Stok Barang";
+		if ($this->session->userdata('username') != '') {
+			$data['all_medicine'] = $this->CommonModel->get_all_info('create_medicine_name');
+			$data['msg'] = $msg;
+			$this->load->view("header", $data);
+			$this->load->view("inventory/kartu_stok", $data);
+			$this->load->view("footer");
+		} else {
+			$data['wrong_msg'] = "";
+			$this->load->view('Main/login', $data);
+		}
+	}
+
+	// ── LAPORAN STOK BARANG KELUAR ───────────────────────────────────
+	public function laporan_stok_keluar($msg) {
+		$data['page_title'] = "Laporan Stok Barang Keluar";
+		if ($this->session->userdata('username') != '') {
+			$data['msg'] = $msg;
+			$this->load->view("header", $data);
+			$this->load->view("sales/laporan_stok_keluar", $data);
+			$this->load->view("footer");
+		} else {
+			$data['wrong_msg'] = "";
+			$this->load->view('Main/login', $data);
+		}
+	}
+
+	// ── ARSIP PENGELUARAN BARANG ─────────────────────────────────────
+	public function arsip_pengeluaran($msg) {
+		$data['page_title'] = "Arsip Pengeluaran Barang";
+		if ($this->session->userdata('username') != '') {
+			$data['all_value'] = $this->CommonModel->get_all_info('sales_product');
+			$data['msg'] = $msg;
+			$this->load->view("header", $data);
+			$this->load->view("sales/arsip_pengeluaran", $data);
+			$this->load->view("footer");
+		} else {
+			$data['wrong_msg'] = "";
+			$this->load->view('Main/login', $data);
+		}
+	}
+
+	// ── FAKTUR PEMBELIAN PER SUPPLIER ────────────────────────────────
+	public function faktur_pembelian($supplier_id) {
+		$data['page_title'] = "Faktur Pembelian";
+		if ($this->session->userdata('username') != '') {
+			$supplier_rows = $this->CommonModel->get_allinfo_byid('create_supplier', 'supplier_id', $supplier_id);
+			if (empty($supplier_rows)) {
+				redirect('ShowForm/supplier_info/main');
+				return;
+			}
+			$data['supplier'] = $supplier_rows[0];
+			$data['all_value'] = $this->CommonModel->get_allinfo_byid('insert_purchase_info', 'supplier_id', $supplier_id, 'date', 'asc');
+			$data['all_sup'] = $this->CommonModel->get_all_info('create_supplier');
+			$this->load->view("header", $data);
+			$this->load->view("supplier/faktur_pembelian", $data);
+			$this->load->view("footer");
+		} else {
+			$data['wrong_msg'] = "";
+			$this->load->view('Main/login', $data);
+		}
+	}
+
+	// ── ARSIP PEMBELIAN ──────────────────────────────────────────────
+	public function arsip_pembelian($msg) {
+		$data['page_title'] = "Arsip Pembelian Barang";
+		if ($this->session->userdata('username') != '') {
+			$data['all_value'] = $this->CommonModel->get_all_info('insert_purchase_info');
+			$data['all_sup'] = $this->CommonModel->get_all_info('create_supplier');
+			$data['msg'] = $msg;
+			$this->load->view("header", $data);
+			$this->load->view("supplier/arsip_pembelian", $data);
+			$this->load->view("footer");
+		} else {
+			$data['wrong_msg'] = "";
+			$this->load->view('Main/login', $data);
+		}
+	}
+
 }  // end

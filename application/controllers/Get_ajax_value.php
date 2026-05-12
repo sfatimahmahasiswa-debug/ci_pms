@@ -254,7 +254,16 @@ class Get_ajax_value extends CI_Controller
 		if ($this->session->userdata('username') != '') {
 			$date_from  = $this->input->post('date_from');
 			$date_to    = $this->input->post('date_to');
-			$rekap_type = $this->input->post('rekap_type'); // 'obat_keluar' or 'pembelian'
+			$rekap_type = $this->input->post('rekap_type'); // 'obat_keluar', 'pembelian', or 'stok_habis'
+
+			// Stok habis handled separately
+			if ($rekap_type === 'stok_habis') {
+				$data['results']   = $this->_get_rekap_stok_habis($date_from, $date_to);
+				$data['date_from'] = $date_from;
+				$data['date_to']   = $date_to;
+				$this->load->view('inventory/ajax_laporan_stok_habis', $data);
+				return;
+			}
 
 			// Build shared WHERE clause and params
 			$where_parts = array("medicine_name IS NOT NULL AND medicine_name != ''");
@@ -320,6 +329,144 @@ class Get_ajax_value extends CI_Controller
 			$data['wrong_msg'] = '';
 			$this->load->view('Main/login', $data);
 		}
-	}
+}
+
+// ── LAPORAN STOK BARANG MASUK (AJAX) ────────────────────────────
+public function get_laporan_stok_masuk()
+{
+if ($this->session->userdata("username") != "") {
+$date_from = $this->input->post("date_from");
+$date_to   = $this->input->post("date_to");
+$supplier  = $this->input->post("supplier");
+
+$where_parts = array("particulars = 'Purchase Medicine'", "medicine_name IS NOT NULL AND medicine_name != ''");
+$params = array();
+$where_sql = "WHERE " . implode(" AND ", $where_parts);
+
+$sql = "SELECT * FROM insert_purchase_info $where_sql ORDER BY date DESC, purchase_id DESC";
+$data["results"]   = $this->CommonModel->raw_query($sql, $params);
+$data["date_from"] = $date_from;
+$data["date_to"]   = $date_to;
+$data["supplier"]  = $supplier;
+$this->load->view("inventory/ajax_laporan_stok_masuk", $data);
+} else {
+echo "<div class='alert alert-danger'>Sesi tidak valid.</div>";
+}
+}
+
+// ── LAPORAN STOK BARANG HABIS (AJAX) ────────────────────────────
+public function get_laporan_stok_habis()
+{
+if ($this->session->userdata("username") != "") {
+$threshold = (int)$this->input->post("threshold");
+if ($threshold < 0) $threshold = 0;
+
+$sql = "
+SELECT
+IFNULL(NULLIF(TRIM(p.medicine_presentation),''),'Lainnya') AS medicine_presentation,
+IFNULL(NULLIF(TRIM(p.generic_name),''),'Lainnya')          AS generic_name,
+p.medicine_name,
+p.supplier_name,
+p.expiredate,
+SUM(p.qty) AS total_masuk,
+IFNULL(SUM(s.qty_keluar),0)                                AS total_keluar,
+SUM(p.qty) - IFNULL(SUM(s.qty_keluar),0)                  AS sisa_stok
+FROM insert_purchase_info p
+LEFT JOIN (
+SELECT medicine_name_id, SUM(qty) AS qty_keluar
+FROM sales_product
+GROUP BY medicine_name_id
+) s ON s.medicine_name_id = p.medicine_name_id
+WHERE p.particulars = 'Purchase Medicine'
+  AND p.medicine_name IS NOT NULL AND p.medicine_name != ''
+GROUP BY p.medicine_presentation, p.generic_name, p.medicine_name, p.supplier_name, p.expiredate
+HAVING sisa_stok <= ?
+ORDER BY sisa_stok ASC, p.medicine_name ASC";
+$data["results"]   = $this->CommonModel->raw_query($sql, array($threshold));
+$data["threshold"] = $threshold;
+$this->load->view("inventory/ajax_laporan_stok_habis", $data);
+} else {
+echo "<div class='alert alert-danger'>Sesi tidak valid.</div>";
+}
+}
+
+// ── KARTU STOK BARANG (AJAX) ─────────────────────────────────────
+public function get_kartu_stok()
+{
+if ($this->session->userdata("username") != "") {
+$medicine_name_id = (int)$this->input->post("medicine_name_id");
+echo "<div class='alert alert-info'><i class='fa fa-info-circle'></i> Pilih obat terlebih dahulu.</div>";
+return;
+}
+
+$sql_masuk = "SELECT date, no_faktur, supplier_name, qty AS jumlah, unit_price, purchase_price, expiredate
+  FROM insert_purchase_info
+  WHERE medicine_name_id = ? AND particulars = 'Purchase Medicine'
+  ORDER BY date ASC, purchase_id ASC";
+$masuk = $this->CommonModel->raw_query($sql_masuk, array($medicine_name_id));
+
+$sql_keluar = "SELECT date, invoice, qty AS jumlah, unit_sales_price, total_price
+   FROM sales_product
+   WHERE medicine_name_id = ?
+   ORDER BY date ASC, sales_id ASC";
+$keluar = $this->CommonModel->raw_query($sql_keluar, array($medicine_name_id));
+
+$med_info = $this->CommonModel->get_allinfo_byid("create_medicine_name", "medicine_name_id", $medicine_name_id);
+
+$data["masuk"]    = $masuk;
+$data["keluar"]   = $keluar;
+$this->load->view("inventory/ajax_kartu_stok", $data);
+} else {
+echo "<div class='alert alert-danger'>Sesi tidak valid.</div>";
+}
+}
+
+// ── LAPORAN STOK BARANG KELUAR (AJAX) ────────────────────────────
+public function get_laporan_stok_keluar()
+{
+if ($this->session->userdata("username") != "") {
+$date_from = $this->input->post("date_from");
+$date_to   = $this->input->post("date_to");
+
+$where_parts = array("medicine_name IS NOT NULL AND medicine_name != ''");
+$params = array();
+$where_sql = "WHERE " . implode(" AND ", $where_parts);
+
+$sql = "SELECT * FROM sales_product $where_sql ORDER BY date DESC, invoice DESC, sales_id ASC";
+$data["results"]   = $this->CommonModel->raw_query($sql, $params);
+$data["date_from"] = $date_from;
+$data["date_to"]   = $date_to;
+$this->load->view("sales/ajax_laporan_stok_keluar", $data);
+} else {
+echo "<div class='alert alert-danger'>Sesi tidak valid.</div>";
+}
+}
+
+// ── GET REKAP STOK HABIS for rekapan (used by get_rekap_obat) ───
+private function _get_rekap_stok_habis($date_from, $date_to)
+{
+$sql = "
+SELECT
+IFNULL(NULLIF(TRIM(p.medicine_presentation),''),'Lainnya') AS medicine_presentation,
+IFNULL(NULLIF(TRIM(p.generic_name),''),'Lainnya')          AS generic_name,
+p.medicine_name,
+p.supplier_name,
+p.expiredate,
+SUM(p.qty) AS total_masuk,
+IFNULL(SUM(s.qty_keluar),0)                                AS total_keluar,
+SUM(p.qty) - IFNULL(SUM(s.qty_keluar),0)                  AS sisa_stok
+FROM insert_purchase_info p
+LEFT JOIN (
+SELECT medicine_name_id, SUM(qty) AS qty_keluar
+FROM sales_product
+GROUP BY medicine_name_id
+) s ON s.medicine_name_id = p.medicine_name_id
+WHERE p.particulars = 'Purchase Medicine'
+  AND p.medicine_name IS NOT NULL AND p.medicine_name != ''
+GROUP BY p.medicine_presentation, p.generic_name, p.medicine_name, p.supplier_name, p.expiredate
+HAVING sisa_stok <= 0
+ORDER BY p.medicine_presentation, p.generic_name, p.medicine_name";
+return $this->CommonModel->raw_query($sql);
+}
 
 } //END
