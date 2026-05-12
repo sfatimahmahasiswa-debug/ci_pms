@@ -14,18 +14,18 @@
                         <h4 style="margin-top:0;"><i class="fa fa-sign-in-alt"></i> 1. Spesifikasi Dokumen Masukan</h4>
                         <div class="table-responsive" style="margin-bottom: 25px;">
                             <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th style="width: 5%;">No</th>
-                                <th style="width: 25%;">Nama Dokumen</th>
-                                <th style="width: 20%;">Fungsi</th>
-                                <th style="width: 12%;">Sumber</th>
-                                <th style="width: 23%;">Tujuan</th>
-                                <th style="width: 8%;">Media</th>
-                                <th style="width: 7%;">Bentuk</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                                <thead>
+                                    <tr>
+                                        <th style="width: 5%;">No</th>
+                                        <th style="width: 25%;">Nama Dokumen</th>
+                                        <th style="width: 20%;">Fungsi</th>
+                                        <th style="width: 12%;">Sumber</th>
+                                        <th style="width: 23%;">Tujuan</th>
+                                        <th style="width: 8%;">Media</th>
+                                        <th style="width: 7%;">Bentuk</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                             <tr>
                                 <td>A</td>
                                 <td>Nota / Faktur Pembelian Barang Masuk</td>
@@ -71,25 +71,25 @@
                                 <td>Kertas</td>
                                 <td>Lampiran B-3</td>
                             </tr>
-                        </tbody>
+                                </tbody>
                             </table>
                         </div>
 
                         <h4><i class="fa fa-sign-out-alt"></i> 2. Spesifikasi Dokumen Keluaran</h4>
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th style="width: 5%;">No</th>
-                                <th style="width: 25%;">Nama Dokumen</th>
-                                <th style="width: 20%;">Fungsi</th>
-                                <th style="width: 12%;">Sumber</th>
-                                <th style="width: 23%;">Tujuan</th>
-                                <th style="width: 8%;">Media</th>
-                                <th style="width: 7%;">Bentuk</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                                <thead>
+                                    <tr>
+                                        <th style="width: 5%;">No</th>
+                                        <th style="width: 25%;">Nama Dokumen</th>
+                                        <th style="width: 20%;">Fungsi</th>
+                                        <th style="width: 12%;">Sumber</th>
+                                        <th style="width: 23%;">Tujuan</th>
+                                        <th style="width: 8%;">Media</th>
+                                        <th style="width: 7%;">Bentuk</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                             <tr>
                                 <td>A</td>
                                 <td>Laporan Stok Barang Masuk</td>
@@ -144,7 +144,7 @@
                                 <td>Kertas</td>
                                 <td>Lampiran C-6</td>
                             </tr>
-                        </tbody>
+                                </tbody>
                             </table>
                         </div>
                     </div>
