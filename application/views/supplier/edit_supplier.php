@@ -27,9 +27,9 @@ foreach ($one_value as $one_info) {
                     <a href="<?php echo base_url(); ?>ShowForm/supplier_info/main" class="list-group-item">
                         <span class="fa fa-list" aria-hidden="true"></span> Daftar Supplier</a>
                     <a href="<?php echo base_url(); ?>ShowForm/medicine_purchase_statement/main" class="list-group-item">
-                        <span class="fa fa-file-invoice" aria-hidden="true"></span> Pernyataan Pembelian</a>
+                        <span class="fa fa-file-text-o" aria-hidden="true"></span> Pernyataan Pembelian</a>
                     <a href="<?php echo base_url(); ?>ShowForm/supplier_payment/main" class="list-group-item">
-                        <span class="fa fa-money-bill" aria-hidden="true"></span> Pembayaran Supplier</a>
+                        <span class="fa fa-money" aria-hidden="true"></span> Pembayaran Supplier</a>
                 </div>
             </div>
             <div class="col-md-9">
