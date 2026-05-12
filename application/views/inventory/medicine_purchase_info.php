@@ -88,15 +88,15 @@ if ($msg == "main") {
 										<?php } ?>
 									</select>
 								</div>
-								<div class="col-sm-3" style="">
+								<div class="col-sm-3">
 									<label for="supplier">Supplier</label>
 									<select name="supplier" id="supplier" class="form-control selectpicker"
 											data-live-search="true">
 										<option value="">-- Pilih --</option>
 										<?php foreach ($all_sup as $info) { ?>
-											<option value="<?php echo $info->supplier_name."#".$info->supplier_id; ?>"
+											<option value="<?php echo (int)$info->supplier_id; ?>"
 												<?php echo ((int)$info->supplier_id === (int)$selected_supplier_id) ? 'selected' : ''; ?>>
-												<?php echo $info->supplier_name; ?>
+												<?php echo htmlspecialchars($info->supplier_name); ?>
 											</option>
 										<?php } ?>
 									</select>
@@ -197,12 +197,12 @@ if ($msg == "main") {
                                     <tr class="<?= (date("Y-m-d") >= $single_value->expiredate) ? 'expired' : '' ?>">
                                         <td style="text-align: center;"><?php echo $count; ?></td>
                                         <td style="text-align: left;">
-										<b>Obat:</b>	<?php echo $single_value->medicine_name; ?>  <br>
-										<b>Generik:</b>	<?php echo $single_value->generic_name; ?></br>
-										<b>Bentuk Sediaan:</b>	<?php echo $single_value->medicine_presentation; ?> </br>
-										<b>Supplier:</b>	<?php echo $single_value->supplier_name; ?> </br>
-										<b>Volume:</b>	<?php echo $single_value->unit; ?> </br>
-										<b>Tgl. Beli:</b>	<?php echo $single_value->date; ?>
+										<b>Obat:</b>	<?php echo htmlspecialchars($single_value->medicine_name); ?>  <br>
+										<b>Generik:</b>	<?php echo htmlspecialchars($single_value->generic_name); ?></br>
+										<b>Bentuk Sediaan:</b>	<?php echo htmlspecialchars($single_value->medicine_presentation); ?> </br>
+										<b>Supplier:</b>	<?php echo htmlspecialchars($single_value->supplier_name); ?> </br>
+										<b>Volume:</b>	<?php echo htmlspecialchars($single_value->unit); ?> </br>
+										<b>Tgl. Beli:</b>	<?php echo htmlspecialchars($single_value->date); ?>
 										</td>
 										<td style="text-align: center;">
 											<?php echo !empty($single_value->invoice_id) ? 'FBM-'.$single_value->invoice_id : '-'; ?>
