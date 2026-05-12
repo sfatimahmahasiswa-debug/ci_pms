@@ -38,10 +38,6 @@ if ($msg == "main") {
                     <a href="<?php echo base_url(); ?>ShowForm/medicine_purchase_info/main"
                         class="list-group-item active">
                         <span class="	fa fa-capsules" aria-hidden="true"></span> Masukkan Informasi Obat.</a>
-                    <a href="<?php echo base_url(); ?>ShowForm/medicine_purchase_statement/main" class="list-group-item">
-                        <span class="fa fa-plus-circle" aria-hidden="true"></span> Pernyataan Pembelian</a>
-                    <a href="<?php echo base_url(); ?>ShowForm/supplier_payment/main" class="list-group-item">
-                        <span class="fa fa-pills" aria-hidden="true"></span> Pembayaran Supplier</a>
 <!--                    <a href="--><?php //echo base_url(); ?><!--ShowForm/create_product_name/main" class="list-group-item">-->
 <!--                        <span class="fa fa-plus" aria-hidden="true"></span> Ledger</a>-->
                 </div>

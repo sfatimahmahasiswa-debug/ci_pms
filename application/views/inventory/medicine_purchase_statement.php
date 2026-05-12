@@ -15,7 +15,7 @@ if ($msg == "main") {
 <section id="breadcrumb">
 	<div class="container">
 		<ol class="breadcrumb">
-			<li><a href="#">Inventory / Purchase Statement </a></li>
+			<li><a href="#">Informasi Supplier / Pernyataan Pembelian</a></li>
 			<li class="active"><?php echo $msg; ?></li>
 		</ol>
 	</div>
@@ -28,15 +28,15 @@ if ($msg == "main") {
 		<div class="row">
 			<div class="col-md-3">
 				<div class="list-group">
-					<a href="index.html" class="list-group-item active main-color-bg">
-						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Inventory</a>
-					<a href="<?php echo base_url(); ?>ShowForm/medicine_purchase_info/main"
+					<a href="<?php echo base_url(); ?>ShowForm/supplier_info/main" class="list-group-item active main-color-bg">
+						<span class="fa fa-truck" aria-hidden="true"></span> Informasi Supplier</a>
+					<a href="<?php echo base_url(); ?>ShowForm/supplier_info/main"
 					   class="list-group-item">
-						<span class="	fa fa-capsules" aria-hidden="true"></span> Insert Medicine P. Info.</a>
+						<span class="fa fa-list" aria-hidden="true"></span> Daftar Supplier</a>
 					<a href="<?php echo base_url(); ?>ShowForm/medicine_purchase_statement/main" class="list-group-item active">
-						<span class="fa fa-plus-circle" aria-hidden="true"></span> Purchase Statement</a>
+						<span class="fa fa-plus-circle" aria-hidden="true"></span> Pernyataan Pembelian</a>
 					<a href="<?php echo base_url(); ?>ShowForm/supplier_payment/main" class="list-group-item">
-						<span class="fa fa-pills" aria-hidden="true"></span> Supplier Payment</a>
+						<span class="fa fa-pills" aria-hidden="true"></span> Pembayaran Supplier</a>
 <!--					<a href="--><?php //echo base_url(); ?><!--ShowForm/create_product_name/main" class="list-group-item">-->
 <!--						<span class="fa fa-plus" aria-hidden="true"></span> Ledger</a>-->
 				</div>

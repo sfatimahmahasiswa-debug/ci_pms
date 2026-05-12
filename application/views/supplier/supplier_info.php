@@ -32,6 +32,10 @@ if ($msg == "main") {
                         <span class="fa fa-truck" aria-hidden="true"></span> Informasi Supplier</a>
                     <a href="<?php echo base_url(); ?>ShowForm/supplier_info/main" class="list-group-item">
                         <span class="fa fa-plus-circle" aria-hidden="true"></span> Tambah Supplier</a>
+                    <a href="<?php echo base_url(); ?>ShowForm/medicine_purchase_statement/main" class="list-group-item">
+                        <span class="fa fa-file-invoice" aria-hidden="true"></span> Pernyataan Pembelian</a>
+                    <a href="<?php echo base_url(); ?>ShowForm/supplier_payment/main" class="list-group-item">
+                        <span class="fa fa-money-bill" aria-hidden="true"></span> Pembayaran Supplier</a>
                 </div>
             </div>
 
