@@ -146,10 +146,16 @@ class Insert extends CI_Controller
 	public function medicine_purchase_info() {
 		if ($this->session->userdata('username') != '') { //Check Login
 			$this->form_validation->set_rules('medicine_name', 'Nama Obat', 'trim|required'); // check form validation
+			$this->form_validation->set_rules('supplier', 'Supplier', 'trim|required'); // check form validation
 
 			if ($this->form_validation->run() == FALSE) {
 				redirect('ShowForm/medicine_purchase_info/empty', 'refresh'); //If form not  validate
 			} else {
+				$last_invoice = $this->db->select_max('invoice_id')->get('insert_purchase_info')->row();
+				$invoice_id = 1;
+				if ($last_invoice && !empty($last_invoice->invoice_id)) {
+					$invoice_id = ((int) $last_invoice->invoice_id) + 1;
+				}
 
 				$medicine= explode('#', $this->input->post('medicine_name')); //get data from file to variable
 				$medicine_name = $medicine[0];
@@ -186,6 +192,7 @@ class Insert extends CI_Controller
 				$date = $this->input->post('date');
 				$insert_data = array(
 					'date' => $date,
+					'invoice_id' => $invoice_id,
 					'medicine_name' => $medicine_name,//insert data to column
 					'medicine_name_id' => $medicine_name_id,//insert data to column
 					'generic_name' => $generic_name,   						 //insert data to column
@@ -205,8 +212,12 @@ class Insert extends CI_Controller
 					'purchase_due' => $purchase_due,
 					'expiredate' => $ex_date	 //insert data to column
 				);
-				$this->CommonModel->insert_data('insert_purchase_info', $insert_data); 			//insert data to table
-				redirect('ShowForm/medicine_purchase_info/created', 'refresh'); 		//after inserting back to the page
+				$is_saved = $this->CommonModel->insert_data('insert_purchase_info', $insert_data); 			//insert data to table
+				if ($is_saved) {
+					$purchase_id = $this->db->insert_id();
+					redirect('ShowForm/purchase_invoice/' . $purchase_id, 'refresh');
+				}
+				redirect('ShowForm/medicine_purchase_info/empty', 'refresh');
 			}
 		} else {
 			$data['wrong_msg'] = "";

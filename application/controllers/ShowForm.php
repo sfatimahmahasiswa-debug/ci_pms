@@ -134,6 +134,7 @@ public function create_medicine_name($msg) {
 		$data['all_generic'] = $this->CommonModel->get_all_info('create_generic_name');
 		$data['all_presen'] = $this->CommonModel->get_all_info('create_medicine_presentation');
 		$data['all_sup'] = $this->CommonModel->get_all_info('create_supplier');
+		$data['selected_supplier_id'] = (int) $this->input->get('supplier_id');
 		$data['msg'] = $msg;
 
 		// Getting sold products quantity
@@ -155,6 +156,21 @@ public function create_medicine_name($msg) {
 		$this->load->view('Main/login', $data);
 	}
 }
+
+	public function purchase_invoice($purchase_id) {
+		if ($this->session->userdata('username') != '') {
+			$purchase_info = $this->CommonModel->get_allinfo_byid('insert_purchase_info', 'purchase_id', $purchase_id);
+			if (empty($purchase_info)) {
+				redirect('ShowForm/medicine_purchase_info/main', 'refresh');
+				return;
+			}
+			$data['purchase'] = $purchase_info[0];
+			$this->load->view("inventory/purchase_invoice", $data);
+		} else {
+			$data['wrong_msg'] = "";
+			$this->load->view('Main/login', $data);
+		}
+	}
 
 	public function edit_purchase_info($id) {
 		$data['page_title'] = "Edit Purchase Information";
