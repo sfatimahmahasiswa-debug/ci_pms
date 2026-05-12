@@ -88,6 +88,19 @@ if ($msg == "main") {
 										<?php } ?>
 									</select>
 								</div>
+								<div class="col-sm-3">
+									<label for="supplier">Supplier</label>
+									<select name="supplier" id="supplier" class="form-control selectpicker"
+											data-live-search="true">
+										<option value="">-- Pilih --</option>
+										<?php foreach ($all_sup as $info) { ?>
+											<option value="<?php echo (int)$info->supplier_id; ?>"
+												<?php echo ((int)$info->supplier_id === (int)$selected_supplier_id) ? 'selected' : ''; ?>>
+												<?php echo htmlspecialchars($info->supplier_name); ?>
+											</option>
+										<?php } ?>
+									</select>
+								</div>
                             </div>
                             <div class="row">
 								<div class="col-sm-3">
@@ -152,6 +165,7 @@ if ($msg == "main") {
                                     <tr>
                                         <th style="text-align: center;">#</th>
                                         <th style="text-align: center;">Detail</th>
+                                        <th style="text-align: center;">No. Faktur</th>
                                         <th style="text-align: center;">Stok Tersedia</th>
                                         <th style="text-align: center;">Harga Satuan</th>
 										 <th style="text-align: center;">Harga Jual</th>
@@ -183,11 +197,15 @@ if ($msg == "main") {
                                     <tr class="<?= (date("Y-m-d") >= $single_value->expiredate) ? 'expired' : '' ?>">
                                         <td style="text-align: center;"><?php echo $count; ?></td>
                                         <td style="text-align: left;">
-										<b>Obat:</b>	<?php echo $single_value->medicine_name; ?>  <br>
-										<b>Generik:</b>	<?php echo $single_value->generic_name; ?></br>
-										<b>Bentuk Sediaan:</b>	<?php echo $single_value->medicine_presentation; ?> </br>
-										<b>Volume:</b>	<?php echo $single_value->unit; ?> </br>
-										<b>Tgl. Beli:</b>	<?php echo $single_value->date; ?>
+										<b>Obat:</b>	<?php echo htmlspecialchars($single_value->medicine_name); ?>  <br>
+										<b>Generik:</b>	<?php echo htmlspecialchars($single_value->generic_name); ?><br>
+										<b>Bentuk Sediaan:</b>	<?php echo htmlspecialchars($single_value->medicine_presentation); ?> <br>
+										<b>Supplier:</b>	<?php echo htmlspecialchars($single_value->supplier_name); ?> <br>
+										<b>Volume:</b>	<?php echo htmlspecialchars($single_value->unit); ?> <br>
+										<b>Tgl. Beli:</b>	<?php echo htmlspecialchars($single_value->date); ?>
+										</td>
+										<td style="text-align: center;">
+											<?php echo !empty($single_value->invoice_id) ? 'FBM-'.$single_value->invoice_id : '-'; ?>
 										</td>
                                         <!-- <td style="text-align: center;"><?php echo $single_value->qty; ?></td> -->
                                         <td style="text-align: center;"><?php echo max(0, $available); ?></td>
@@ -195,6 +213,11 @@ if ($msg == "main") {
 										<td style="text-align: center;"><?php echo 'Rp '.number_format((float)$single_value->unit_sales_price, 0, ',', '.'); ?></td>
 										<td style="text-align: center;"><?php echo $single_value->expiredate; ?></td>
                                         <td style="text-align: center;">
+											<a style="margin: 5px;" title="Cetak Faktur"
+											   href="<?php echo base_url(); ?>ShowForm/purchase_invoice/<?php echo $single_value->purchase_id; ?>"
+											   target="_blank">
+												<span class="fa fa-print" style="color:#1a73be"></span>
+											</a>
 											<a style="margin: 5px;" title="Update"
 											   href="<?php echo base_url(); ?>ShowForm/edit_purchase_info/<?php echo $single_value->purchase_id; ?>">
 												<span class="glyphicon glyphicon-edit"></span>

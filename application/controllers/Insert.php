@@ -146,10 +146,12 @@ class Insert extends CI_Controller
 	public function medicine_purchase_info() {
 		if ($this->session->userdata('username') != '') { //Check Login
 			$this->form_validation->set_rules('medicine_name', 'Nama Obat', 'trim|required'); // check form validation
+			$this->form_validation->set_rules('supplier', 'Supplier', 'trim|required|integer'); // check form validation
 
 			if ($this->form_validation->run() == FALSE) {
 				redirect('ShowForm/medicine_purchase_info/empty', 'refresh'); //If form not  validate
 			} else {
+				$this->db->trans_begin();
 
 				$medicine= explode('#', $this->input->post('medicine_name')); //get data from file to variable
 				$medicine_name = $medicine[0];
@@ -167,12 +169,18 @@ class Insert extends CI_Controller
 
 				//$supplier= $this->input->post('supplier'); 	//get data from file to variable
 				$supplier_name = '';
-				$supplier_id = '';
+				$supplier_id = 0;
 				$supplier_input = $this->input->post('supplier');
 				if (!empty($supplier_input)) {
-					$supplier= explode('#', $supplier_input); //get data from file to variable
-					$supplier_name = isset($supplier[0]) ? $supplier[0] : '';
-					$supplier_id = isset($supplier[1]) ? $supplier[1] : '';
+					$supplier_id = (int) $supplier_input;
+					$supplier_data = $this->CommonModel->get_allinfo_byid('create_supplier', 'supplier_id', $supplier_id);
+					if (!empty($supplier_data)) {
+						$supplier_name = $supplier_data[0]->supplier_name;
+					} else {
+						$this->db->trans_rollback();
+						redirect('ShowForm/medicine_purchase_info/empty', 'refresh');
+						return;
+					}
 				}
 
 				$qty= $this->input->post('qty'); 	//get data from file to variable
@@ -205,8 +213,20 @@ class Insert extends CI_Controller
 					'purchase_due' => $purchase_due,
 					'expiredate' => $ex_date	 //insert data to column
 				);
-				$this->CommonModel->insert_data('insert_purchase_info', $insert_data); 			//insert data to table
-				redirect('ShowForm/medicine_purchase_info/created', 'refresh'); 		//after inserting back to the page
+				$is_saved = $this->CommonModel->insert_data('insert_purchase_info', $insert_data); 			//insert data to table
+				if ($is_saved) {
+					$purchase_id = $this->db->insert_id();
+					$invoice_updated = $this->db->where('purchase_id', $purchase_id)->update('insert_purchase_info', array('invoice_id' => $purchase_id));
+					if (!$invoice_updated) {
+						$this->db->trans_rollback();
+						redirect('ShowForm/medicine_purchase_info/empty', 'refresh');
+						return;
+					}
+					$this->db->trans_commit();
+					redirect('ShowForm/purchase_invoice/' . $purchase_id, 'refresh');
+				}
+				$this->db->trans_rollback();
+				redirect('ShowForm/medicine_purchase_info/empty', 'refresh');
 			}
 		} else {
 			$data['wrong_msg'] = "";

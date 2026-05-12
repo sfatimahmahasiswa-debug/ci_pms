@@ -106,6 +106,10 @@ if ($msg == "main") {
                                         <?php echo number_format((float)$sv->previous_due, 0, ',', '.'); ?>
                                     </td>
                                     <td style="text-align:center;">
+                                        <a style="margin:5px;" class="btn btn-primary btn-xs"
+                                           href="<?php echo base_url(); ?>ShowForm/medicine_purchase_info/main?supplier_id=<?php echo (int)$sv->supplier_id; ?>">
+                                            <i class="fa fa-shopping-cart"></i> Beli Barang Masuk
+                                        </a>
                                         <a style="margin:5px;" class="btn btn-success btn-xs"
                                            href="<?php echo base_url(); ?>ShowForm/edit_supplier/<?php echo $sv->supplier_id; ?>">
                                             <i class="fa fa-edit"></i> Edit
