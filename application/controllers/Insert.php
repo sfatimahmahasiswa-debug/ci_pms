@@ -152,11 +152,6 @@ class Insert extends CI_Controller
 				redirect('ShowForm/medicine_purchase_info/empty', 'refresh'); //If form not  validate
 			} else {
 				$this->db->trans_begin();
-				$last_invoice = $this->db->query('SELECT MAX(invoice_id) AS invoice_id FROM insert_purchase_info FOR UPDATE')->row();
-				$invoice_id = 1;
-				if ($last_invoice && !empty($last_invoice->invoice_id)) {
-					$invoice_id = ((int) $last_invoice->invoice_id) + 1;
-				}
 
 				$medicine= explode('#', $this->input->post('medicine_name')); //get data from file to variable
 				$medicine_name = $medicine[0];
@@ -199,7 +194,6 @@ class Insert extends CI_Controller
 				$date = $this->input->post('date');
 				$insert_data = array(
 					'date' => $date,
-					'invoice_id' => $invoice_id,
 					'medicine_name' => $medicine_name,//insert data to column
 					'medicine_name_id' => $medicine_name_id,//insert data to column
 					'generic_name' => $generic_name,   						 //insert data to column
@@ -222,6 +216,7 @@ class Insert extends CI_Controller
 				$is_saved = $this->CommonModel->insert_data('insert_purchase_info', $insert_data); 			//insert data to table
 				if ($is_saved) {
 					$purchase_id = $this->db->insert_id();
+					$this->CommonModel->update_data_onerow('insert_purchase_info', array('invoice_id' => $purchase_id), 'purchase_id', $purchase_id);
 					$this->db->trans_commit();
 					redirect('ShowForm/purchase_invoice/' . $purchase_id, 'refresh');
 				}
