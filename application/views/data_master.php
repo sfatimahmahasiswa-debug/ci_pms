@@ -1,17 +1,19 @@
 <section id="main">
     <div class="container-fluid">
-        <div class="panel panel-default rounded-0">
-            <div class="panel-heading rounded-0 main-color-bg">
-                <h3 class="panel-title">Spesifikasi Dokumen Sistem Berjalan</h3>
-            </div>
-            <div class="panel-body">
-                <p class="text-muted" style="margin-bottom: 20px;">
-                    Daftar dokumen masukan dan keluaran pada proses pengelolaan stok di Klinik Harmy Medika.
-                </p>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default rounded-0">
+                    <div class="panel-heading rounded-0 main-color-bg">
+                        <h3 class="panel-title">Spesifikasi Dokumen Sistem Berjalan</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-muted" style="margin-bottom: 20px;">
+                            Daftar dokumen masukan dan keluaran pada proses pengelolaan stok di Klinik Harmy Medika.
+                        </p>
 
-                <h4 style="margin-top:0;"><i class="fa fa-sign-in-alt"></i> 1. Spesifikasi Dokumen Masukan</h4>
-                <div class="table-responsive" style="margin-bottom: 25px;">
-                    <table class="table table-bordered table-striped">
+                        <h4 style="margin-top:0;"><i class="fa fa-sign-in-alt"></i> 1. Spesifikasi Dokumen Masukan</h4>
+                        <div class="table-responsive" style="margin-bottom: 25px;">
+                            <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th style="width: 5%;">No</th>
@@ -70,12 +72,12 @@
                                 <td>Lampiran B-3</td>
                             </tr>
                         </tbody>
-                    </table>
-                </div>
+                            </table>
+                        </div>
 
-                <h4><i class="fa fa-sign-out-alt"></i> 2. Spesifikasi Dokumen Keluaran</h4>
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped">
+                        <h4><i class="fa fa-sign-out-alt"></i> 2. Spesifikasi Dokumen Keluaran</h4>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th style="width: 5%;">No</th>
@@ -143,12 +145,8 @@
                                 <td>Lampiran C-6</td>
                             </tr>
                         </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
