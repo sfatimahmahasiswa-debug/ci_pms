@@ -216,7 +216,12 @@ class Insert extends CI_Controller
 				$is_saved = $this->CommonModel->insert_data('insert_purchase_info', $insert_data); 			//insert data to table
 				if ($is_saved) {
 					$purchase_id = $this->db->insert_id();
-					$this->CommonModel->update_data_onerow('insert_purchase_info', array('invoice_id' => $purchase_id), 'purchase_id', $purchase_id);
+					$invoice_updated = $this->db->where('purchase_id', $purchase_id)->update('insert_purchase_info', array('invoice_id' => $purchase_id));
+					if (!$invoice_updated) {
+						$this->db->trans_rollback();
+						redirect('ShowForm/medicine_purchase_info/empty', 'refresh');
+						return;
+					}
 					$this->db->trans_commit();
 					redirect('ShowForm/purchase_invoice/' . $purchase_id, 'refresh');
 				}

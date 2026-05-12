@@ -198,10 +198,10 @@ if ($msg == "main") {
                                         <td style="text-align: center;"><?php echo $count; ?></td>
                                         <td style="text-align: left;">
 										<b>Obat:</b>	<?php echo htmlspecialchars($single_value->medicine_name); ?>  <br>
-										<b>Generik:</b>	<?php echo htmlspecialchars($single_value->generic_name); ?></br>
-										<b>Bentuk Sediaan:</b>	<?php echo htmlspecialchars($single_value->medicine_presentation); ?> </br>
-										<b>Supplier:</b>	<?php echo htmlspecialchars($single_value->supplier_name); ?> </br>
-										<b>Volume:</b>	<?php echo htmlspecialchars($single_value->unit); ?> </br>
+										<b>Generik:</b>	<?php echo htmlspecialchars($single_value->generic_name); ?><br>
+										<b>Bentuk Sediaan:</b>	<?php echo htmlspecialchars($single_value->medicine_presentation); ?> <br>
+										<b>Supplier:</b>	<?php echo htmlspecialchars($single_value->supplier_name); ?> <br>
+										<b>Volume:</b>	<?php echo htmlspecialchars($single_value->unit); ?> <br>
 										<b>Tgl. Beli:</b>	<?php echo htmlspecialchars($single_value->date); ?>
 										</td>
 										<td style="text-align: center;">

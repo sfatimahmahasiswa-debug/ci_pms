@@ -159,6 +159,11 @@ public function create_medicine_name($msg) {
 
 	public function purchase_invoice($purchase_id) {
 		if ($this->session->userdata('username') != '') {
+			$purchase_id = (int) $purchase_id;
+			if ($purchase_id <= 0) {
+				redirect('ShowForm/medicine_purchase_info/main', 'refresh');
+				return;
+			}
 			$purchase_info = $this->CommonModel->get_allinfo_byid('insert_purchase_info', 'purchase_id', $purchase_id);
 			if (empty($purchase_info)) {
 				redirect('ShowForm/medicine_purchase_info/main', 'refresh');
