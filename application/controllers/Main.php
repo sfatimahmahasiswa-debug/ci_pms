@@ -82,6 +82,23 @@ class Main extends CI_Controller
 			);
 			$data['near_expired_product'] = count($this->CommonModel->get_all_info_by_array('insert_purchase_info', $array_check_near_expire));
 
+			// Supplier payment due reminder (within the next 7 days after 30-day terms)
+			$due_window_days = 7;
+			$near_due_sql = "
+				SELECT purchase_id, supplier_name, date, purchase_due, invoice_id,
+					   DATE_ADD(date, INTERVAL 30 DAY) AS due_date,
+					   DATEDIFF(DATE_ADD(date, INTERVAL 30 DAY), CURDATE()) AS days_remaining
+				FROM insert_purchase_info
+				WHERE purchase_due > 0
+				  AND date IS NOT NULL
+				  AND (particulars IS NULL OR particulars <> 'Payment')
+				  AND DATE_ADD(date, INTERVAL 30 DAY) >= CURDATE()
+				  AND DATE_ADD(date, INTERVAL 30 DAY) <= DATE_ADD(CURDATE(), INTERVAL {$due_window_days} DAY)
+				ORDER BY due_date ASC";
+			$data['near_due_payments'] = $this->CommonModel->raw_query($near_due_sql);
+			$data['near_due_payment_count'] = count($data['near_due_payments']);
+			$data['due_window_days'] = $due_window_days;
+
 			//END Dash Data
 
 			$data['username'] = $this->session->userdata('username');

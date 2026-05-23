@@ -10,6 +10,7 @@ if ($msg == "main") {
 } elseif ($msg == "delete") {
 	$msg = "Berhasil dihapus";
 }
+$due_window_days = isset($due_window_days) ? (int)$due_window_days : 7;
 ?>
 <!-- /.Breadcrumb -->
 <section id="breadcrumb">
@@ -166,6 +167,7 @@ if ($msg == "main") {
                                         <th style="text-align: center;">Harga Satuan</th>
 										 <th style="text-align: center;">Harga Jual</th>
 										<th style="text-align: center;">Kedaluwarsa</th>
+										<th style="text-align: center;">Jatuh Tempo</th>
                                         <th style="text-align: center;">Aksi</th>
                                     </tr>
                                 </thead>
@@ -208,6 +210,23 @@ if ($msg == "main") {
                                         <td style="text-align: center;"><?php echo 'Rp '.number_format((float)$single_value->unit_price, 0, ',', '.'); ?></td>
 										<td style="text-align: center;"><?php echo 'Rp '.number_format((float)$single_value->unit_sales_price, 0, ',', '.'); ?></td>
 										<td style="text-align: center;"><?php echo $single_value->expiredate; ?></td>
+										<td style="text-align: center;">
+											<?php
+												$due_label = '-';
+												if (!empty($single_value->date) && (float)$single_value->purchase_due > 0) {
+													$due_timestamp = strtotime($single_value->date . ' +30 days');
+													if ($due_timestamp !== false) {
+														$today_timestamp = strtotime(date('Y-m-d'));
+														$seconds_per_day = 60 * 60 * 24;
+														$days_remaining = floor(($due_timestamp - $today_timestamp) / $seconds_per_day);
+														if ($days_remaining >= 0 && $days_remaining <= $due_window_days) {
+															$due_label = '<span class="label label-warning">Jatuh tempo ' . date('d/m/Y', $due_timestamp) . ' (' . $days_remaining . ' hari lagi)</span>';
+														}
+													}
+												}
+												echo $due_label;
+											?>
+										</td>
                                         <td style="text-align: center;">
 											<a style="margin: 5px;" title="Cetak Faktur"
 											   href="<?php echo base_url(); ?>ShowForm/purchase_invoice/<?php echo $single_value->purchase_id; ?>"
