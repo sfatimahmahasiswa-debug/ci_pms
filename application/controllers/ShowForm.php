@@ -135,6 +135,7 @@ public function create_medicine_name($msg) {
 		$data['all_presen'] = $this->CommonModel->get_all_info('create_medicine_presentation');
 		$data['all_sup'] = $this->CommonModel->get_all_info('create_supplier');
 		$data['selected_supplier_id'] = (int) $this->input->get('supplier_id');
+		$data['due_window_days'] = 7;
 		$data['msg'] = $msg;
 
 		// Getting sold products quantity

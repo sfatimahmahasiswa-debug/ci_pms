@@ -167,6 +167,37 @@
     </div>
     <?php endif; ?>
 
+    <?php if (!empty($near_due_payment_count)): ?>
+    <!-- Supplier Payment Due Reminder -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-warning alert-dismissible dashboard-alert" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <i class="fa fa-bell fa-lg"></i>
+          <strong> Pengingat Pembayaran Supplier!</strong>
+          Terdapat <strong><?php echo number_format($near_due_payment_count); ?></strong> tagihan pembelian obat yang jatuh tempo dalam <?php echo (int)$due_window_days; ?> hari ke depan.
+          <a href="<?php echo base_url(); ?>ShowForm/supplier_payment/main" class="alert-link"> Kelola pembayaran.</a>
+          <ul style="margin-top:8px; margin-bottom:0; padding-left:18px;">
+            <?php foreach ($near_due_payments as $payment): ?>
+              <?php
+                $invoice_label = !empty($payment->invoice_id) ? 'FBM-' . $payment->invoice_id : 'Tanpa Faktur';
+                $due_date_label = !empty($payment->due_date) ? date('d/m/Y', strtotime($payment->due_date)) : '-';
+                $days_remaining = isset($payment->days_remaining) ? (int)$payment->days_remaining : 0;
+              ?>
+              <li>
+                <strong><?php echo htmlspecialchars($payment->supplier_name); ?></strong>
+                (<?php echo htmlspecialchars($invoice_label); ?>) jatuh tempo <?php echo $due_date_label; ?>
+                (<?php echo $days_remaining; ?> hari lagi) - Sisa Rp <?php echo number_format((float)$payment->purchase_due, 0, ',', '.'); ?>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <?php endif; ?>
+
     <!-- Quick Actions & Info panels side by side -->
     <div class="row">
       <!-- Quick Actions -->
@@ -250,4 +281,3 @@
 
   </div>
 </section>
-
