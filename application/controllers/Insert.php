@@ -58,14 +58,17 @@ class Insert extends CI_Controller
 		if ($this->session->userdata('username') != '') { //Check Login
 			$this->form_validation->set_rules('generic_name', 'Kategori Obat', 'trim|required'); // check form validation
 			$this->form_validation->set_rules('medicine_name', 'Nama Obat', 'trim|required'); // check form validation
+			$this->form_validation->set_rules('kandungan_obat', 'Kandungan Obat', 'trim|required'); // check form validation
 			if ($this->form_validation->run() == FALSE) {
 				redirect('ShowForm/create_medicine_name/empty', 'refresh'); //If form not  validate
 			} else {
-				$generic_name = $this->input->post('generic_name');
-				$medicine_name = $this->input->post('medicine_name');
+				$generic_name = $this->input->post('generic_name', TRUE);
+				$medicine_name = $this->input->post('medicine_name', TRUE);
+				$kandungan_obat = $this->input->post('kandungan_obat', TRUE);
 				$insert_data = array(
 					'generic_name' => $generic_name,
-					'medicine_name' => $medicine_name
+					'medicine_name' => $medicine_name,
+					'medicine_presentation_name' => $kandungan_obat
 				);
 				$this->CommonModel->insert_data('create_medicine_name', $insert_data); //insert data to table
 				redirect('ShowForm/create_medicine_name/created', 'refresh');
