@@ -166,6 +166,7 @@ public function create_medicine_name($msg) {
 			$data['stock_report'] = $this->CommonModel->raw_query($stock_sql);
 			$data['incoming_report'] = $this->CommonModel->raw_query($purchase_sql);
 			$data['outgoing_report'] = $this->CommonModel->raw_query($sales_sql);
+			$data['generated_at'] = date('d-m-Y H:i');
 
 			$total_stock = 0;
 			foreach ($data['stock_report'] as $stock_info) {
@@ -177,7 +178,7 @@ public function create_medicine_name($msg) {
 			$this->load->view("inventory/inventory_reports", $data);
 			$this->load->view("footer");
 		} else {
-			$data['wrong_msg'] = "";
+			$data['wrong_msg'] = "Akses ditolak. Silakan login sebagai owner.";
 			$this->load->view('Main/login', $data);
 		}
 	}

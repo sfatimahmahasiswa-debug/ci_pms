@@ -6,7 +6,7 @@
 			</div>
 			<div class="panel-body">
 				<p><strong>Total Stok Saat Ini:</strong> <?php echo number_format((int)$total_stock); ?> unit</p>
-				<p><strong>Update:</strong> <?php echo date('d-m-Y H:i'); ?> WIB</p>
+				<p><strong>Update:</strong> <?php echo htmlspecialchars($generated_at); ?> WIB</p>
 			</div>
 		</div>
 

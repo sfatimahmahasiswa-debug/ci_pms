@@ -18,8 +18,10 @@ class Get_ajax_value extends CI_Controller
 	function get_purchase_statement()
 	{
 		if (!$this->is_owner_logged_in()) {
-			$data['wrong_msg'] = '';
-			$this->load->view('Main/login', $data);
+			$this->output->set_status_header(403);
+			$this->output
+				->set_content_type('application/json')
+				->set_output(json_encode(array('status' => 'error', 'message' => 'Akses ditolak. Login owner diperlukan.')));
 			return;
 		}
 
@@ -175,8 +177,10 @@ class Get_ajax_value extends CI_Controller
 	function get_sales_statement()
 	{
 		if (!$this->is_owner_logged_in()) {
-			$data['wrong_msg'] = '';
-			$this->load->view('Main/login', $data);
+			$this->output->set_status_header(403);
+			$this->output
+				->set_content_type('application/json')
+				->set_output(json_encode(array('status' => 'error', 'message' => 'Akses ditolak. Login owner diperlukan.')));
 			return;
 		}
 
