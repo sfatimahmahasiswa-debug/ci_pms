@@ -33,7 +33,8 @@ class Main extends CI_Controller
 			$this->load->model('Main_model');
 			if ($this->Main_model->can_login($username, $password)) {
 				$session_data = array(
-					'username' => $username
+					'username' => $username,
+					'user_role' => 'owner'
 				);
 				$this->session->set_userdata($session_data);
 				redirect(base_url() . 'main/enter');
@@ -50,7 +51,7 @@ class Main extends CI_Controller
 	//empty ok
 	function enter()
 	{
-		if ($this->session->userdata('username') != '') {
+		if ($this->session->userdata('username') != '' && $this->session->userdata('user_role') === 'owner') {
 
 			$data['medicine_qty'] = count($this->CommonModel->get_all_info('create_medicine_name')); //
 
@@ -126,12 +127,16 @@ class Main extends CI_Controller
 			$this->load->view("footer");
 //			echo'<h2>Welcome-'.$this->session->userdata('username').'</h2>';
 //			echo '<a href="'.base_url().'main/logout">Logout</a>';
+		} elseif ($this->session->userdata('username') != '' && $this->session->userdata('user_role') === 'staff') {
+			redirect(base_url() . 'Staff/staff_sell');
+		} else {
+			redirect(base_url() . 'main/login');
 		}
 	}
 
 	function logout()
 	{
-		$this->session->unset_userdata('username');
+		$this->session->unset_userdata(array('username', 'user_role'));
 		redirect(base_url() . 'main/login');
 	}
 }

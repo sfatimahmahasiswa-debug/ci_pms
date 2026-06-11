@@ -296,7 +296,7 @@
             </button>
             
             <a href="<?php echo base_url(); ?>Main" class="btn-admin-link">
-              <i class="fas fa-user-shield"></i> Admin Login
+              <i class="fas fa-user-shield"></i> Owner Login
             </a>
           </form>
         </div>

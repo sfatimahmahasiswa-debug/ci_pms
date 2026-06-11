@@ -13,6 +13,10 @@ class ShowForm extends CI_Controller
 		$this->load->model('CommonModel');
 	} // Load Common Model
 
+	private function is_owner_logged_in() {
+		return $this->session->userdata('username') != '' && $this->session->userdata('user_role') === 'owner';
+	}
+
 	public function create_medicine_presentation($msg) {
 		$data['page_title'] = "Medicine Pesentation";
 		if ($this->session->userdata('username') != '') {
@@ -125,10 +129,63 @@ public function create_medicine_name($msg) {
 		}
 	}
 
+	public function inventory_reports() {
+		$data['page_title'] = "Laporan Inventory Otomatis";
+		if ($this->is_owner_logged_in()) {
+			$stock_sql = "
+				SELECT p.medicine_name_id,
+					   p.medicine_name,
+					   SUM(p.qty) AS qty_masuk,
+					   IFNULL(s.qty_keluar, 0) AS qty_keluar,
+					   (SUM(p.qty) - IFNULL(s.qty_keluar, 0)) AS stok_akhir
+				FROM insert_purchase_info p
+				LEFT JOIN (
+					SELECT medicine_name_id, SUM(qty) AS qty_keluar
+					FROM sales_product
+					WHERE medicine_name_id IS NOT NULL
+					GROUP BY medicine_name_id
+				) s ON s.medicine_name_id = p.medicine_name_id
+				WHERE p.medicine_name IS NOT NULL AND p.medicine_name != ''
+				GROUP BY p.medicine_name_id, p.medicine_name, s.qty_keluar
+				ORDER BY p.medicine_name ASC";
+
+			$purchase_sql = "
+				SELECT date, invoice_id, supplier_name, medicine_name, qty, purchase_price
+				FROM insert_purchase_info
+				WHERE medicine_name IS NOT NULL AND medicine_name != ''
+				ORDER BY date DESC, purchase_id DESC
+				LIMIT 50";
+
+			$sales_sql = "
+				SELECT date, invoice, medicine_name, qty, total_price
+				FROM sales_product
+				WHERE medicine_name IS NOT NULL AND medicine_name != ''
+				ORDER BY date DESC, sales_id DESC
+				LIMIT 50";
+
+			$data['stock_report'] = $this->CommonModel->raw_query($stock_sql);
+			$data['incoming_report'] = $this->CommonModel->raw_query($purchase_sql);
+			$data['outgoing_report'] = $this->CommonModel->raw_query($sales_sql);
+
+			$total_stock = 0;
+			foreach ($data['stock_report'] as $stock_info) {
+				$total_stock += (int)$stock_info->stok_akhir;
+			}
+			$data['total_stock'] = $total_stock;
+
+			$this->load->view("header", $data);
+			$this->load->view("inventory/inventory_reports", $data);
+			$this->load->view("footer");
+		} else {
+			$data['wrong_msg'] = "";
+			$this->load->view('Main/login', $data);
+		}
+	}
+
 	//Inventory Start
 	public function medicine_purchase_info($msg) {
 		$data['page_title'] = "Medicine Purchase Information";
-		if ($this->session->userdata('username') != '') {
+		if ($this->is_owner_logged_in()) {
 		$data['all_value'] = $this->CommonModel->get_all_info('insert_purchase_info');
 		$data['all_medicine'] = $this->CommonModel->get_all_info('create_medicine_name');
 		$data['all_generic'] = $this->CommonModel->get_all_info('create_generic_name');
@@ -199,7 +256,7 @@ public function create_medicine_name($msg) {
 
 	public function medicine_purchase_statement($msg) {
 		$data['page_title'] = "Medicine Purchase Statement";
-		if ($this->session->userdata('username') != '') {
+		if ($this->is_owner_logged_in()) {
 			$data['all_value'] = $this->CommonModel->get_all_info('insert_purchase_info');
 			$data['all_medicine'] = $this->CommonModel->get_all_info('create_medicine_name');
 			$data['all_sup'] = $this->CommonModel->get_all_info('create_supplier');
@@ -250,7 +307,7 @@ public function create_medicine_name($msg) {
 	public function sell_statement($msg)
 	{
 		$data['page_title'] = "Sell Statement";
-		if ($this->session->userdata('username') != '' || $this->session->userdata('username') != 'staff' ) {
+		if ($this->is_owner_logged_in()) {
 			$data['all_value'] = $this->CommonModel->get_all_info('sales_product');
 			$data['msg'] = $msg;
 			$this->load->view("header", $data);
