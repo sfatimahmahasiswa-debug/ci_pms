@@ -112,9 +112,6 @@
           <h2>Admin / Owner Login</h2>
         </div>
         <div class="login-card-body">
-          <div class="alert alert-info" style="margin-bottom: 16px;">
-            Login owner: <strong>username: owner</strong> dan <strong>password: 123</strong>
-          </div>
           <form method="post" action="<?php echo base_url();?>main/login_validation">
             <div class="form-group">
               <label for="username">Username</label>

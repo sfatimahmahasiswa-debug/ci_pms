@@ -27,18 +27,7 @@ class Main extends CI_Controller
 		if ($this->form_validation->run()) {
 			//true
 			$username = trim($this->input->post('username'));
-			$raw_password = (string) $this->input->post('password');
-			$password = md5($raw_password);
-
-			// owner default credential
-			if ($username === 'owner' && $raw_password === '123') {
-				$this->session->set_userdata(array(
-					'username' => 'owner',
-					'user_role' => 'owner'
-				));
-				redirect(base_url() . 'main/enter');
-				return;
-			}
+			$password = md5((string) $this->input->post('password'));
 
 			//model function
 			$this->load->model('Main_model');
