@@ -28,7 +28,8 @@ class Staff extends CI_Controller
 			$this->load->model('Main_model');
 			if ($this->Main_model->staff_can_login($username, $password)) {
 				$session_data = array(
-					'username' => $username
+					'username' => $username,
+					'user_role' => 'staff'
 				);
 				$this->session->set_userdata($session_data);
 				redirect(base_url() . 'Staff/staff_sell');
@@ -45,7 +46,7 @@ class Staff extends CI_Controller
 	//empty ok
 	function staff_sell()
 	{
-		if ($this->session->userdata('username') != '') {
+		if ($this->session->userdata('username') != '' && $this->session->userdata('user_role') === 'staff') {
 
 			$data['medicine_qty'] = count($this->CommonModel->get_all_info('create_medicine_name')); //
 
@@ -61,7 +62,7 @@ class Staff extends CI_Controller
 
 	function logout()
 	{
-		$this->session->unset_userdata('username');
+		$this->session->unset_userdata(array('username', 'user_role'));
 		redirect(base_url() . 'Staff');
 	}
 }

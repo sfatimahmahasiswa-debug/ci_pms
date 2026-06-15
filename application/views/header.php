@@ -85,6 +85,12 @@
                     <span class="sidebar-nav-text">Rekapan</span>
                 </a>
             </li>
+            <li class="sidebar-nav-item <?php echo ($current_segment === 'inventory_reports') ? 'active' : ''; ?>">
+                <a href="<?php echo base_url(); ?>ShowForm/inventory_reports">
+                    <span class="sidebar-nav-icon"><i class="fa fa-file-alt"></i></span>
+                    <span class="sidebar-nav-text">Laporan Inventory</span>
+                </a>
+            </li>
             <li class="sidebar-nav-item <?php echo ($current_segment === 'manage_staff' || $current_segment === 'edit_staff_info') ? 'active' : ''; ?>">
                 <a href="<?php echo base_url(); ?>ShowForm/manage_staff/main">
                     <span class="sidebar-nav-icon"><i class="fa fa-users"></i></span>

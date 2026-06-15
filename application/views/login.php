@@ -96,7 +96,7 @@
       <div class="container">
         <div class="col-md-10">
           <h2 class="text-center">
-          Medika Inventory Manajemen- Admin Login
+          Medika Inventory Manajemen- Owner Login
           </h2>
         </div>
        </div>
@@ -109,7 +109,7 @@
       <div class="login-card">
         <div class="login-card-header">
           <i class="fas fa-user-shield fa-2x" aria-hidden="true"></i>
-          <h2>Admin Login</h2>
+          <h2>Owner Login</h2>
         </div>
         <div class="login-card-body">
           <form method="post" action="<?php echo base_url();?>main/login_validation">

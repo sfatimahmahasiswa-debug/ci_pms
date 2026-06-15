@@ -9,9 +9,21 @@ class Get_ajax_value extends CI_Controller
 		$this->load->model('CommonModel');
 	}
 
+	private function is_owner_logged_in()
+	{
+		return $this->session->userdata('username') != '' && $this->session->userdata('user_role') === 'owner';
+	}
+
 	public
 	function get_purchase_statement()
 	{
+		if (!$this->is_owner_logged_in()) {
+			$this->output->set_status_header(403);
+			$this->output
+				->set_content_type('application/json')
+				->set_output(json_encode(array('status' => 'error', 'message' => 'Akses ditolak. Login owner diperlukan.')));
+			return;
+		}
 
 			$date_from = $this->input->post('date_from');
 			$date_to = $this->input->post('date_to');
@@ -164,6 +176,13 @@ class Get_ajax_value extends CI_Controller
 	public
 	function get_sales_statement()
 	{
+		if (!$this->is_owner_logged_in()) {
+			$this->output->set_status_header(403);
+			$this->output
+				->set_content_type('application/json')
+				->set_output(json_encode(array('status' => 'error', 'message' => 'Akses ditolak. Login owner diperlukan.')));
+			return;
+		}
 
 		$date_from = $this->input->post('date_from');
 		$date_to = $this->input->post('date_to');
