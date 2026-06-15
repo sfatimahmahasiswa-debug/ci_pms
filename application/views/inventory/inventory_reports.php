@@ -10,7 +10,7 @@
 			</div>
 		</div>
 
-		<div class="panel panel-info">
+		<div class="panel panel-info" id="laporan-stok">
 			<div class="panel-heading"><strong>Laporan Stok</strong></div>
 			<div class="table-responsive">
 				<table class="table table-bordered table-striped">
@@ -42,7 +42,7 @@
 			</div>
 		</div>
 
-		<div class="panel panel-success">
+		<div class="panel panel-success" id="laporan-barang-masuk">
 			<div class="panel-heading"><strong>Laporan Barang Masuk (50 transaksi terakhir)</strong></div>
 			<div class="table-responsive">
 				<table class="table table-bordered table-striped">
@@ -78,7 +78,7 @@
 			</div>
 		</div>
 
-		<div class="panel panel-warning">
+		<div class="panel panel-warning" id="laporan-barang-keluar">
 			<div class="panel-heading"><strong>Laporan Barang Keluar (50 transaksi terakhir)</strong></div>
 			<div class="table-responsive">
 				<table class="table table-bordered table-striped">

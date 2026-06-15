@@ -22,6 +22,8 @@
     $current_segment = $this->uri->segment(2); // e.g. medicine_purchase_info
     $username_display = isset($username) ? $username : $this->session->userdata('username');
     $username_initial = strtoupper(substr($username_display ?? 'A', 0, 1));
+    $user_role = $this->session->userdata('user_role');
+    $role_label = ($user_role === 'owner') ? 'Owner' : 'Administrator';
 ?>
 
 <!-- Mobile overlay -->
@@ -47,7 +49,7 @@
             </div>
             <div class="sidebar-user-info">
                 <div class="sidebar-user-name"><?php echo htmlspecialchars($username_display ?? ''); ?></div>
-                <div class="sidebar-user-role">Administrator</div>
+                <div class="sidebar-user-role"><?php echo $role_label; ?></div>
             </div>
         </div>
 

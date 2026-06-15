@@ -239,6 +239,21 @@
                   <i class="fa fa-truck"></i> Informasi Supplier
                 </a>
               </div>
+              <div class="col-sm-4 col-xs-12" style="margin-top:8px;">
+                <a href="<?php echo base_url(); ?>ShowForm/inventory_reports#laporan-barang-masuk" class="btn btn-success btn-block quick-btn">
+                  <i class="fa fa-arrow-circle-down"></i> Laporan Barang Masuk
+                </a>
+              </div>
+              <div class="col-sm-4 col-xs-12" style="margin-top:8px;">
+                <a href="<?php echo base_url(); ?>ShowForm/inventory_reports#laporan-barang-keluar" class="btn btn-warning btn-block quick-btn">
+                  <i class="fa fa-arrow-circle-up"></i> Laporan Barang Keluar
+                </a>
+              </div>
+              <div class="col-sm-4 col-xs-12" style="margin-top:8px;">
+                <a href="<?php echo base_url(); ?>ShowForm/inventory_reports#laporan-stok" class="btn btn-info btn-block quick-btn">
+                  <i class="fa fa-boxes"></i> Laporan Stok
+                </a>
+              </div>
             </div>
           </div>
         </div>
